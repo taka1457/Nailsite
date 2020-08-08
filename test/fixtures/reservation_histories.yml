@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reserve: one
+  menu: one
+  reservation_price: 1
+
+two:
+  reserve: two
+  menu: two
+  reservation_price: 1
