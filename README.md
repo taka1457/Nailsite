@@ -1,24 +1,23 @@
-# README
+# Nailsite
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+ネイルサロンのネット予約とSNS
 
-Things you may want to cover:
+### サイトテーマ
+カスタマーがSNSで自身がした（してもらった）ネイル写真を上げ、いいねをお互いに行い、お店側がそれにあう次回のデザインを提案し、予約に誘導する。
+その後カスタマーが予約を行い、お店にコメントを残す。
 
-* Ruby version
+### テーマを選んだ理由
+前職がネイルサロンなどの美容サロンの広告営業をしており、新しい形の予約方法があればと考えていたため。
 
-* System dependencies
+### ターゲットユーザ
+20代〜40代の女性
 
-* Configuration
+### 主な利用シーン
+カスタマー：ネイルをした時、ネイルデザインを探す時、次回ネイルをする時
+お店側：集客をしたい時
 
-* Database creation
+## 設計書
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 機能一覧
+https://docs.google.com/spreadsheets/d/1nS2pKwcRfiwTGeieEjp7Ff2n5x4DyuwWSuStLwuSpzQ/edit?usp=sharing
