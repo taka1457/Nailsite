@@ -1,0 +1,184 @@
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+<div class="row">
+  <h4 class="col-xs-2 title-color devise-registrations-new-title">店舗様新規会員登録</h4>
+</div>
+
+<div class="row">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <% resource.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    <div class="col-xs-6">
+      <table class="table-condensed devise-registrations-new-table">
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :店舗名 %>
+          </th>
+          <th><%= f.text_field :name, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :メールアドレス %>
+          </th>
+          <th><%= f.email_field :email, autofocus: true, autocomplete: "email" %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :'パスワード' %>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> 文字以上）</em>
+              <% end %>
+          </th>
+          <th><%= f.password_field :password, autocomplete: "new-password", class: "password" %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :'パスワード(確認用）' %>
+          </th>
+          <th><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></th>
+        </tr>
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>以下店舗詳細情報</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :'郵便番号(ハイフンなし）' %>
+          </th>
+          <th><%= f.text_field :postal_code %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :都道府県 %>
+          </th>
+          <th><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :市町村 %>
+          </th>
+          <th><%= f.text_field :city %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :番地 %>
+          </th>
+          <th><%= f.text_field :street %></th>
+        </tr>
+        <tr>
+          <th>　　　<%= f.label :'建物名、部屋番号' %></th>
+          <th><%= f.text_field :other_address, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :'電話番号(ハイフンなし）' %>
+          </th>
+          <th><%= f.text_field :phone_number, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :'店舗予算(目安）' %>
+          </th>
+          <th><%= f.text_field :budget, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :席数 %>
+          </th>
+          <th><%= f.text_field :seat, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :スタッフ数 %>
+          </th>
+          <th><%= f.text_field :staff, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :交通手段 %>
+          </th>
+          <th><%= f.text_area :traffic_method, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :お支払い方法 %>
+          </th>
+          <th><%= f.text_area :payment_method, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :営業時間 %>
+          </th>
+          <th><%= f.text_area :business_hours, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :駐車場情報 %>
+          </th>
+          <th><%= f.text_area :parking, autofocus: true %></th>
+        </tr>
+      </table>
+    </div>
+    <div class="col-xs-6">
+      <table class="table-condensed devise-registrations-new-table">
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :店舗アピールポイント %>
+          </th>
+          <th><%= f.text_area :promotion, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　
+            <%= f.label :店舗紹介 %>
+          </th>
+          <th><%= f.text_area :introduction, autofocus: true %></th>
+        </tr>
+        <tr>
+          <th>　　　店内写真</th>
+          <th class="image_field">
+            <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "registration_image" %>
+            <%= f.attachment_field :shop_image %>
+            <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <span class="text-danger">必須</span>　おすすめジャンル
+          </th>
+          <th>
+            <%= f.select :genre, {シンプル: 'simple', ワンカラー: 'one_color', フット: 'foot', art: 'art', ブライダル: 'bridal', グラデーション: 'gradation' } %>
+          </th>
+        </tr>
+      </table>
+      <div class="row">
+        <%= f.submit "新規登録", class: "btn btn-success devise-registrations-new-sign-up-btn" %>
+      </div>
+      <div class="row"><h4>既に登録済みの方</h4></div>
+      <div class="devise-registrations-new-sign-up-message">
+        <%= link_to 'こちら', new_shop_session_path %> からログインしてください
+      </div>
+    </div>
+  <% end %>
+</div>

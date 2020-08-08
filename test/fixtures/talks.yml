@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  shop: one
+  talk_room: one
+  body: MyString
+
+two:
+  customer: two
+  shop: two
+  talk_room: two
+  body: MyString
