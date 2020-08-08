@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_111940) do
+ActiveRecord::Schema.define(version: 2020_08_08_114856) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_bookmarks_on_customer_id"
+    t.index ["shop_id"], name: "index_bookmarks_on_shop_id"
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,6 +39,91 @@ ActiveRecord::Schema.define(version: 2020_08_08_111940) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_favorites_on_customer_id"
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+  end
+
+  create_table "history_comments", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "reservation_history_id"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_history_comments_on_customer_id"
+    t.index ["reservation_history_id"], name: "index_history_comments_on_reservation_history_id"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.integer "shop_id"
+    t.string "name"
+    t.string "detail"
+    t.integer "price"
+    t.string "menu_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_menus_on_shop_id"
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "post_id"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_post_comments_on_customer_id"
+    t.index ["post_id"], name: "index_post_comments_on_post_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "shop_id"
+    t.string "body"
+    t.string "post_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_posts_on_shop_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reservation_histories", force: :cascade do |t|
+    t.integer "reserve_id"
+    t.integer "menu_id"
+    t.integer "reservation_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_reservation_histories_on_menu_id"
+    t.index ["reserve_id"], name: "index_reservation_histories_on_reserve_id"
+  end
+
+  create_table "reservation_menus", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "menu_id"
+    t.string "reservation_shop"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_reservation_menus_on_customer_id"
+    t.index ["menu_id"], name: "index_reservation_menus_on_menu_id"
+  end
+
+  create_table "reserves", force: :cascade do |t|
+    t.integer "customer_id"
+    t.date "reservation_date"
+    t.time "reservation_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_reserves_on_customer_id"
   end
 
   create_table "shops", force: :cascade do |t|
@@ -61,6 +155,23 @@ ActiveRecord::Schema.define(version: 2020_08_08_111940) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_shops_on_email", unique: true
     t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
+  end
+
+  create_table "talk_rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "talks", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "shop_id"
+    t.integer "talk_room_id"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_talks_on_customer_id"
+    t.index ["shop_id"], name: "index_talks_on_shop_id"
+    t.index ["talk_room_id"], name: "index_talks_on_talk_room_id"
   end
 
 end

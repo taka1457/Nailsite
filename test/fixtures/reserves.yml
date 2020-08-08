@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  reservation_date: 2020-08-08
+  reservation_time: 2020-08-08 11:46:12
+
+two:
+  customer: two
+  reservation_date: 2020-08-08
+  reservation_time: 2020-08-08 11:46:12
