@@ -11,6 +11,23 @@ Rails.application.routes.draw do
   scope module: :public do
   	root 'homes#top'
   	get 'about', to: 'homes#about'
+    get 'customers/mypage' => 'customers#show', as: 'mypage'
+    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
+    patch 'customers/information' => 'customers#update', as: 'update_information'
+    put 'customers/information' => 'customers#update'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
+    put 'customers/withdraw' => 'customers#withdraw'
+  end
+
+  scope module: :shop do
+    get 'shops/mypage' => 'shops#show', as: 'shop_mypage'
+    get 'shops/information/edit' => 'shops#edit', as: 'shop_edit_information'
+    patch 'shops/information' => 'shops#update', as: 'shop_update_information'
+    put 'shops/information' => 'shops#update'
+    get 'shops/unsubscribe' => 'shops#unsubscribe', as: 'shop_confirm_unsubscribe'
+    patch 'shops/withdraw' => 'shops#withdraw', as: 'shop_withdraw_customer'
+    put 'shops/withdraw' => 'shops#withdraw'
   end
 
 end

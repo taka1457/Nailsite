@@ -5,4 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   attachment :profile_image
+
+  def full_name
+    last_name + " " + first_name
+  end
 end

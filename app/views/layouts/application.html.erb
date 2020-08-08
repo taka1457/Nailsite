@@ -42,7 +42,7 @@
             </div>
             <div>
               <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to 'マイページ', "", class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to 'マイページ', mypage_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'トップ', "", class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'お気に入り', "", class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-default nav-btn" %></li>
