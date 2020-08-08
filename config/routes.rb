@@ -22,11 +22,11 @@ Rails.application.routes.draw do
 
   scope module: :shop do
     get 'shops/mypage' => 'shops#show', as: 'shop_mypage'
-    get 'shops/information/edit' => 'shops#edit', as: 'shop_edit_information'
-    patch 'shops/information' => 'shops#update', as: 'shop_update_information'
+    get 'shops/information/edit' => 'shops#edit', as: 'edit_shop_information'
+    patch 'shops/information' => 'shops#update', as: 'update_shop_information'
     put 'shops/information' => 'shops#update'
-    get 'shops/unsubscribe' => 'shops#unsubscribe', as: 'shop_confirm_unsubscribe'
-    patch 'shops/withdraw' => 'shops#withdraw', as: 'shop_withdraw_customer'
+    get 'shops/unsubscribe' => 'shops#unsubscribe', as: 'confirm_shop_unsubscribe'
+    patch 'shops/withdraw' => 'shops#withdraw', as: 'withdraw_shop'
     put 'shops/withdraw' => 'shops#withdraw'
   end
 
