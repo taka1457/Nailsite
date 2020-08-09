@@ -28,8 +28,11 @@ Rails.application.routes.draw do
     get 'shops/unsubscribe' => 'shops#unsubscribe', as: 'confirm_shop_unsubscribe'
     patch 'shops/withdraw' => 'shops#withdraw', as: 'withdraw_shop'
     put 'shops/withdraw' => 'shops#withdraw'
+    get 'shops/:id/menus' => 'shops#menu'
 
     resources :shops, only: [:index, :show]
+
+
     resources :menus, except: [:show]
     resources :posts, except: [:show]
   end

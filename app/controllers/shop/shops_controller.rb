@@ -1,6 +1,6 @@
 class Shop::ShopsController < ApplicationController
-  before_action :authenticate_shop!, except: [:index, :show]
-	before_action :set_current_shop, except: [:index, :show]
+  before_action :authenticate_shop!, except: [:index, :show, :menu]
+	before_action :set_current_shop, except: [:index, :show, :menu]
 
   def index
     @shops = Shop.page(params[:page])
@@ -10,6 +10,11 @@ class Shop::ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @menus = @shop.menus.page(params[:page])
     @posts = @shop.posts.page(params[:page])
+  end
+
+  def menu
+    @shop = Shop.find(params[:id])
+    @menus = @shop.menus.page(params[:page])
   end
 
 	def mypage

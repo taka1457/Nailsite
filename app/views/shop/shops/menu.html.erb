@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<table class="table">
+			<tbody>
+				<% @menus.each do |menu| %>
+				<tr>
+					<td class="image_field"><%= attachment_image_tag menu, :menu_image, format: "jpeg", size: "30x20", fallback: "no-image.png", size: "60x50" %></td>
+					<td><%= menu.name %></td>
+					<td><%= menu.price %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
