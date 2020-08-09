@@ -1,7 +1,18 @@
 class Shop::ShopsController < ApplicationController
-	before_action :set_current_shop
+  before_action :authenticate_shop!, except: [:index, :show]
+	before_action :set_current_shop, except: [:index, :show]
 
-	def show
+  def index
+    @shops = Shop.page(params[:page])
+  end
+
+  def show
+    @shop = Shop.find(params[:id])
+    @menus = @shop.menus.page(params[:page])
+    @posts = @shop.posts.page(params[:page])
+  end
+
+	def mypage
   end
 
   def edit

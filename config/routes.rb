@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :shop do
-    get 'shops/mypage' => 'shops#show', as: 'shop_mypage'
+    get 'shops/mypage' => 'shops#mypage', as: 'shop_mypage'
     get 'shops/information/edit' => 'shops#edit', as: 'edit_shop_information'
     patch 'shops/information' => 'shops#update', as: 'update_shop_information'
     put 'shops/information' => 'shops#update'
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     patch 'shops/withdraw' => 'shops#withdraw', as: 'withdraw_shop'
     put 'shops/withdraw' => 'shops#withdraw'
 
+    resources :shops, only: [:index, :show]
     resources :menus, except: [:show]
     resources :posts, except: [:show]
   end
