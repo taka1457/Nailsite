@@ -22,7 +22,7 @@
             <span class="text-danger">必須</span>　
             <%= f.label :メールアドレス %>
           </td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          <td><%= f.email_field :email, autocomplete: "email" %></td>
         </tr>
         <tr>
           <td>
@@ -79,63 +79,63 @@
         </tr>
         <tr>
           <td>　　　<%= f.label :'建物名、部屋番号' %></td>
-          <td><%= f.text_field :other_address, autofocus: true %></td>
+          <td><%= f.text_field :other_address %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :'電話番号(ハイフンなし）' %>
           </td>
-          <td><%= f.text_field :phone_number, autofocus: true %></td>
+          <td><%= f.text_field :phone_number %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :'店舗予算(目安）' %>
           </td>
-          <td><%= f.text_field :budget, autofocus: true %></td>
+          <td><%= f.text_field :budget %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :席数 %>
           </td>
-          <td><%= f.text_field :seat, autofocus: true %></td>
+          <td><%= f.text_field :seat %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :スタッフ数 %>
           </td>
-          <td><%= f.text_field :staff, autofocus: true %></td>
+          <td><%= f.text_field :staff %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :交通手段 %>
           </td>
-          <td><%= f.text_area :traffic_method, autofocus: true %></td>
+          <td><%= f.text_area :traffic_method %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :お支払い方法 %>
           </td>
-          <td><%= f.text_area :payment_method, autofocus: true %></td>
+          <td><%= f.text_area :payment_method %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :営業時間 %>
           </td>
-          <td><%= f.text_area :business_hours, autofocus: true %></td>
+          <td><%= f.text_area :business_hours %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :駐車場情報 %>
           </td>
-          <td><%= f.text_area :parking, autofocus: true %></td>
+          <td><%= f.text_area :parking %></td>
         </tr>
       </table>
     </div>
@@ -146,14 +146,14 @@
             <span class="text-danger">必須</span>　
             <%= f.label :店舗アピールポイント %>
           </td>
-          <td><%= f.text_area :promotion, autofocus: true %></td>
+          <td><%= f.text_area :promotion %></td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　
             <%= f.label :店舗紹介 %>
           </td>
-          <td class="row-5"><%= f.text_area :introduction, autofocus: true %></td>
+          <td class="row-5"><%= f.text_area :introduction %></td>
         </tr>
         <tr>
           <td>　　　店内写真</td>

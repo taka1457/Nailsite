@@ -16,7 +16,7 @@
         <td><%= f.label :'(姓）' %></td>
         <td><%= f.text_field :last_name, autofocus: true, class: "last_name" %></td>
         <td><%= f.label :'　　(名）' %></td>
-        <td><%= f.text_field :first_name, autofocus: true, class: "first_name" %></td>
+        <td><%= f.text_field :first_name, class: "first_name" %></td>
       </tr>
       <tr>
         <td>
@@ -24,9 +24,9 @@
           <%= f.label :フリガナ %>
         </td>
         <td><%= f.label :'(セイ)' %></td>
-        <td><%= f.text_field :last_name_kana, autofocus: true, class: "last_name_kana" %></td>
+        <td><%= f.text_field :last_name_kana, class: "last_name_kana" %></td>
         <td><%= f.label :'　　(メイ)' %></td>
-        <td><%= f.text_field :first_name_kana, autofocus: true, class: "first_name_kana" %></td>
+        <td><%= f.text_field :first_name_kana, class: "first_name_kana" %></td>
       </tr>
       <tr>
         <td>
@@ -34,7 +34,7 @@
           <%= f.label :'電話番号(ハイフンなし）' %>
         </td>
         <td></td>
-        <td><%= f.text_field :phone_number, autofocus: true, class: "phone_number" %></td>
+        <td><%= f.text_field :phone_number, class: "phone_number" %></td>
         <td></td>
         <td></td>
       </tr>
@@ -44,7 +44,7 @@
           <%= f.label :メールアドレス %>
         </td>
         <td></td>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email" %></td>
+        <td><%= f.email_field :email, autocomplete: "email", class: "email" %></td>
         <td></td>
         <td></td>
       </tr>
