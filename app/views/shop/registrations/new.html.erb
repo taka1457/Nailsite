@@ -11,165 +11,165 @@
     <div class="col-xs-6">
       <table class="table-condensed devise-registrations-new-table">
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :店舗名 %>
-          </th>
-          <th><%= f.text_field :name, autofocus: true %></th>
+          </td>
+          <td><%= f.text_field :name, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :メールアドレス %>
-          </th>
-          <th><%= f.email_field :email, autofocus: true, autocomplete: "email" %></th>
+          </td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :'パスワード' %>
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> 文字以上）</em>
               <% end %>
-          </th>
-          <th><%= f.password_field :password, autocomplete: "new-password", class: "password" %></th>
+          </td>
+          <td><%= f.password_field :password, autocomplete: "new-password", class: "password" %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :'パスワード(確認用）' %>
-          </th>
-          <th><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></th>
+          </td>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></td>
         </tr>
         <tr>
-          <th></th>
-          <th></th>
+          <td></td>
+          <td></td>
         </tr>
         <tr>
-          <th>以下店舗詳細情報</th>
-          <th></th>
+          <td>以下店舗詳細情報</td>
+          <td></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :'郵便番号(ハイフンなし）' %>
-          </th>
-          <th><%= f.text_field :postal_code %></th>
+          </td>
+          <td><%= f.text_field :postal_code %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :都道府県 %>
-          </th>
-          <th><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %></th>
+          </td>
+          <td><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :市町村 %>
-          </th>
-          <th><%= f.text_field :city %></th>
+          </td>
+          <td><%= f.text_field :city %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :番地 %>
-          </th>
-          <th><%= f.text_field :street %></th>
+          </td>
+          <td><%= f.text_field :street %></td>
         </tr>
         <tr>
-          <th>　　　<%= f.label :'建物名、部屋番号' %></th>
-          <th><%= f.text_field :other_address, autofocus: true %></th>
+          <td>　　　<%= f.label :'建物名、部屋番号' %></td>
+          <td><%= f.text_field :other_address, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :'電話番号(ハイフンなし）' %>
-          </th>
-          <th><%= f.text_field :phone_number, autofocus: true %></th>
+          </td>
+          <td><%= f.text_field :phone_number, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :'店舗予算(目安）' %>
-          </th>
-          <th><%= f.text_field :budget, autofocus: true %></th>
+          </td>
+          <td><%= f.text_field :budget, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :席数 %>
-          </th>
-          <th><%= f.text_field :seat, autofocus: true %></th>
+          </td>
+          <td><%= f.text_field :seat, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :スタッフ数 %>
-          </th>
-          <th><%= f.text_field :staff, autofocus: true %></th>
+          </td>
+          <td><%= f.text_field :staff, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :交通手段 %>
-          </th>
-          <th><%= f.text_area :traffic_method, autofocus: true %></th>
+          </td>
+          <td><%= f.text_area :traffic_method, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :お支払い方法 %>
-          </th>
-          <th><%= f.text_area :payment_method, autofocus: true %></th>
+          </td>
+          <td><%= f.text_area :payment_method, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :営業時間 %>
-          </th>
-          <th><%= f.text_area :business_hours, autofocus: true %></th>
+          </td>
+          <td><%= f.text_area :business_hours, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :駐車場情報 %>
-          </th>
-          <th><%= f.text_area :parking, autofocus: true %></th>
+          </td>
+          <td><%= f.text_area :parking, autofocus: true %></td>
         </tr>
       </table>
     </div>
     <div class="col-xs-6">
       <table class="table-condensed devise-registrations-new-table">
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :店舗アピールポイント %>
-          </th>
-          <th><%= f.text_area :promotion, autofocus: true %></th>
+          </td>
+          <td><%= f.text_area :promotion, autofocus: true %></td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　
             <%= f.label :店舗紹介 %>
-          </th>
-          <th><%= f.text_area :introduction, autofocus: true %></th>
+          </td>
+          <td class="row-5"><%= f.text_area :introduction, autofocus: true %></td>
         </tr>
         <tr>
-          <th>　　　店内写真</th>
-          <th class="image_field">
-            <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "registration_image" %>
+          <td>　　　店内写真</td>
+          <td class="image_field">
+            <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_image" %>
             <%= f.attachment_field :shop_image %>
             <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
-          </th>
+          </td>
         </tr>
         <tr>
-          <th>
+          <td>
             <span class="text-danger">必須</span>　おすすめジャンル
-          </th>
-          <th>
+          </td>
+          <td>
             <%= f.select :genre, {シンプル: 'simple', ワンカラー: 'one_color', フット: 'foot', art: 'art', ブライダル: 'bridal', グラデーション: 'gradation' } %>
-          </th>
+          </td>
         </tr>
       </table>
       <div class="row">

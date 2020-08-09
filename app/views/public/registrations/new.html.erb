@@ -9,67 +9,67 @@
     <% end %>
     <table class="table-condensed devise-registrations-new-table">
       <tr>
-        <th>
+        <td>
           <span class="text-danger">必須</span>　
           <%= f.label :名前 %>
-        </th>
-        <th><%= f.label :'(姓）' %></th>
-        <th><%= f.text_field :last_name, autofocus: true, class: "last_name" %></th>
-        <th><%= f.label :'　　(名）' %></th>
-        <th><%= f.text_field :first_name, autofocus: true, class: "first_name" %></th>
+        </td>
+        <td><%= f.label :'(姓）' %></td>
+        <td><%= f.text_field :last_name, autofocus: true, class: "last_name" %></td>
+        <td><%= f.label :'　　(名）' %></td>
+        <td><%= f.text_field :first_name, autofocus: true, class: "first_name" %></td>
       </tr>
       <tr>
-        <th>
+        <td>
           <span class="text-danger">必須</span>　
           <%= f.label :フリガナ %>
-        </th>
-        <th><%= f.label :'(セイ)' %></th>
-        <th><%= f.text_field :last_name_kana, autofocus: true, class: "last_name_kana" %></th>
-        <th><%= f.label :'　　(メイ)' %></th>
-        <th><%= f.text_field :first_name_kana, autofocus: true, class: "first_name_kana" %></th>
+        </td>
+        <td><%= f.label :'(セイ)' %></td>
+        <td><%= f.text_field :last_name_kana, autofocus: true, class: "last_name_kana" %></td>
+        <td><%= f.label :'　　(メイ)' %></td>
+        <td><%= f.text_field :first_name_kana, autofocus: true, class: "first_name_kana" %></td>
       </tr>
       <tr>
-        <th>
+        <td>
           <span class="text-danger">必須</span>　
           <%= f.label :'電話番号(ハイフンなし）' %>
-        </th>
-        <th></th>
-        <th><%= f.text_field :phone_number, autofocus: true, class: "phone_number" %></th>
-        <th></th>
-        <th></th>
+        </td>
+        <td></td>
+        <td><%= f.text_field :phone_number, autofocus: true, class: "phone_number" %></td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
-        <th>
+        <td>
           <span class="text-danger">必須</span>　
           <%= f.label :メールアドレス %>
-        </th>
-        <th></th>
-        <th><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email" %></th>
-        <th></th>
-        <th></th>
+        </td>
+        <td></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email" %></td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
-        <th>
+        <td>
           <span class="text-danger">必須</span>　
           <%= f.label :'パスワード' %>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> 文字以上）</em>
             <% end %>
-        </th>
-        <th></th>
-        <th><%= f.password_field :password, autocomplete: "new-password", class: "password" %></th>
-        <th></th>
-        <th></th>
+        </td>
+        <td></td>
+        <td><%= f.password_field :password, autocomplete: "new-password", class: "password" %></td>
+        <td></td>
+        <td></td>
       </tr>
       <tr>
-        <th>
+        <td>
           <span class="text-danger">必須</span>　
           <%= f.label :'パスワード(確認用）' %>
-        </th>
-        <th></th>
-        <th><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></th>
-        <th></th>
-        <th></th>
+        </td>
+        <td></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></td>
+        <td></td>
+        <td></td>
       </tr>
     </table>
     <div class="col-md-4 col-md-offset-4" style="margin-top: 15px; margin-bottom: 15px:">
