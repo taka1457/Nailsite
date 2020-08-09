@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     put 'shops/withdraw' => 'shops#withdraw'
 
     resources :menus, except: [:show]
+    resources :posts, except: [:show]
   end
 
 end

@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-2">
+		<h2>投稿一覧</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-1 col-md-offset-10">
+		<%= link_to new_post_path do %>
+			<button type="button">＋</button>
+		<% end %>
+	</div>
+
+	<div class="col-md-10 col-md-offset-1">
+		<table class="table" style="table-layout:fixed;">
+			<tbody>
+				<% @posts.each do |post| %>
+					<tr>
+						<td style="width:140px;"><%= attachment_image_tag post, :post_image, format: "jpeg", size: "60x50", fallback: "no-image.png", size: "120x100" %></td>
+						<td style="width:400px;">
+							<div class="row-4"><%= post.body %></div><br>
+							<%= post.created_at.to_s(:datetime_jp) %>　　　いいね数
+						</td>
+						<td style="width:70px;"><%= link_to "編集", edit_post_path(post), class: "btn btn-success ml2" %></td>
+						<td style="width:70px;"><%= link_to "削除", post_path(post), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-xs-offset-5">
+		<%= paginate @posts %>
+	</div>
+</div>

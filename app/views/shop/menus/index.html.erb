@@ -29,11 +29,7 @@
 					<tr>
 						<td><%= menu.id %></td>
 						<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", size: "60x50", fallback: "no-image.png", size: "60x50" %></td>
-						<td>
-							<%= link_to edit_menu_path(menu) do %>
-								<%= menu.name %>
-							<% end %>
-						</td>
+						<td><%= menu.name %></td>
 						<td><%= menu.detail %></td>
 						<td><%= menu.price.to_s(:delimited) %>円</td>
 						<td><%= link_to "編集", edit_menu_path(menu), class: "btn btn-success ml2" %></td>
