@@ -30,10 +30,11 @@ Rails.application.routes.draw do
     put 'shops/withdraw' => 'shops#withdraw'
     get 'shops/:id/menulist' => 'shops#menu', as: 'shop_menu_list'
     get 'posts/all' => 'posts#all_index'
+    get 'shops/:id/postlist' => 'posts#list', as: 'shop_posts_list'
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]
-      resources :posts, except: [:show]
+      resources :posts
     end
 
 

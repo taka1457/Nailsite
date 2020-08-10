@@ -2,7 +2,7 @@ class Shop::MenusController < ApplicationController
   before_action :authenticate_shop!
 
   def index
-  	@menus = current_shop.menus.page(params[:page])
+  	@menus = current_shop.menus.page(params[:page]).per(10)
   end
 
   def new

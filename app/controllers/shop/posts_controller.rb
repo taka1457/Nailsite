@@ -1,13 +1,24 @@
 class Shop::PostsController < ApplicationController
-  before_action :authenticate_shop!, except: [:all_index]
+  before_action :authenticate_shop!, except: [:all_index, :show, :list]
 
   def all_index
     @posts = Post.page(params[:page]).reverse_order
+
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    @shop = Shop.find(params[:shop_id])
+  end
+
+  def list
+    @shop = Shop.find(params[:id])
+    @posts = @shop.posts.page(params[:page])
   end
 
 
   def index
-  	@posts = current_shop.posts.page(params[:page])
+  	@posts = current_shop.posts.page(params[:page]).reverse_order.per(4)
   end
 
   def new

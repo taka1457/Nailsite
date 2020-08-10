@@ -15,7 +15,6 @@
 		<table class="table table-bordered table-condensed" style="table-layout:fixed;">
 			<thead>
 				<tr>
-					<th style="width:90px;">メニューID</th>
 					<th style="width:100px;">メニュー画像</th>
 					<th style="width:250px;">メニュー名</th>
 					<th>メニュー詳細</th>
@@ -27,7 +26,6 @@
 			<tbody>
 				<% @menus.each do |menu| %>
 					<tr>
-						<td><%= menu.id %></td>
 						<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", size: "60x50", fallback: "no-image.png", size: "60x50" %></td>
 						<td><%= menu.name %></td>
 						<td><%= menu.detail %></td>

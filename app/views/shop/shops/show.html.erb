@@ -35,10 +35,12 @@
 </div>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		<h4>最近の投稿　　<span><%= link_to 'もっと見る>', "" %></span></h4>
+		<h4>最近の投稿　　<span><%= link_to 'もっと見る>', shop_posts_list_path(@shop) %></span></h4>
 		<% @posts.each do |post| %>
 			<div class="image_field col-md-3">
+				<%= link_to shop_post_path(@shop, post) do %>
 				<%= attachment_image_tag post, :post_image, format: "jpeg", size: "30x20", fallback: "no-image.png", size: "60x50" %><br>
+				<% end %>
 				<%= post.body %>
 			</div>
 		<% end %>
