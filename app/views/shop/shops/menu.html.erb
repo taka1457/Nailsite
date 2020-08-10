@@ -4,7 +4,7 @@
 			<%= link_to shop_path(@shop) do %>
 				<%= @shop.name %>
 			<% end %>
-			<span class="sub_title">　のメニュー</span>
+			<span class="sub_title">　のメニュー　　　<%= paginate @menus %></span>
 		</h2>
 		<table class="table">
 			<tbody>
@@ -21,8 +21,5 @@
 				<% end %>
 			</tbody>
 		</table>
-		<div class="col-md-offset-5">
-			<%= paginate @menus %>
-		</div>
 	</div>
 </div>
