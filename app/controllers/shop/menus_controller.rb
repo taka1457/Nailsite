@@ -1,7 +1,8 @@
 class Shop::MenusController < ApplicationController
+  before_action :authenticate_shop!
 
   def index
-  	@menus = Menu.page(params[:page])
+  	@menus = current_shop.menus.page(params[:page])
   end
 
   def new
@@ -12,7 +13,7 @@ class Shop::MenusController < ApplicationController
 		@menu = Menu.new(menu_params)
   	@menu.shop_id = current_shop.id
   	@menu.save
-  	redirect_to menus_path
+  	redirect_to shop_menus_path
   end
   def destroy
   	@menu = Menu.find(params[:id])
@@ -27,7 +28,7 @@ class Shop::MenusController < ApplicationController
   def update
   	menu = Menu.find(params[:id])
     menu.update(menu_params)
-    redirect_to menus_path
+    redirect_to shop_menus_path
   end
 
   private

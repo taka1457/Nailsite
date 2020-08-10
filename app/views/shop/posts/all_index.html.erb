@@ -1,0 +1,10 @@
+<div class="row">
+	<h3>最近の投稿一覧</h3>
+	<div class="col-md-10 col-md-offset-1">
+		<% @posts.each do |post| %>
+			<div class="col-xs-6 col-md-3">
+				<%= attachment_image_tag post, :post_image, format: "jpeg", size: "60x50", fallback: "no-image.png", size: "120x100" %>
+			</div>
+		<% end %>
+	</div>
+</div>

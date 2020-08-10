@@ -1,6 +1,20 @@
-<h2>店舗一覧</h2>
 <div class="row">
-	<div class="col-md-10 col-md-offset-1">
+	<h2>　　　　　　　店舗一覧おすすめ順<span> (全<%= @shops.total_count %>件)</span></h2>
+	<div class="col-md-2">
+		<table class="table table-bordered">
+			<tr>
+				<th>ジャンル検索</th>
+			</tr>
+			<% @shops.each do |shop| %>
+				<tr>
+					<th>
+						<%= shop.genre %>
+					</th>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+	<div class="col-md-9">
 		<table class="table">
 			<tbody>
 				<% @shops.each do |shop| %>
@@ -12,10 +26,10 @@
 		      </td>
 					<td>
 						<%= link_to shop_path(shop) do %>
-							<%= shop.name %><br>
+							<h3><%= shop.name %></h3><br>
 						<% end %>
-						<%= shop.introduction %><br>
-						<%= shop.full_address %>
+						<span><%= shop.promotion %></span><br><br>
+						<span><%= shop.full_address %></span>
 					</td>
 				</tr>
 				<% end %>

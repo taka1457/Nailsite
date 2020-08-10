@@ -1,6 +1,13 @@
 class Shop::PostsController < ApplicationController
-def index
-  	@posts = Post.page(params[:page])
+  before_action :authenticate_shop!, except: [:all_index]
+
+  def all_index
+    @posts = Post.page(params[:page]).reverse_order
+  end
+
+
+  def index
+  	@posts = current_shop.posts.page(params[:page])
   end
 
   def new
@@ -11,7 +18,7 @@ def index
 		@post = Post.new(post_params)
   	@post.shop_id = current_shop.id
   	@post.save
-  	redirect_to posts_path
+  	redirect_to shop_posts_path
   end
   def destroy
   	@post = Post.find(params[:id])
@@ -26,7 +33,7 @@ def index
   def update
   	post = Post.find(params[:id])
     post.update(post_params)
-    redirect_to posts_path
+    redirect_to shop_posts_path
   end
 
   private

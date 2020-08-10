@@ -9,7 +9,7 @@ class Shop::ShopsController < ApplicationController
   def show
     @shop = Shop.find(params[:id])
     @menus = @shop.menus.page(params[:page])
-    @posts = @shop.posts.page(params[:page])
+    @posts = @shop.posts.page(params[:page]).reverse_order
   end
 
   def menu

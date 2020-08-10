@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="col-md-1 col-md-offset-10">
-		<%= link_to new_menu_path do %>
+		<%= link_to new_shop_menu_path do %>
 			<button type="button">＋</button>
 		<% end %>
 	</div>
@@ -32,8 +32,8 @@
 						<td><%= menu.name %></td>
 						<td><%= menu.detail %></td>
 						<td><%= menu.price.to_s(:delimited) %>円</td>
-						<td><%= link_to "編集", edit_menu_path(menu), class: "btn btn-success ml2" %></td>
-						<td><%= link_to "削除", menu_path(menu), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
+						<td><%= link_to "編集", edit_shop_menu_path(current_shop, menu), class: "btn btn-success ml2" %></td>
+						<td><%= link_to "削除", shop_menu_path(current_shop, menu), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
 					</tr>
 				<% end %>
 			</tbody>

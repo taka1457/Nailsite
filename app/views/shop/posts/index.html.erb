@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="col-md-1 col-md-offset-10">
-		<%= link_to new_post_path do %>
+		<%= link_to new_shop_post_path do %>
 			<button type="button">＋</button>
 		<% end %>
 	</div>
@@ -21,8 +21,8 @@
 							<div class="row-4"><%= post.body %></div><br>
 							<%= post.created_at.to_s(:datetime_jp) %>　　　いいね数
 						</td>
-						<td style="width:70px;"><%= link_to "編集", edit_post_path(post), class: "btn btn-success ml2" %></td>
-						<td style="width:70px;"><%= link_to "削除", post_path(post), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
+						<td style="width:70px;"><%= link_to "編集", edit_shop_post_path(current_shop, post), class: "btn btn-success ml2" %></td>
+						<td style="width:70px;"><%= link_to "削除", shop_post_path(current_shop, post), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
 					</tr>
 				<% end %>
 			</tbody>
