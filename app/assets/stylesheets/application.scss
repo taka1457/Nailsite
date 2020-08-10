@@ -37,10 +37,6 @@
 	background-color: #C299FF;
 }
 
-main{
-  margin-top: 50px;
-}
-
 .nav-btn {
 	color: #888888;
 	font-size: 12px;
@@ -51,28 +47,21 @@ main{
   	border-radius : 8px;
   	background: #ffffff;
 }
-
-.image_field {
-  width: 250px;
-  text-align: center;
-  p {
-    margin-top: 10px;
-    text-align: left;
-  }
-}
-
-.preview_image {
-  width: 250px;
-  height: 150px;
-
-  object-fit: cover;
-}
-
 footer {
   padding: 15px 0;
   font-size: 14px;
   text-align: center;
 }
+
+
+.devise_btn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.devise_input-size{
+  width: 430px;
+}
+
 
 textarea {
   resize: none;
@@ -94,20 +83,35 @@ textarea {
 
 
 
+.preview_image {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+}
+.profile_image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .shop_show_top_image{
   width: 400px;
   height: 300px;
 }
-
 .shop_menu_image{
   width: 120px;
   height: 100px;
 }
-
 .shop_show_post_image{
   width: 180px;
   height: 150px;
 }
+
+.post_image{
+  width: 69px;
+  height: 50px;
+}
+
 
 .genre_box {
     padding: 0.5em 1em;

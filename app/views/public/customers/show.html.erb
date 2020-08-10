@@ -45,8 +45,8 @@
 		<div>　</div>
 		<div>　</div>
     <h3>プロフィール写真</h3>
-    <div class="image_field">
-      <%= attachment_image_tag @customer, :profile_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "registration_image" %>
+    <div>
+      <%= attachment_image_tag @customer, :profile_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "profile_image" %>
     </div>
 	</div>
 </div>

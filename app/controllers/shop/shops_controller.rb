@@ -3,7 +3,7 @@ class Shop::ShopsController < ApplicationController
 	before_action :set_current_shop, except: [:index, :show, :menu]
 
   def index
-    @shops = Shop.page(params[:page])
+    @shops = Shop.page(params[:page]).per(20)
   end
 
   def show

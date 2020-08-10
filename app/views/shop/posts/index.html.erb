@@ -1,8 +1,8 @@
 <div class="row">
-	<div class="col-md-6 col-md-offset-2">
-		<h2>投稿一覧　　　<%= paginate @posts %></h2>
+	<div class="col-md-6 col-md-offset-1">
+		<h2>投稿一覧<span class="sub_title">　　　<%= paginate @posts %></span></h2>
 	</div>
-		<div class="col-md-1 col-md-offset-10">
+	<div class="col-md-1 col-md-offset-10">
 		<%= link_to new_shop_post_path do %>
 			<button type="button">＋</button>
 		<% end %>
@@ -15,7 +15,7 @@
 			<tbody>
 				<% @posts.each do |post| %>
 					<tr>
-						<td style="width:140px;"><%= attachment_image_tag post, :post_image, format: "jpeg", size: "60x50", fallback: "no-image.png", size: "120x100" %></td>
+						<td><%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_image" %></td>
 						<td style="width:400px;">
 							<div class="row-4"><%= post.body %></div><br>
 							<%= post.created_at.to_s(:datetime_jp) %>　　　いいね数
