@@ -13,7 +13,7 @@ class Shop::PostsController < ApplicationController
 
   def list
     @shop = Shop.find(params[:id])
-    @posts = @shop.posts.page(params[:page])
+    @posts = @shop.posts.page(params[:page]).reverse_order.per(9)
   end
 
 

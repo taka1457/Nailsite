@@ -8,7 +8,7 @@ class Shop::ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @menus = @shop.menus.page(params[:page]).first(3)
+    @menus = @shop.menus.page(params[:page]).first(5)
     @posts = @shop.posts.page(params[:page]).reverse_order.first(3)
   end
 
