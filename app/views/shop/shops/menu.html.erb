@@ -1,16 +1,23 @@
 <div class="row">
-	<h3><%= @shop.name %>　　　のメニュー</h3>
 	<div class="col-md-10 col-md-offset-1">
+		<h3><%= @shop.name %>　<span class="sub_title">のメニュー</span></h3>
 		<table class="table">
 			<tbody>
 				<% @menus.each do |menu| %>
 				<tr>
-					<td class="image_field"><%= attachment_image_tag menu, :menu_image, format: "jpeg", size: "30x20", fallback: "no-image.png", size: "60x50" %></td>
-					<td><%= menu.name %></td>
-					<td><%= menu.price %></td>
+					<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", fallback: "no-image.png", class: "shop_menu_image" %></td>
+					<td>
+						<span class="menu_name"><%= menu.name %></span><br><br>
+						【<%= menu.detail %>】
+					</td>
+					<td><%= menu.price.to_s(:delimited) %>円</td>
+					<td><%= link_to "予約", "", class: "btn btn-primary" %></td>
 				</tr>
 				<% end %>
 			</tbody>
 		</table>
+		<div class="col-md-offset-5">
+			<%= paginate @menus %>
+		</div>
 	</div>
 </div>

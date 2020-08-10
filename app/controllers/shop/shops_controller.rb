@@ -14,7 +14,7 @@ class Shop::ShopsController < ApplicationController
 
   def menu
     @shop = Shop.find(params[:id])
-    @menus = @shop.menus.page(params[:page])
+    @menus = @shop.menus.page(params[:page]).per(10)
   end
 
 	def mypage

@@ -24,9 +24,9 @@
 			<tbody>
 				<% @menus.each do |menu| %>
 				<tr>
-					<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", fallback: "no-image.png", class: "shop_show_menu_image" %></td>
+					<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", fallback: "no-image.png", class: "shop_menu_image" %></td>
 					<td>
-						・<%= menu.name %><br><br>
+						<span class="menu_name"><%= menu.name %></span><br><br>
 						【<%= menu.detail %>】
 					</td>
 					<td><%= menu.price.to_s(:delimited) %>円</td>
