@@ -6,7 +6,7 @@
 		<h2>マイページ</h2>
 		<h3>
 			登録情報
-			<%= link_to "編集する", edit_shop_information_path, class: "btn btn-success" %>
+			<%= link_to "編集する", edit_shop_information_path, data: {"turbolinks"=>false}, class: "btn btn-success" %>
 			<%= link_to "パスワードを変更する", edit_shop_registration_path, class: "btn btn-success" %>
 		</h3>
 	</div>

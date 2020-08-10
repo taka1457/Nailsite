@@ -42,6 +42,9 @@ $(document).on("turbolinks:load", function(){
       reader.readAsDataURL(input.files[0]);
     }
   }
+  $("#customer_profile_image").change(function(){
+    readURL(this);
+  });
   $("#shop_shop_image").change(function(){
     readURL(this);
   });

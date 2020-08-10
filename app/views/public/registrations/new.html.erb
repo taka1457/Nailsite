@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-7 col-md-offset-2">
     <h3>新規会員登録<span class="sub_title">　※全て必須入力です</span></h3>
   </div>
   <div class="col-md-3">
-    <%= link_to '店舗様新規会員登録はこちら', new_shop_registration_path, class: "btn btn btn-default btn-lg devise_btn" %>
+    <%= link_to '店舗様新規会員登録はこちら', new_shop_registration_path, data: {"turbolinks"=>false}, class: "btn btn btn-default btn-lg devise_btn" %>
   </div>
 </div>
 <div class="row">
@@ -69,7 +69,7 @@
 </div>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-2">
     <h3>既に登録済みの方</h3>
     <%= link_to 'こちら', new_customer_session_path, class: "btn btn-default btn-lg" %> からログインしてください
   </div>
