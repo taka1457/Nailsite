@@ -1,10 +1,15 @@
 <div class="row">
-	<h3><%= @shop.name %>　　の投稿一覧</h3>
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>
+			<%= link_to shop_path(@shop) do %>
+				<%= @shop.name %>
+			<% end %>
+			<span class="sub_title">　の投稿一覧　　　<%= paginate @posts %></span>
+		</h2>
 		<% @posts.each do |post| %>
-			<div class="image_field">
+			<div class="col-md-4">
 				<%= link_to shop_post_path(@shop, post) do %>
-					<%= attachment_image_tag post, :post_image, format: "jpeg", size: "30x20", fallback: "no-image.png", size: "60x50" %>
+					<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_image" %>
 				<% end %>
 			</div>
 		<% end %>
