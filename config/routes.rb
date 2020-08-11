@@ -21,13 +21,23 @@ Rails.application.routes.draw do
   end
 
   scope module: :shop do
-    get 'shops/mypage' => 'shops#show', as: 'shop_mypage'
+    get 'shops/mypage' => 'shops#mypage', as: 'shop_mypage'
     get 'shops/information/edit' => 'shops#edit', as: 'edit_shop_information'
     patch 'shops/information' => 'shops#update', as: 'update_shop_information'
     put 'shops/information' => 'shops#update'
     get 'shops/unsubscribe' => 'shops#unsubscribe', as: 'confirm_shop_unsubscribe'
     patch 'shops/withdraw' => 'shops#withdraw', as: 'withdraw_shop'
     put 'shops/withdraw' => 'shops#withdraw'
+    get 'shops/:id/menulist' => 'shops#menu', as: 'shop_menu_list'
+    get 'posts/all' => 'posts#all_index'
+    get 'shops/:id/postlist' => 'posts#list', as: 'shop_posts_list'
+
+    resources :shops, only: [:index, :show] do
+      resources :menus, except: [:show]
+      resources :posts
+    end
+
+
   end
 
 end

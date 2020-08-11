@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h2>
+			<%= link_to shop_path(@shop) do %>
+				<%= @shop.name %>
+			<% end %>
+			<span class="sub_title">　の投稿</span>
+		</h2>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+		        <%= attachment_image_tag @post, :post_image, format: "jpeg", fallback: "no-image.png", class: "shop_show_top_image" %>
+		      </td>
+					<td>
+						<%= @post.body %><br><br><br>
+						<%= @post.created_at.to_s(:datetime_jp) %><br><br>
+						いいね数
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>コメント一覧</h2>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>コメント内容</th>
+						<th>投稿者</th>
+						<th>投稿日時</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>aaa</td>
+						<td>bbb</td>
+					</tr>
+				</tbody>
+			</table>
+	</div>
+</div>

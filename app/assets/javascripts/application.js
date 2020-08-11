@@ -33,7 +33,6 @@ $(function() {
 });
 
 $(document).on("turbolinks:load", function(){
-  // admin/items#new,editでの画像プレビュー
   function readURL(input) {
     if(input.files && input.files[0]){
       var reader = new FileReader();
@@ -43,14 +42,19 @@ $(document).on("turbolinks:load", function(){
       reader.readAsDataURL(input.files[0]);
     }
   }
+  $("#customer_profile_image").change(function(){
+    readURL(this);
+  });
   $("#shop_shop_image").change(function(){
     readURL(this);
   });
-  // public/orders#confirmでの確認ダイアログ
-  $('.submit_to_create_order').on('click', function(){
-      var result = window.confirm('OKを押すと、注文が確定します。');
-      if(!result){
-        return false;
-      }
+  $("#post_post_image").change(function(){
+    readURL(this);
+  });
+  $("#menu_menu_image").change(function(){
+    readURL(this);
   });
 });
+
+
+
