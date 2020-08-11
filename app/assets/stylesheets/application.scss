@@ -16,18 +16,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 .main-header {
 	height: 80px;
 	background-color: #FFBEDA;
 }
-
 .top-header {
 	height: 200px;
 	background-image: url("background.jpg");
 	background-size: cover;
   background-position: center;
 }
-
 .shop-header {
 	height: 80px;
 	background-color: #CCCCCC;
@@ -36,17 +35,17 @@
 	height: 80px;
 	background-color: #C299FF;
 }
-
 .nav-btn {
 	color: #888888;
 	font-size: 12px;
 	font-weight: bold;
-  	display: inline-block;
-  	margin: 15px 10px 10px 10px;
-  	text-decoration: none;
-  	border-radius : 8px;
-  	background: #ffffff;
+	display: inline-block;
+	margin: 15px 10px 10px 10px;
+	text-decoration: none;
+	border-radius : 8px;
+	background: #ffffff;
 }
+
 footer {
   padding: 15px 0;
   font-size: 14px;
@@ -97,20 +96,24 @@ textarea {
 .shop_show_top_image{
   width: 400px;
   height: 300px;
+  object-fit: cover;
 }
 .shop_menu_image{
   width: 120px;
   height: 100px;
+  object-fit: cover;
 }
 .shop_show_post_image{
   width: 180px;
   height: 150px;
+  object-fit: cover;
 }
-
 .post_image{
   width: 69px;
   height: 50px;
+  object-fit: cover;
 }
+
 
 
 .genre_box {
