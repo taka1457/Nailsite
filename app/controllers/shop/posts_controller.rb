@@ -31,6 +31,7 @@ class Shop::PostsController < ApplicationController
   	@post.save
   	redirect_to shop_posts_path
   end
+
   def destroy
   	@post = Post.find(params[:id])
     @post.destroy

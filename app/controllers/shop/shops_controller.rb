@@ -10,11 +10,13 @@ class Shop::ShopsController < ApplicationController
     @shop = Shop.find(params[:id])
     @menus = @shop.menus.page(params[:page]).first(5)
     @posts = @shop.posts.page(params[:page]).reverse_order.first(3)
+    @reservation_menu = ReservationMenu.new
   end
 
   def menu
     @shop = Shop.find(params[:id])
     @menus = @shop.menus.page(params[:page]).per(10)
+    @reservation_menu = ReservationMenu.new
   end
 
 	def mypage
