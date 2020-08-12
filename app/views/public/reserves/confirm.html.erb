@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-2">
+		<h2>予約情報</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ご予約店舗</th>
+					<th>ご予約メニュー</th>
+					<th>お支払い予定金額</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @reservation_menus.each do |reservation_menu| %>
+				<tr>
+					<td><%= reservation_menu.menu.shop.name %></td>
+					<td><%= reservation_menu.menu.name %></td>
+					<td><%= reservation_menu.menu.price.to_s(:delimited) %>円</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6 col-md-offset-2">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th></th>
+					<th>日にち</th>
+					<th>開始時間</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>ご予約日時</td>
+					<td><%= @reserve.reservation_date %></td>
+					<td><%= @reserve.reservation_time.to_s(:datetime_jp) %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-1 col-md-offset-5">
+		<% if @reservation_menus.present? %>
+			<%= form_for(@reserve, url: "/reserves/create") do |f| %>
+				<%= f.hidden_field :reservation_date %>
+				<%= f.hidden_field :reservation_time %>
+				<%= f.submit 'ご予約を確定する', class: 'btn btn-success' %>
+			<% end %>
+		<% else %>
+			<%= link_to '店舗一覧に戻る', shops_path, class: "btn btn-success cart-order-index-btn" %>
+		<% end %>
+	</div>
+</div>

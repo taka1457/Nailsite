@@ -6,7 +6,7 @@ class Public::ReservationMenusController < ApplicationController
 
 	def create
 		reservation_menu = ReservationMenu.find_by(customer_id: current_customer.id,
-                                 							 menu_id: params[:reservation_menu][:menu_id])
+													menu_id: params[:reservation_menu][:menu_id])
 		current_customer.reservation_menus.destroy_all
 		reservation_menu = ReservationMenu.new(reservation_menu_params)
 		reservation_menu.customer_id = current_customer.id
