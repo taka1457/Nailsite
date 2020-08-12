@@ -53,7 +53,7 @@
         </div>
       </header>
       <div class="container">
-        <main><%= yield %></main>
+        <main data-turbolinks="false"><%= yield %></main>
       </div>
     <% elsif current_page?(root_path) || current_page?(about_path) %>
       <header class="top-header">

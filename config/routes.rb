@@ -18,11 +18,16 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'confirm_unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw_customer'
     put 'customers/withdraw' => 'customers#withdraw'
+    get 'reserves/confirm', to: 'reserves#confirm', as: 'reserve_confirm'
+    post 'reserves/confirm', to: 'reserves#confirm', as: 'reserves_confirm_post'
+    post 'reserves/create', to: 'reserves#create', as: 'reserves_create'
+    get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
 
     resources :customers, only: [:index] do
       resources :reservation_menus, only: [:create]
     end
     resources :reservation_menus, only: [:index]
+    resources :reserves, only: [:new]
   end
 
   scope module: :shop do
@@ -41,8 +46,6 @@ Rails.application.routes.draw do
       resources :menus, except: [:show]
       resources :posts
     end
-
-
   end
 
 end
