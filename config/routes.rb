@@ -25,9 +25,9 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:index] do
       resources :reservation_menus, only: [:create]
+      resources :reserves, only: [:new, :index]
     end
     resources :reservation_menus, only: [:index]
-    resources :reserves, only: [:new]
   end
 
   scope module: :shop do
@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       resources :menus, except: [:show]
       resources :posts
     end
+    resources :reservation_histories, only: [:index]
   end
 
 end

@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
   attachment :profile_image
 
   has_many :reservation_menus, dependent: :destroy
+  has_many :reserves, dependent: :destroy
 
   def full_name
     last_name + " " + first_name

@@ -8,8 +8,6 @@ class Public::ReservesController < ApplicationController
     @reserve = Reserve.new(reserve_params)
     @reserve.customer = current_customer
     @reservation_menus = current_customer.reservation_menus.all
-    @reserve.reservation_date = @reserve.reservation_date
-    @reserve.reservation_time = @reserve.reservation_time
   end
 
   def create
@@ -17,11 +15,22 @@ class Public::ReservesController < ApplicationController
     @reserve.customer = current_customer
     if @reserve.save!
       @reservation_menus = current_customer.reservation_menus.all
+      @reservation_menus.each do |reservation_menu|
+        reservation_history = ReservationHistory.new
+        reservation_history.reserve_id = @reserve.id
+        reservation_history.menu_id = reservation_menu.menu.id
+        reservation_history.reservation_price = reservation_menu.menu.price
+        reservation_history.save!
+      end
       @reservation_menus.destroy_all
       redirect_to reserves_done_path
     else
       render 'confirm'
     end
+  end
+
+  def index
+    @reserves = Reserve.where(customer_id: current_customer.id).page(params[:page]).reverse_order.per(4)
   end
 
   private

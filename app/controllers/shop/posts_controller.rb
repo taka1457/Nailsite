@@ -3,7 +3,6 @@ class Shop::PostsController < ApplicationController
 
   def all_index
     @posts = Post.page(params[:page]).reverse_order.per(9)
-
   end
 
   def show
@@ -15,7 +14,6 @@ class Shop::PostsController < ApplicationController
     @shop = Shop.find(params[:id])
     @posts = @shop.posts.page(params[:page]).reverse_order.per(9)
   end
-
 
   def index
   	@posts = current_shop.posts.page(params[:page]).reverse_order.per(4)

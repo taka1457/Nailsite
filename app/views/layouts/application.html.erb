@@ -20,7 +20,7 @@
             <div>
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', shop_mypage_path, class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to '予約一覧', "", class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '予約一覧', reservation_histories_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'メニュー', shop_menus_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿', shop_posts_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '会員一覧', "", class: "btn btn-default nav-btn" %></li>
@@ -45,6 +45,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', mypage_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'トップ', shops_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '予約一覧', customer_reserves_path(current_customer), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'お気に入り', "", class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-default nav-btn" %></li>
               </ul>
