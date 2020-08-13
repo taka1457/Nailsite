@@ -25,21 +25,28 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h2>コメント一覧</h2>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>コメント内容</th>
-						<th>投稿者</th>
-						<th>投稿日時</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>data</td>
-						<td>aaa</td>
-						<td>bbb</td>
-					</tr>
-				</tbody>
-			</table>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>コメント内容</th>
+					<th>投稿者</th>
+					<th>投稿日時</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody class="comment">
+						<%= render 'comment', shop: @shop, post: @post, post_comments: @post.post_comments %>
+			</tbody>
+		</table>
 	</div>
+</div>
+<div class="row">
+	<%= form_with model:[@post_comment], url: shop_post_post_comments_path(@shop.id, @post.id) do |f| %>
+		<div class="col-md-8 col-md-offset-2 comment-form">
+			<%= f.text_area :body %>
+		</div>
+		<div class="col-md-offset-10">
+			<%= f.submit '送信', class: "btn-sm btn-primary" %>
+		</div>
+	<% end %>
 </div>

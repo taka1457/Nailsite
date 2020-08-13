@@ -44,7 +44,9 @@ Rails.application.routes.draw do
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]
-      resources :posts
+      resources :posts do
+        resources :post_comments, only: [:create, :destroy]
+      end
     end
   end
 
