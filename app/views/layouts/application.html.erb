@@ -4,7 +4,6 @@
     <title>Nailsite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -20,10 +19,10 @@
             <div>
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', shop_mypage_path, class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to '予約一覧', reservation_histories_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '予約一覧', "", class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'メニュー', shop_menus_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿', shop_posts_path(current_shop), class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to '会員一覧', "", class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'ログアウト', destroy_shop_session_path, method: :delete, class: "btn btn-default nav-btn" %></li>
               </ul>
             </div>
@@ -44,7 +43,8 @@
             <div>
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', mypage_path, class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to 'トップ', shops_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '予約一覧', customer_reserves_path(current_customer), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'お気に入り', "", class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-default nav-btn" %></li>
@@ -67,6 +67,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default nav-btn" %></li>
@@ -90,6 +91,7 @@
                 <ul class="nav navbar-nav navbar-right">
                   <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
                   <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
+                  <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
                   <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
                   <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default nav-btn" %></li>
                   <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default nav-btn" %></li>

@@ -5,18 +5,20 @@
 			<thead>
 				<tr>
 					<th>予約日</th>
+					<th>店舗名</th>
 					<th>メニュー名</th>
 					<th>メニュー金額</th>
 				</tr>
 			</thead>
 			<tbody>
-				<% @reservation_histories.each do |reservation_history| %>
+				<% @reserves.each do |reserve| %>
 					<tr>
 						<td>
-							<%= reservation_history.reserve.reservation_date.to_s(:datetime_jp) %>
-							<%= reservation_history.reserve.reservation_time.to_s(:datetime_jp) %>
+							<%= reserve.reservation_date.to_s(:datetime_jp) %><br>
+							<%= reserve.reservation_time.to_s(:datetime_jp) %>
 						</td>
-						<% eservation_history.each do |reservation_history| %>
+						<% reserve.reservation_history.each do |reservation_history| %>
+							<td><%= reservation_history.menu.shop.name %></td>
 							<td><%= reservation_history.menu.name %></td>
 							<td><%= reservation_history.menu.price.to_s(:delimited) %>円</td>
 						<% end %>

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   scope module: :public do
   	root 'homes#top'
   	get 'about', to: 'homes#about'
-    get 'customers/mypage' => 'customers#show', as: 'mypage'
+    get 'customers/mypage' => 'customers#mypage', as: 'mypage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
     put 'customers/information' => 'customers#update'
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     post 'reserves/create', to: 'reserves#create', as: 'reserves_create'
     get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
 
-    resources :customers, only: [:index] do
+    resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
       resources :reserves, only: [:new, :index]
     end
@@ -46,7 +46,6 @@ Rails.application.routes.draw do
       resources :menus, except: [:show]
       resources :posts
     end
-    resources :reservation_histories, only: [:index]
   end
 
 end

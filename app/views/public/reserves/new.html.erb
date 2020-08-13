@@ -4,14 +4,14 @@
 		<div class="col-md-6">
 			<div id="calendar"></div>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-5 reserve_form">
 			<table class="table">
 				<tbody>
 					<%= form_for(@reserve, url: "/reserves/confirm") do |f| %>
 
 						<tr>
 							<td><%= f.label :ご予約日程 %></td>
-							<td><%= f.text_field :reservation_date, autofocus: true, :placeholder => "2020年8月20日" %></td>
+							<td><%= f.date_field :reservation_date, autofocus: true, class: "f_date" %></td>
 						</tr>
 						<tr>
 							<td><%= f.label :ご予約時間 %></td>
