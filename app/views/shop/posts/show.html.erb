@@ -41,12 +41,16 @@
 	</div>
 </div>
 <div class="row">
-	<%= form_with model:[@post_comment], url: shop_post_post_comments_path(@shop.id, @post.id) do |f| %>
-		<div class="col-md-8 col-md-offset-2 comment-form">
-			<%= f.text_area :body %>
-		</div>
-		<div class="col-md-offset-10">
-			<%= f.submit '送信', class: "btn-sm btn-primary" %>
-		</div>
+		<%= form_with model:[@post_comment], url: shop_post_post_comments_path(@shop.id, @post.id) do |f| %>
+			<div class="col-md-8 col-md-offset-2 comment-form">
+				<%= f.text_area :body %>
+			</div>
+			<div class="col-md-offset-10">
+				<% if customer_signed_in? %>
+					<%= f.submit '送信', class: "btn-sm btn-primary" %>
+				<% else %>
+					<%= link_to '送信', new_customer_session_path, class: "btn-sm btn-primary" %>
+				<% end %>
+			</div>
 	<% end %>
 </div>
