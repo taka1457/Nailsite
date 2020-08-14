@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
   has_many :reservation_menus, dependent: :destroy
   has_many :reserves, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :history_comment, dependent: :destroy
 
   def full_name
     last_name + " " + first_name

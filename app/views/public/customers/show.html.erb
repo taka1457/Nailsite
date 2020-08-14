@@ -31,15 +31,23 @@
 			<thead>
 				<tr>
 					<th>店舗名</th>
+					<th>メニュー名</th>
 					<th>コメント</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @reservation_history.each do |reservation_history| %>
-				<tr>
-					<td><%= reservation_history.menu.shop.name %></td>
-					<td>コメント</td>
-				</tr>
+				<% if reservation_history.reserve.customer == @customer %>
+					<tr>
+						<td><%= reservation_history.menu.shop.name %></td>
+						<td><%= reservation_history.menu.name %></td>
+						<td>
+							<% reservation_history.history_comment.each do |history_comment| %>
+								<%= history_comment.body %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
 				<% end %>
 			</tbody>
 		</table>

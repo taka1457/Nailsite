@@ -25,7 +25,10 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
-      resources :reserves, only: [:new, :index]
+      resources :reserves, only: [:new, :index, :show]
+      resources :reservation_histories, only: [:index, :show] do
+        resources :history_comments, only: [:create, :destroy]
+      end
     end
     resources :reservation_menus, only: [:index]
   end

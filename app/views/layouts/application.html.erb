@@ -45,7 +45,7 @@
                 <li><%= link_to 'マイページ', mypage_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to '予約一覧', customer_reserves_path(current_customer), class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '予約一覧', customer_reservation_histories_path(current_customer), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'お気に入り', "", class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: "btn btn-default nav-btn" %></li>
               </ul>
