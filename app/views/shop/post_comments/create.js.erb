@@ -1,0 +1,2 @@
+$("textarea").val("");
+$(".comment").html("<%= j(render 'shop/posts/comment', shop: @shop, post: @post, post_comments: @post.post_comments ) %>");

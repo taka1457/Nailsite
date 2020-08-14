@@ -29,10 +29,6 @@ class Public::ReservesController < ApplicationController
     end
   end
 
-  def index
-    @reserves = Reserve.where(customer_id: current_customer.id).page(params[:page]).reverse_order.per(4)
-  end
-
   private
 
   def reserve_params
