@@ -1,7 +1,18 @@
 class Public::CustomersController < ApplicationController
- before_action :set_current_customer
+  before_action :authenticate_customer!, except: [:index, :show]
+  before_action :set_current_customer, except: [:index, :show]
 
-	def show
+  def index
+    @customers = Customer.all
+  end
+
+  def show
+    @customer = Customer.find(params[:id])
+    @reservation_history = ReservationHistory.all.reverse_order
+    @history_comments = HistoryComment.all
+  end
+
+  def mypage
   end
 
   def edit

@@ -1,0 +1,12 @@
+<% post_comments.each do |post_comment| %>
+	<tr>
+		<td><%= post_comment.body %></td>
+		<td><%= post_comment.customer.full_name %></td>
+		<td><%= post_comment.created_at.to_s(:datetime_jp)  %></td>
+		<td>
+			<% if current_customer == post_comment.customer %>
+			  <%= link_to 'Destroy', shop_post_post_comment_path(shop.id, post.id, post_comment), class: 'btn-sm btn-danger', method: :delete %>
+			<% end %>
+		</td>
+	</tr>
+<% end %>

@@ -1,36 +1,119 @@
-<section class="inner">
-  <% if flash[:notice] %>
-    <p class="text-active"><%= flash[:notice] %></p>
-  <% end %>
-	<h2 class="section-ttl">マイページ</h2>
-	<h3>
-		登録情報
-		<%= link_to "編集する", edit_shop_information_path, class: "btn btn-success ml2" %>
-		<%= link_to "パスワードを変更する", edit_shop_registration_path, class: "btn btn-success ml2" %>
-	</h3>
-	<table class="customer_info mb3">
-		<thead>
-			<th></th>
-			<th></th>
-			<th></th>
-		</thead>
-		<tbody>
-			<tr>
-				<td>名前</td>
-				<td>(姓) <%= @shop.name %></td>
-			</tr>
-			<tr>
-				<td>メールアドレス</td>
-				<td colspan="2"><%= @shop.email %></td>
-			</tr>
-			<tr>
-				<td>電話番号</td>
-				<td colspan="2"><%= @shop.phone_number %></td>
-			</tr>
-		</tbody>
-	</table>
-	<div class="flex">
-		<%= link_to "配送先一覧", "", class: "btn btn-primary" %>
-		<%= link_to "注文履歴一覧", "", class: "btn btn-primary ml2" %>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h2><%= @shop.name %></h2>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+		        <%= attachment_image_tag @shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "shop_show_top_image" %>
+		      </td>
+					<td>
+						<h3><%= @shop.promotion %></h3><br><br>
+						<%= @shop.introduction %><br><br>
+						<h4>おすすめジャンル　　　<span class="genre_box"><%= @shop.genre %></span></h4>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-</section>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h3>メニュー　　　<span class="sub_title"><%= link_to 'もっと見る>', shop_menu_list_path(@shop) %></span></h4>
+		<table class="table">
+			<tbody>
+				<% @menus.each do |menu| %>
+				<tr>
+					<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", fallback: "no-image.png", class: "shop_menu_image" %></td>
+					<td>
+						<span class="menu_name"><%= menu.name %></span><br><br>
+						【<%= menu.detail %>】
+					</td>
+					<td><%= menu.price.to_s(:delimited) %>円</td>
+					<td>
+						<% if customer_signed_in? %>
+							<%= form_for(@reservation_menu, url: customer_reservation_menus_path(current_customer), method: :post) do |f| %>
+								<%= f.hidden_field :menu_id, :value => menu.id %>
+								<%= f.hidden_field :reservation_shop, :value => menu.shop %>
+								<%= f.submit '予約', class: "btn btn-primary" %>
+							<% end %>
+						<% else %>
+							<%= link_to "予約", new_customer_session_path, class: "btn btn-primary" %>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h3>最近の投稿　　<span class="sub_title"><%= link_to 'もっと見る>', shop_posts_list_path(@shop) %></span></h4>
+		<% @posts.each do |post| %>
+			<div class="col-md-4">
+				<%= link_to shop_post_path(@shop, post) do %>
+					<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "shop_show_post_image" %><br>
+				<% end %>
+				<%= post.body %>
+			</div>
+		<% end %>
+	</div>
+</div>
+<div class="row" style="margin-top: 30px;">
+	<div class="col-md-8 col-md-offset-2">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td class="table_item_color">店舗名</td>
+					<td><%= @shop.name %></td>
+				</tr>
+				<tr>
+					<td class="table_item_color">お問い合わせ</td>
+					<td><%= @shop.phone_number %></td>
+				</tr>
+				<tr>
+					<td class="table_item_color">住所</td>
+					<td><%= @shop.full_address %></td>
+				</tr>
+				<tr>
+					<td class="table_item_color">交通手段</td>
+					<td><%= @shop.traffic_method %></td>
+				</tr>
+				<tr>
+					<td class="table_item_color">営業時間</td>
+					<td><%= @shop.business_hours %></td>
+				</tr>
+				<tr>
+					<td class="table_item_color">予算</td>
+					<td><%= @shop.budget.to_s(:delimited) %>円</td>
+				</tr>
+				<tr>
+					<td class="table_item_color">お支払い方法</td>
+					<td><%= @shop.payment_method %></td>
+				</tr>
+				<tr>
+					<td class="table_item_color">席数</td>
+					<td><%= @shop.seat %>席</td>
+				</tr>
+				<tr>
+					<td class="table_item_color">スタッフ数</td>
+					<td><%= @shop.staff %>人</td>
+				</tr>
+				<tr>
+					<td class="table_item_color">駐車場</td>
+					<td><%= @shop.parking %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+

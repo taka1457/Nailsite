@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery.jpostal
+//= require moment
+//= require fullcalendar
 //= require_tree .
 
 $(function() {
@@ -33,7 +35,6 @@ $(function() {
 });
 
 $(document).on("turbolinks:load", function(){
-  // admin/items#new,editでの画像プレビュー
   function readURL(input) {
     if(input.files && input.files[0]){
       var reader = new FileReader();
@@ -43,14 +44,50 @@ $(document).on("turbolinks:load", function(){
       reader.readAsDataURL(input.files[0]);
     }
   }
+  $("#customer_profile_image").change(function(){
+    readURL(this);
+  });
   $("#shop_shop_image").change(function(){
     readURL(this);
   });
-  // public/orders#confirmでの確認ダイアログ
-  $('.submit_to_create_order').on('click', function(){
-      var result = window.confirm('OKを押すと、注文が確定します。');
-      if(!result){
-        return false;
-      }
+  $("#post_post_image").change(function(){
+    readURL(this);
   });
+  $("#menu_menu_image").change(function(){
+    readURL(this);
+  });
+});
+
+
+$(function(){
+    $('#calendar').fullCalendar({
+        reserves: '/reserves.json',
+        titleFormat: 'YYYY年 M月',
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        header: {
+            left: '',
+            center: 'title',
+            right: 'today prev,next'
+        },
+        defaultTimedEventDuration: '03:00:00',
+        buttonText: {
+            prev: '前',
+            next: '次',
+            prevYear: '前年',
+            nextYear: '翌年',
+            today: '今日',
+            month: '月',
+            week: '週',
+            day: '日'
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function(data) {
+          console.log(data);
+          var str = moment(data).format( 'YYYY-MM-DD' );
+          console.log(str);
+          $('.reserve_form').show('1000');
+          $('.f_date').val(str);
+        }
+    });
 });

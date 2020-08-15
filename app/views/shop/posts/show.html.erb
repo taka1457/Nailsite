@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h2>
+			<%= link_to shop_path(@shop) do %>
+				<%= @shop.name %>
+			<% end %>
+			<span class="sub_title">　の投稿</span>
+		</h2>
+		<table class="table">
+			<tbody>
+				<tr>
+					<td>
+		        <%= attachment_image_tag @post, :post_image, format: "jpeg", fallback: "no-image.png", class: "shop_show_top_image" %>
+		      </td>
+					<td>
+						<%= @post.body %><br><br><br>
+						<%= @post.created_at.to_s(:datetime_jp) %><br><br>
+						いいね数
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>コメント一覧</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>コメント内容</th>
+					<th>投稿者</th>
+					<th>投稿日時</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody class="comment">
+						<%= render 'comment', shop: @shop, post: @post, post_comments: @post.post_comments %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+		<%= form_with model:[@post_comment], url: shop_post_post_comments_path(@shop.id, @post.id) do |f| %>
+			<div class="col-md-8 col-md-offset-2 comment-form">
+				<%= f.text_area :body %>
+			</div>
+			<div class="col-md-offset-10">
+				<% if customer_signed_in? %>
+					<%= f.submit '送信', class: "btn-sm btn-primary" %>
+				<% else %>
+					<%= link_to '送信', new_customer_session_path, class: "btn-sm btn-primary" %>
+				<% end %>
+			</div>
+	<% end %>
+</div>
