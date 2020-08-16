@@ -1,0 +1,16 @@
+<h1 id="room" data-room="<%= @talk_room.id %>" data-user="<%= current_customer.id %>"><%= @customer.full_name %> さんとのチャット</h1>
+
+<div class="message" style="width: 400px;">
+  <% @talks.each do |talk| %>
+    <% if talk.customer_id == current_customer.id %>
+      <p style="text-align: right;"><%= talk.body %></p>
+    <% else %>
+      <p style="text-align: left;"><%= talk.body %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with model: @talk, data: {remote: true} do |f| %>
+  <%= f.text_field :body %>
+  <%= f.hidden_field :talk_room_id %>
+<% end %>

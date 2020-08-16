@@ -10,6 +10,9 @@ class Customer < ApplicationRecord
   has_many :reserves, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :history_comment, dependent: :destroy
+  has_many :customer_rooms
+  has_many :talks
+  has_many :talk_rooms, through: :customer_rooms
 
   def full_name
     last_name + " " + first_name

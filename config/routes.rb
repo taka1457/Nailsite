@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :shops, controllers: {
     sessions: 'shop/sessions',
     registrations: 'shop/registrations',
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
     post 'reserves/confirm', to: 'reserves#confirm', as: 'reserves_confirm_post'
     post 'reserves/create', to: 'reserves#create', as: 'reserves_create'
     get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
+    get 'talk/:id' => 'talks#show', as: 'talk'
+    resources :talks, only: [:create]
 
     resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
