@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     post 'reserves/create', to: 'reserves#create', as: 'reserves_create'
     get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
     get 'talk/:id' => 'talks#show', as: 'talk'
-    resources :talks, only: [:create]
+    get 'customers/talks' => 'talks#index', as: 'customers_talks'
 
     resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       end
     end
     resources :reservation_menus, only: [:index]
+    resources :talks, only: [:create]
   end
 
   scope module: :shop do

@@ -23,6 +23,10 @@ class Public::TalksController < ApplicationController
 	  redirect_to request.referer
 	end
 
+	def index
+		@talks = Talk.select(:customer_id, :shop_id).distinct
+	end
+
 	private
 	def talk_params
 	  params.require(:talk).permit(:body, :talk_room_id)
