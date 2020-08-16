@@ -16,9 +16,11 @@ class Public::TalksController < ApplicationController
 	  @talks = @talk_room.talks
 	  @talk = Talk.new(talk_room_id: @talk_room.id)
 	end
+
 	def create
 	  @talk = current_customer.talks.new(talk_params)
 	  @talk.save!
+	  redirect_to request.referer
 	end
 
 	private
