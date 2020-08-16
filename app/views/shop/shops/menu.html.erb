@@ -1,0 +1,35 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h2>
+			<%= link_to shop_path(@shop) do %>
+				<%= @shop.name %>
+			<% end %>
+			<span class="sub_title">　のメニュー　　　<%= paginate @menus %></span>
+		</h2>
+		<table class="table">
+			<tbody>
+				<% @menus.each do |menu| %>
+				<tr>
+					<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", fallback: "no-image.png", class: "shop_menu_image" %></td>
+					<td>
+						<span class="menu_name"><%= menu.name %></span><br><br>
+						【<%= menu.detail %>】
+					</td>
+					<td><%= menu.price.to_s(:delimited) %>円</td>
+					<td>
+						<% if customer_signed_in? %>
+							<%= form_for(@reservation_menu, url: customer_reservation_menus_path(current_customer), method: :post) do |f| %>
+								<%= f.hidden_field :menu_id, :value => menu.id %>
+								<%= f.hidden_field :reservation_shop, :value => menu.shop %>
+								<%= f.submit '予約', class: "btn btn-primary" %>
+							<% end %>
+						<% else %>
+							<%= link_to "予約", new_customer_session_path, class: "btn btn-primary" %>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

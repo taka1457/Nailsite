@@ -1,0 +1,47 @@
+<div class="row">
+  <%= form_for(@customer, url: update_information_path) do |f| %>
+    <div class="col-md-8">
+      <h2>会員情報編集　<%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-danger" %></h2>
+      <table class="table table-bordered table-condensed">
+        <tbody>
+          <tr>
+            <td><%= f.label :名前 %></td>
+            <td><%= f.text_field :last_name, autofocus: true, :placeholder =>"#{@customer.last_name}" %></td>
+            <td ><%= f.text_field :first_name, :placeholder =>"#{@customer.first_name}" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :フリガナ %></td>
+            <td><%= f.text_field :last_name_kana, :placeholder =>"#{@customer.last_name_kana}" %></td>
+            <td><%= f.text_field :first_name_kana, :placeholder =>"#{@customer.first_name_kana}" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :email, "メールアドレス" %></td>
+            <td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :phone_number, "電話番号(ハイフンなし10or11桁)" %></td>
+            <td colspan="2"><%= f.text_field :phone_number, :placeholder =>"#{@customer.phone_number}" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :introduction, "自己紹介" %></td>
+            <td colspan="2" class="row-5"><%= f.text_area :introduction, :placeholder =>"#{@customer.introduction}" %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-md-offset-4">
+        <%= f.submit "編集内容を保存する", class: "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div>　</div>
+      <div>　</div>
+      <div>　</div>
+      <span>プロフィール写真</span>
+      <div>
+        <%= attachment_image_tag @customer, :profile_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "profile_image" %>
+        <%= f.attachment_field :profile_image %>
+        <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+      </div>
+    </div>
+  <% end %>
+</div>

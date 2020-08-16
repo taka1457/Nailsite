@@ -1,0 +1,168 @@
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <% resource.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <h3>店舗様新規会員登録</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-1">
+      <table class="table-condensed">
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :店舗名 %>
+          </td>
+          <td><%= f.text_field :name, autofocus: true %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :メールアドレス %>
+          </td>
+          <td><%= f.email_field :email, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :'パスワード' %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上）</em>
+            <% end %>
+          </td>
+          <td><%= f.password_field :password, autocomplete: "new-password", class: "password" %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :'パスワード(確認用）' %>
+          </td>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></td>
+        </tr>
+        <tr>
+          <td>以下店舗詳細情報</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :'郵便番号(ハイフンなし）' %>
+          </td>
+          <td><%= f.text_field :postal_code %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :都道府県 %>
+          </td>
+          <td><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :市町村 %>
+          </td>
+          <td><%= f.text_field :city %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :番地 %>
+          </td>
+          <td><%= f.text_field :street %></td>
+        </tr>
+        <tr>
+          <td>　　　<%= f.label :'建物名、部屋番号' %></td>
+          <td><%= f.text_field :other_address %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :'電話番号(ハイフンなし）' %>
+          </td>
+          <td><%= f.text_field :phone_number %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :'店舗予算(目安）' %>
+          </td>
+          <td><%= f.text_field :budget %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :席数 %>
+          </td>
+          <td><%= f.text_field :seat %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :スタッフ数 %>
+          </td>
+          <td><%= f.text_field :staff %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :交通手段 %>
+          </td>
+          <td><%= f.text_area :traffic_method %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :お支払い方法 %>
+          </td>
+          <td><%= f.text_area :payment_method %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :営業時間 %>
+          </td>
+          <td><%= f.text_area :business_hours %></td>
+        </tr>
+        <tr>
+          <td>
+            <span class="text-danger">必須</span>　<%= f.label :駐車場情報 %>
+          </td>
+          <td><%= f.text_area :parking %></td>
+        </tr>
+      </table>
+    </div>
+      <div class="col-md-5">
+        <table class="table-condensed">
+          <tr>
+            <td>
+              <span class="text-danger">必須</span>　<%= f.label :店舗アピールポイント %>
+            </td>
+            <td><%= f.text_area :promotion %></td>
+          </tr>
+          <tr>
+            <td>
+              <span class="text-danger">必須</span>　<%= f.label :店舗紹介 %>
+            </td>
+            <td class="row-5"><%= f.text_area :introduction %></td>
+          </tr>
+          <tr>
+            <td>　　　店内写真</td>
+            <td class="image_field">
+              <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_image" %>
+              <%= f.attachment_field :shop_image %>
+              <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span class="text-danger">必須</span>　おすすめジャンル
+            </td>
+            <td>
+              <%= f.select :genre, {シンプル: 'simple', ワンカラー: 'one_color', フット: 'foot', art: 'art', ブライダル: 'bridal', グラデーション: 'gradation' } %>
+            </td>
+          </tr>
+        </table>
+        <div class="row">
+          <div class="col-md-offset-5 devise_btn">
+            <%= f.submit "新規登録", class: "btn btn-success btn-lg" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <h4>既に登録済みの方</h4>
+            <%= link_to 'こちら', new_shop_session_path, class: "btn btn-default btn-lg" %> からログインしてください
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

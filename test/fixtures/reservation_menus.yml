@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  menu: one
+  reservation_shop: MyString
+
+two:
+  customer: two
+  menu: two
+  reservation_shop: MyString

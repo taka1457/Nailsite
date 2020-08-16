@@ -1,0 +1,55 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-2">
+		<h2>会員詳細</h2>
+	</div>
+	<div class="col-md-3 col-md-offset-2">
+		<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
+	</div>
+	<div class="col-md-4">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<h3><%= @customer.full_name %>さん</h3><br><br>
+						<%= @customer.introduction %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-md-3">
+		<%= link_to 'フォローする', "", class: "btn btn-default nav-btn" %><br><br><br>
+		<%= link_to 'フォローする', "", class: "btn btn-default nav-btn" %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-9 col-md-offset-2">
+		<h2>行ったお店</h2>
+	</div>
+	<div class="col-md-8 col-md-offset-2">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>店舗名</th>
+					<th>メニュー名</th>
+					<th>コメント</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @reservation_history.each do |reservation_history| %>
+				<% if reservation_history.reserve.customer == @customer %>
+					<tr>
+						<td><%= reservation_history.menu.shop.name %></td>
+						<td><%= reservation_history.menu.name %></td>
+						<td>
+							<% reservation_history.history_comment.each do |history_comment| %>
+								<%= history_comment.body %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

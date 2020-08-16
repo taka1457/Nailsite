@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-1">
+		<h2>メニュ一覧<span class="sub_title">　　　<%= paginate @menus %></span></h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-1 col-md-offset-10">
+		<%= link_to new_shop_menu_path do %>
+			<button type="button">＋</button>
+		<% end %>
+	</div>
+
+	<div class="col-md-10 col-md-offset-1">
+		<table class="table table-bordered table-condensed" style="table-layout:fixed;">
+			<thead>
+				<tr>
+					<th style="width:130px;">メニュー画像</th>
+					<th style="width:250px;">メニュー名</th>
+					<th>メニュー詳細</th>
+					<th style="width:100px;">税込価格</th>
+					<th style="width:70px;"></th>
+					<th style="width:70px;"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @menus.each do |menu| %>
+					<tr>
+						<td><%= attachment_image_tag menu, :menu_image, format: "jpeg", fallback: "no-image.png", class: "shop_menu_image"%></td>
+						<td><%= menu.name %></td>
+						<td><%= menu.detail %></td>
+						<td><%= menu.price.to_s(:delimited) %>円</td>
+						<td><%= link_to "編集", edit_shop_menu_path(current_shop, menu), class: "btn btn-success ml2" %></td>
+						<td><%= link_to "削除", shop_menu_path(current_shop, menu), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,105 @@
+<script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h2>会員情報編集　<%= link_to "退会する", confirm_shop_unsubscribe_path, class: "btn btn-danger" %></h2>
+  </div>
+</div>
+<div class="row">
+  <%= form_for(@shop, url: update_shop_information_path) do |f| %>
+    <div class="col-md-5 col-md-offset-1">
+      <table class="table-condensed">
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :店舗名 %></td>
+          <td><%= f.text_field :name, autofocus: true, :placeholder =>"#{@shop.name}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :メールアドレス %></td>
+          <td><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@shop.email}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :'郵便番号(ハイフンなし）' %></td>
+          <td><%= f.text_field :postal_code, :placeholder =>"#{@shop.postal_code}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :都道府県 %></td>
+          <td><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name , :placeholder =>"#{@shop.prefecture_code}"%></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :市町村 %></td>
+          <td><%= f.text_field :city, :placeholder =>"#{@shop.city}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :番地 %></td>
+          <td><%= f.text_field :street, :placeholder =>"#{@shop.street}" %></td>
+        </tr>
+        <tr>
+          <td>　　　<%= f.label :'建物名、部屋番号' %></td>
+          <td><%= f.text_field :other_address, :placeholder =>"#{@shop.other_address}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :'電話番号(ハイフンなし）' %></td>
+          <td><%= f.text_field :phone_number, :placeholder =>"#{@shop.phone_number}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :'店舗予算(目安）' %></td>
+          <td><%= f.text_field :budget, :placeholder =>"#{@shop.budget}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :席数 %></td>
+          <td><%= f.text_field :seat, :placeholder =>"#{@shop.seat}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :スタッフ数 %></td>
+          <td><%= f.text_field :staff, :placeholder =>"#{@shop.staff}"%></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :交通手段 %></td>
+          <td><%= f.text_area :traffic_method, :placeholder =>"#{@shop.traffic_method}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :お支払い方法 %></td>
+          <td><%= f.text_area :payment_method, :placeholder =>"#{@shop.payment_method}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :営業時間 %></td>
+          <td><%= f.text_area :business_hours, :placeholder =>"#{@shop.business_hours}" %></td>
+        </tr>
+        <tr>
+          <td><span class="text-danger">必須</span>　<%= f.label :駐車場情報 %></td>
+          <td><%= f.text_area :parking, :placeholder =>"#{@shop.parking}" %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table class="table-condensed">
+        <tbody>
+          <tr>
+            <td><span class="text-danger">必須</span>　<%= f.label :店舗アピールポイント %></td>
+            <td><%= f.text_area :promotion, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td><span class="text-danger">必須</span>　<%= f.label :店舗紹介 %></td>
+            <td class="row-5"><%= f.text_area :introduction, autofocus: true %></td>
+          </tr>
+          <tr>
+            <td>　　　店内写真</td>
+            <td>
+              <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_image" %>
+              <%= f.attachment_field :shop_image %>
+              <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="text-danger">必須</span>　おすすめジャンル</td>
+            <td><%= f.select :genre, {シンプル: 'simple', ワンカラー: 'one_color', フット: 'foot', art: 'art', ブライダル: 'bridal', グラデーション: 'gradation' } %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-offset-4 devise_btn">
+          <%= f.submit "編集内容を保存する", class: "btn btn-primary btn-lg" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
