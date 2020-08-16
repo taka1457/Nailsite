@@ -62,6 +62,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'refile', require: 'refile/rails', github: 'refile/refile'
@@ -72,3 +73,10 @@ gem 'jp_prefecture'
 gem 'dotenv-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
