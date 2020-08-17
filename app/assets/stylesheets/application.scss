@@ -91,6 +91,12 @@ textarea {
   height: 150px;
   object-fit: cover;
 }
+.top_profile_image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .profile_image {
   width: 200px;
   height: 200px;
@@ -117,10 +123,38 @@ textarea {
   height: 50px;
   object-fit: cover;
 }
-
 .post_image{
   width: 250px;
   height: 200px;
+}
+.genre-image1{
+  background-image: image-url("one_color.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 160px;
+  height: 130px;
+  margin-left: 40px;
+}
+.genre-image2{
+  background-image: image-url("simple.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 160px;
+  height: 130px;
+}
+.genre-image3{
+  background-image: image-url("art.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 160px;
+  height: 130px;
+}
+.genre-image4{
+  background-image: image-url("bridal.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 160px;
+  height: 130px;
 }
 
 
