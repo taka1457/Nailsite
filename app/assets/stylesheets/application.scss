@@ -17,6 +17,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.logo{
+  font-family: cursive;
+  font-size: 60px;
+  color: #666666;
+  text-decoration: none !important;
+}
+.root_logo{
+  font-family: cursive;
+  font-size: 60px;
+  color: #EEEEEE;
+  text-decoration: none !important;
+}
+
 .reserve_form{
   display: none;
 }
@@ -30,6 +43,9 @@
 	background-image: image-url("background.jpg");
 	background-size: cover;
   background-position: center;
+}
+.top_feader_background{
+  
 }
 .shop-header {
 	height: 80px;
@@ -49,6 +65,17 @@
 	border-radius : 8px;
 	background: #ffffff;
 }
+.main-visual-content{
+  width: 30%;
+  height: 200px;
+  text-align: center;
+  padding-top: 90px;
+  background-color: rgba( 0, 0, 0, 0.5);
+}
+.main-visual-text {
+  color: #fff;
+}
+
 
 footer {
   padding: 15px 0;
@@ -118,14 +145,21 @@ textarea {
   height: 150px;
   object-fit: cover;
 }
-.post_index_image{
-  width: 60px;
-  height: 50px;
-  object-fit: cover;
-}
+
+
 .post_image{
   width: 250px;
   height: 200px;
+  object-fit: cover;
+}
+.post_index_image{
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+}
+.map_shop_image{
+  width: 110px;
+  height: 90px;
   object-fit: cover;
 }
 .genre-image1{
@@ -179,7 +213,7 @@ textarea {
 
 
 .search_form{
-  width: 300px;
+  width: 350px;
   height: 50px;
 }
 .search_box{
@@ -188,10 +222,17 @@ textarea {
 .search_btn{
   height: 50px;
 }
+.shop_index_search_form{
+  font-size: 15px;
+  width: 250px;
+  height: 50px;
+}
 
-
-
-
+.scroll{
+  overflow: scroll;
+  height: 500px;
+  width: 400;
+}
 
 
 

@@ -1,10 +1,13 @@
 <div class="row">
 	<div class="col-md-offset-2">
 		<h2>
-			店舗一覧おすすめ順
+			おすすめ順
 			<span class="sub_title"> (全<%= @shops.total_count %>件)　　　<%= paginate @shops %></span>
+			<%= link_to 'リスト表示', shops_path, class: "btn btn-default nav-btn" %>
 		</h2>
 	</div>
+</div>
+<div class="row">
 	<div class="col-md-2">
 		<table class="table table-bordered">
 			<tbody>
@@ -19,36 +22,43 @@
 			</tbody>
 		</table>
 	</div>
-	
-	<div class="col-md-9">
-		<div id='map'></div>
-		<table class="table">
-			<tbody>
-				<% @shops.each do |shop| %>
-					<tr>
-						<td>
-							<%= link_to shop_path(shop) do %>
-			        	<%= attachment_image_tag shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "preview_image" %>
-			        <% end %>
-			      </td>
-						<td>
-							<%= link_to shop_path(shop) do %>
-								<h3><%= shop.name %></h3>
-							<% end %>
-							<h4><%= shop.promotion %></h4><br>
-							<span><%= shop.full_address %></span>
-						</td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
+	<div class="col-md-10">
+		<div class="col-md-7">
+			<div id='map'></div>
+		</div>
+		<div class="col-md-5 scroll">
+			<table class="table">
+				<tbody>
+					<% @shops.each do |shop| %>
+						<tr>
+							<td>
+								<%= link_to shop_path(shop) do %>
+									<div><%= shop.name %></div>
+								<% end %>
+								<div class="row">
+									<div class="col-md-4">
+										<%= link_to shop_path(shop) do %>
+						        	<%= attachment_image_tag shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "map_shop_image" %>
+						        <% end %>
+					      	</div>
+					      	<div class="col-md-8">
+										<%= shop.promotion %>
+									</div>
+								</div>
+								<div class="col-md-12"><%= shop.full_address %></div><br>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
 
 <style>
 #map{
   height: 500px;
-  width: 800px;
+  width: 550px;
 }
 </style>
 
@@ -68,13 +78,11 @@ function initMap(){
     if (status == 'OK') {
 　　　　　　　　　　　　// map.setCenterで地図が移動
       map.setCenter(results[0].geometry.location);
-			<% @shops.each do |shop| %>
 　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
       var marker = new google.maps.Marker({
           map: map,
           position: results[0].geometry.location
       });
-      <% end %>
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
