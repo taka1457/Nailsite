@@ -3,7 +3,9 @@
 		<h2>
 			店舗一覧おすすめ順
 			<span class="sub_title"> (全<%= @shops.total_count %>件)　　　<%= paginate @shops %></span>
+			<%= link_to 'マップ表示', shops_map_path, class: "btn btn-default nav-btn" %>
 		</h2>
+
 	</div>
 	<div class="col-md-2">
 		<table class="table table-bordered">

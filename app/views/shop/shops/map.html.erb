@@ -1,0 +1,97 @@
+<div class="row">
+	<div class="col-md-offset-2">
+		<h2>
+			店舗一覧おすすめ順
+			<span class="sub_title"> (全<%= @shops.total_count %>件)　　　<%= paginate @shops %></span>
+		</h2>
+	</div>
+	<div class="col-md-2">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td class="table_item_color">ジャンル検索</td>
+				</tr>
+				<% @shops.each do |shop| %>
+					<tr>
+						<td><%= shop.genre %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="col-md-9">
+		<div id='map'></div>
+		<table class="table">
+			<tbody>
+				<% @shops.each do |shop| %>
+					<tr>
+						<td>
+							<%= link_to shop_path(shop) do %>
+			        	<%= attachment_image_tag shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "preview_image" %>
+			        <% end %>
+			      </td>
+						<td>
+							<%= link_to shop_path(shop) do %>
+								<h3><%= shop.name %></h3>
+							<% end %>
+							<h4><%= shop.promotion %></h4><br>
+							<span><%= shop.full_address %></span>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<style>
+#map{
+  height: 500px;
+  width: 800px;
+}
+</style>
+
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
+
+let map
+let geocoder
+
+function initMap(){
+  // geocoderを初期化
+  geocoder = new google.maps.Geocoder()
+  geocoder.geocode( { 'address': $('#map').attr('class')}, function(results, status) {
+    if (status == 'OK') {
+　　　　　　　　　　　　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+			<% @shops.each do |shop| %>
+　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      <% end %>
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: -34.397, lng: 150.644},
+  zoom: 17
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+  // geocodingしたあとmapを移動
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>
+
