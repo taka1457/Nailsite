@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
     get 'talk/:id' => 'talks#show', as: 'talk'
     get 'customers/talks' => 'talks#index', as: 'customers_talks'
+    get '/search', to: 'searchs#search'
 
     resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
