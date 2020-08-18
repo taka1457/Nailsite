@@ -1,6 +1,17 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		<h2><%= @shop.name %></h2>
+		<h2 class="col-md-11">
+			<%= @shop.name %>
+		</h2>
+		<h2 class="col-md-1">
+			<% if customer_signed_in? %>
+				<span id="show_bookmark"><%= render partial: 'shop/bookmarks/form', locals: { shop: @shop } %></span>
+			<% else %>
+				<%= link_to new_customer_session_path do %>
+					<span class="glyphicon glyphicon-star-empty"></span>
+				<% end %>
+			<% end %>
+		</h2>
 		<table class="table">
 			<tbody>
 				<tr>

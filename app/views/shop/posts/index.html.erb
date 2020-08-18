@@ -19,7 +19,7 @@
 						<td><%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_index_image" %></td>
 						<td>
 							<div class="row-2"><%= post.body %></div><br>
-							<%= post.created_at.to_s(:datetime_jp) %>　　　いいね数
+							<%= post.created_at.to_s(:datetime_jp) %>　　　いいね数 <%= post.favorites.count%>件
 						</td>
 						<td><%= link_to "編集", edit_shop_post_path(current_shop, post), class: "btn btn-success ml2" %></td>
 						<td><%= link_to "削除", shop_post_path(current_shop, post), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>

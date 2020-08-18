@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
 
   namespace :shop do
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
-  namespace :public do
-    get 'favorites/create'
-    get 'favorites/destroy'
+    get 'bookmarks/create'
+    get 'bookmarks/destroy'
   end
   devise_for :shops, controllers: {
     sessions: 'shop/sessions',
@@ -35,6 +31,7 @@ Rails.application.routes.draw do
     get 'customers/talks' => 'talks#index', as: 'customers_talks'
     get '/search', to: 'searchs#search'
     get 'customers/follows' => 'relationships#follow', as: 'follow'
+    get 'customers/bookmarks' => 'bookmarks#index', as: 'bookmarks'
 
     resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
@@ -63,6 +60,7 @@ Rails.application.routes.draw do
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]
+      resource :bookmarks, only: [:create, :destroy]
       resources :posts do
         resources :post_comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]

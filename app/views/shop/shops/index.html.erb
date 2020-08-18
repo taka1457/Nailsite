@@ -13,4 +13,26 @@
     <% end %>
 	</div>
 </div>
-	<%= render 'shop/shops/index', shops: @shops %>
+<div class="row">
+	<div class="col-md-2">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td class="table_item_color">ジャンル検索</td>
+				</tr>
+				<% @shops.each do |shop| %>
+					<tr>
+						<td><%= shop.genre %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-md-10">
+		<table class="table">
+			<tbody id="bookmark">
+				<%= render partial: 'shop/bookmarks/index_form', locals: { shops: @shops } %>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,9 +1,37 @@
 <div class="row">
-	<div class="col-md-offset-2">
+	<div class="col-md-6 col-md-offset-2">
 		<h2>検索ワード：<%= @content %>
 			<span class="sub_title"> (全<%= @records.count %>件)　　　<%= paginate @records %></span>
 			<%= link_to 'マップ表示', shops_map_path, class: "btn btn-default nav-btn" %>
 		</h2>
 	</div>
-	<%= render 'shop/shops/index', shops: @records %>
+	<div class="col-md-4 search_box sub_title">
+    <%= form_tag(search_path, method: :get) do %>
+      <%= text_field_tag 'search[content]', '', class: 'shop_index_search_form', placeholder: "【例：nailsalon、梅田】"%>
+      <%= submit_tag '検索', class: "btn btn-default search_btn" %>
+    <% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-2">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td class="table_item_color">ジャンル検索</td>
+				</tr>
+				<% @records.each do |record| %>
+					<tr>
+						<td><%= record.genre %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-md-10">
+		<table class="table">
+			<tbody id="bookmark">
+				<%= render partial: 'shop/bookmarks/index_form', locals: { shops: @records } %>
+			</tbody>
+		</table>
+	</div>
 </div>
