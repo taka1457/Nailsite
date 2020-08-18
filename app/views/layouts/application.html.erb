@@ -9,7 +9,7 @@
   </head>
   <body>
     <% if shop_signed_in? %>
-      <header class="shop-header">
+      <header class="shop-header navbar-fixed-top">
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
             <div class="nav navbar-nav navbar-left">
@@ -29,11 +29,11 @@
           </div>
         </div>
       </header>
-      <div class="container">
+      <div class="container main_body">
         <main><%= yield %></main>
       </div>
     <% elsif customer_signed_in? %>
-      <header class="customer-header">
+      <header class="customer-header navbar-fixed-top">
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
             <div class="nav navbar-nav navbar-left">
@@ -52,11 +52,11 @@
           </div>
         </div>
       </header>
-      <div class="container">
+      <div class="container main_body">
         <main data-turbolinks="false"><%= yield %></main>
       </div>
     <% elsif current_page?(root_path) || current_page?(about_path) %>
-      <header class="top-header">
+      <header class="top-header navbar-fixed-top">
         <div class="top_feader_background">
           <div class="main-visual-content">
             <p class="main-visual-text">
@@ -91,11 +91,11 @@
           </div>
         </div>
       </header>
-      <div class="container">
+      <div class="container top_body">
         <main><%= yield %></main>
       </div>
     <% else %>
-      <header class="main-header">
+      <header class="main-header navbar-fixed-top">
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
             <div class="main-header">
@@ -116,7 +116,7 @@
           </div>
         </div>
       </header>
-      <div class="container">
+      <div class="container main_body">
         <main><%= yield %></main>
       </div>
     <% end %>
