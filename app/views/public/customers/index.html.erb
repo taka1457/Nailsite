@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<h2>会員一覧</h2>
+		<h2>会員一覧<span class="sub_title">　のメニュー　　　<%= paginate @customers %></span></h2>
 		<% @customers.each do |customer| %>
 			<div class="col-md-4">
 				<%= link_to customer_path(customer) do %>
