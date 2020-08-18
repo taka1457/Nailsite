@@ -1,0 +1,9 @@
+<% if post.favorited_by?(current_customer) %>
+	<%= link_to shop_post_favorites_path(shop, post), method: :delete, remote: true do %>
+		<span class="glyphicon glyphicon-heart">　<%= post.favorites.count%>件</span>
+	<% end %>
+<% else %>
+	<%= link_to shop_post_favorites_path(shop, post), method: :post, remote: true do %>
+		<span class="glyphicon glyphicon-heart-empty">　<%= post.favorites.count %>件</span>
+	<% end %>
+<% end %>

@@ -13,6 +13,7 @@ class Customer < ApplicationRecord
   has_many :customer_rooms
   has_many :talks
   has_many :talk_rooms, through: :customer_rooms
+  has_many :favorites, dependent: :destroy
 
   def full_name
     last_name + " " + first_name

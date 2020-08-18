@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :shop do
+    get 'favorites/create'
+    get 'favorites/destroy'
+  end
+  namespace :public do
+    get 'favorites/create'
+    get 'favorites/destroy'
+  end
   devise_for :shops, controllers: {
     sessions: 'shop/sessions',
     registrations: 'shop/registrations',
@@ -55,6 +63,7 @@ Rails.application.routes.draw do
       resources :menus, except: [:show]
       resources :posts do
         resources :post_comments, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
       end
     end
   end
