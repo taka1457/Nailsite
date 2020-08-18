@@ -1,0 +1,6 @@
+<% if current_customer.following?(customer) %>
+	<%= link_to 'フォロー外す', customer_relationships_path(customer.id), method: :delete, class: "btn btn-default nav-btn" %><br><br><br>
+<% else %>
+	<%= link_to 'フォローする', customer_relationships_path(customer.id), method: :POST, class: "btn btn-default nav-btn" %><br><br><br>
+<% end %>
+

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     get 'talk/:id' => 'talks#show', as: 'talk'
     get 'customers/talks' => 'talks#index', as: 'customers_talks'
     get '/search', to: 'searchs#search'
+    get 'customers/follows' => 'relationships#follow', as: 'follow'
 
     resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
       resources :reservation_histories, only: [:index] do
         resources :history_comments, only: [:create, :destroy]
       end
+      resource :relationships, only: [:create, :destroy]
     end
     resources :reservation_menus, only: [:index]
     resources :talks, only: [:create]
