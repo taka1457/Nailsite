@@ -29,6 +29,16 @@
   color: #EEEEEE;
   text-decoration: none !important;
 }
+.logo-link{
+  position: relative;
+  a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:100%;
+    width: 100%;
+  }
+}
 
 .reserve_form{
   display: none;

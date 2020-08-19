@@ -57,36 +57,35 @@
       </div>
     <% elsif current_page?(root_path) || current_page?(about_path) %>
       <header class="top-header navbar-fixed-top">
-        <div class="top_feader_background">
-          <div class="main-visual-content">
-            <p class="main-visual-text">
-              <%= link_to 'Nailsite', root_path, class: "root_logo" %><br>
-              Nailsiteへ、ようこそ！<br>
-              ネイルサロンとつながる新しいSNSです<br>
-              会員でない方も閲覧はできますが、<br>
-              ご予約には会員登録が必要になります
-            </p>
-          </div>
-          <div class="container navbar-fixed-top nav-head">
-            <div class="row">
-              <div>
-                <ul class="nav navbar-nav navbar-right">
-                  <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default nav-btn" %></li>
-                </ul>
-              </div>
+        <div class="main-visual-content logo-link">
+          <p class="main-visual-text">
+            <span class="root_logo">Nailsite</span><br>
+            Nailsiteへ、ようこそ！<br>
+            ネイルサロンとつながる新しいSNSです<br>
+            会員でない方も閲覧はできますが、<br>
+            ご予約には会員登録が必要になります
+          </p>
+          <a href="/"></a>
+        </div>
+        <div class="container navbar-fixed-top nav-head">
+          <div class="row">
+            <div>
+              <ul class="nav navbar-nav navbar-right">
+                <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default nav-btn" %></li>
+              </ul>
             </div>
-            <div class="row">
-              <div class="col-md-offset-7 search_box">
-                <%= form_tag(search_path, method: :get) do %>
-                  <%= text_field_tag 'search[content]', '', class: 'search_form', placeholder: "店名/場所から探す　【例：nailsalon、梅田】"%>
-                  <%= submit_tag '検索', class: "btn btn-default search_btn" %>
-                <% end %>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-7 search_box">
+              <%= form_tag(search_path, method: :get) do %>
+                <%= text_field_tag 'search[content]', '', class: 'search_form', placeholder: "店名/場所から探す　【例：nailsalon、梅田】"%>
+                <%= submit_tag '検索', class: "btn btn-default search_btn" %>
+              <% end %>
             </div>
           </div>
         </div>
