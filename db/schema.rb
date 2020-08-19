@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_085443) do
+ActiveRecord::Schema.define(version: 2020_08_19_143704) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "customer_id"
@@ -137,6 +137,17 @@ ActiveRecord::Schema.define(version: 2020_08_18_085443) do
     t.index ["customer_id"], name: "index_reserves_on_customer_id"
   end
 
+  create_table "shop_rooms", force: :cascade do |t|
+    t.integer "shop_id", null: false
+    t.integer "talk_room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_shop_rooms_on_customer_id"
+    t.index ["shop_id"], name: "index_shop_rooms_on_shop_id"
+    t.index ["talk_room_id"], name: "index_shop_rooms_on_talk_room_id"
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -180,6 +191,8 @@ ActiveRecord::Schema.define(version: 2020_08_18_085443) do
     t.string "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contributor", default: 0, null: false
+    t.integer "to_customer"
     t.index ["customer_id"], name: "index_talks_on_customer_id"
     t.index ["shop_id"], name: "index_talks_on_shop_id"
     t.index ["talk_room_id"], name: "index_talks_on_talk_room_id"

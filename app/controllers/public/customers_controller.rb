@@ -10,6 +10,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @reservation_history = ReservationHistory.all.reverse_order
     @history_comments = HistoryComment.all
+
   end
 
   def mypage

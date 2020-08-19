@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     post 'reserves/confirm', to: 'reserves#confirm', as: 'reserves_confirm_post'
     post 'reserves/create', to: 'reserves#create', as: 'reserves_create'
     get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
-    get 'talk/:id' => 'talks#show', as: 'talk'
+    get 'customers/:customer_id/talk_rooms/:id' => 'talks#show', as: 'customers_talk'
     get 'customers/talks' => 'talks#index', as: 'customers_talks'
     get '/search', to: 'searchs#search'
     get 'customers/follows' => 'relationships#follow', as: 'follow'
@@ -57,10 +57,13 @@ Rails.application.routes.draw do
     get 'posts/all' => 'posts#all_index'
     get 'shops/:id/postlist' => 'posts#list', as: 'shop_posts_list'
     get 'shops/map' => 'shops#map', as: 'shops_map'
+    get 'talk_rooms/:id/:shop_id/:customer_id' => 'talks#show', as: 'shops_talk'
+    get 'shops/talks' => 'talks#index', as: 'shops_talks'
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]
       resource :bookmarks, only: [:create, :destroy]
+      resources :talks, only: [:create]
       resources :posts do
         resources :post_comments, only: [:create, :destroy]
         resource :favorites, only: [:create, :destroy]

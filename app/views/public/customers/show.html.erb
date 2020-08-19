@@ -21,8 +21,11 @@
 		<% if customer_signed_in? %>
 			<% if current_customer != @customer %>
 				<%= render partial: 'public/relationships/form', locals: { customer: @customer } %>
-				<%= link_to 'chatを始める', talk_path(@customer.id), class: "btn btn-default nav-btn"%>
+				<%= link_to 'chatを始める', customers_talk_path(@customer.id), class: "btn btn-default nav-btn"%>
 			<% end %>
+		<% elsif shop_signed_in? %>
+
+			<%= link_to 'chatを始める', customers_talk_path(@customer.id), class: "btn btn-default nav-btn"%>
 		<% else %>
 			<%= link_to 'フォローする', new_customer_session_path, class: "btn btn-default nav-btn" %><br><br><br>
 	  		<%= link_to 'chatを始める', new_customer_session_path, class: "btn btn-default nav-btn"%>

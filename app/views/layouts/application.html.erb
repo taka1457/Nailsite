@@ -20,6 +20,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', shop_mypage_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '予約一覧', "", class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '連絡一覧', shops_talks_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'メニュー', shop_menus_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿一覧', shop_posts_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>

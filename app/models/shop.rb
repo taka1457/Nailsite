@@ -6,8 +6,11 @@ class Shop < ApplicationRecord
 
 	has_many :menus, dependent: :destroy
 	has_many :posts, dependent: :destroy
+
+  has_many :shop_rooms
   has_many :talks
-  has_many :talk_rooms
+  has_many :talk_rooms, through: :shop_rooms
+
   has_many :bookmarks, dependent: :destroy
 
   attachment :shop_image

@@ -33,18 +33,33 @@
 		<h3>コンタクト</h3>
 		<div class="message">
 		  <% @talks.each do |talk| %>
-		    <% if talk.customer_id == current_customer.id %>
-			    <p style="text-align: right;"><%= talk.body %></p>
-		    <% else %>
-			    <p style="text-align: left;"><%= talk.body %></p>
-		    <% end %>
-		  <% end %>
+			  <% if customer_signed_in? %>
+			    <% if talk.customer_id == current_customer.id %>
+				    <p style="text-align: right;"><%= talk.body %></p>
+				  <% else %>
+				    <p style="text-align: left;"><%= talk.body %></p>
+			    <% end %>
+			  <% elsif shop_signed_in? %>
+			    <% if talk.contributor == "shop" %>
+				    <p style="text-align: right;"><%= talk.body %></p>
+				  <% else %>
+				    <p style="text-align: left;"><%= talk.body %></p>
+			    <% end %>
+			  <% end %>
+			<% end %>
 		</div>
 
 		<div class="col-md-12">
 			<%= form_with model: @talk do |f| %>
-			  <%= f.text_area :body %>
+			  <%= f.text_area :body, autofocus: true %>
 			  <%= f.hidden_field :talk_room_id %>
+			  <%= f.hidden_field :to_customer, value: @customer.id %>
+			  <% if customer_signed_in? %>
+			  	<%= f.hidden_field :customer_id, value: current_customer.id %>
+			  <% elsif shop_signed_in? %>
+			  	<%= f.hidden_field :customer_id, value: @customer.id %>
+			  	<%= f.hidden_field :contributor, {value: 'shop'}  %>
+			  <% end %>
 			  <div class="col-md-offset-9">
 			  <%= f.submit "送信", class: "btn btn-success btn-lg" %>
 			</div>
