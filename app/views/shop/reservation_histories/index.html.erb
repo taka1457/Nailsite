@@ -16,13 +16,16 @@
 					<% if history.menu.shop == current_shop %>
 						<tr>
 							<td><%= history.reserve.reservation.to_s(:datetime_jp) %></td>
-							<td><%= history.reserve.customer.full_name %></td>
+							<td>
+								<%= link_to customer_path(history.reserve.customer) do %>
+									<%= history.reserve.customer.full_name %></td>
+								<% end %>
 							<td><%= history.menu.name %></td>
 							<td><%= history.menu.price.to_s(:delimited) %>円</td>
-							<% if history.status == 'booking' %>
+							<% if history.status == 'booking' or history.status =='confirm' %>
 								<td><%= form_for(history, url: update_history_path(history)) do |f| %>
-									<%= f.select :status, {予約中: 'booking', 来店済: 'done', キャンセル: 'cancel', 無断キャンセル: 'unauthorized'} %>
-									<%= f.submit "更新", data: { confirm: "一度更新すると変更ができません。更新してもよろしいでしょうか？"}, class: "btn btn-primary" %>
+									<%= f.select :status, { 受付待ち: 'confirm', 予約済: 'booking', 来店済: 'done', キャンセル: 'cancel', 無断キャンセル: 'unauthorized'} %>
+									<%= f.submit "更新", data: { confirm: "一度「来店済み」「キャンセル」「無断キャンセル」に更新すると変更ができません。更新してもよろしいでしょうか？"}, class: "btn btn-primary" %>
 								<% end %>
 							</td>
 							<% else %>

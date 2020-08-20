@@ -4,5 +4,5 @@ class ReservationHistory < ApplicationRecord
 
   has_many :history_comment, dependent: :destroy
 
-  enum status: { booking: 0, done: 1, cancel: 2, unauthorized: 3 }
+  enum status: { confirm: 0, booking: 1, done: 2, cancel: 3, unauthorized: 4 }
 end
