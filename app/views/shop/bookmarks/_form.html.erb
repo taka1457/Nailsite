@@ -1,0 +1,9 @@
+<% if shop.bookmarked_by?(current_customer) %>
+	<%= link_to shop_bookmarks_path(shop), method: :delete, remote: true do %>
+		<span class="glyphicon glyphicon-star"></span>
+	<% end %>
+<% else %>
+	<%= link_to shop_bookmarks_path(shop), method: :post, remote: true do %>
+		<span class="glyphicon glyphicon-star-empty"></span>
+	<% end %>
+<% end %>

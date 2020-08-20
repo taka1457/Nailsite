@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h2>最近の受信一覧</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th></th>
+					<th>コンタクト相手</th>
+					<th>コンタクト内容</th>
+					<th>投稿時間</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @talks.each do |talk| %>
+					<% if talk.shop.present? %>
+						<% if talk.shop.name == talk.shop.name %>
+							<tr>
+								<td>from サロン</td>
+								<td>
+									<%= link_to shops_talk_path(current_customer.id, talk.shop.id, current_customer.id) do %>
+										<%= talk.shop.name %>
+									<% end %>
+								</td>
+								<td><%= talk.body %></td>
+								<td><%= talk.created_at.to_s(:datetime_jp) %></td>
+							</tr>
+						<% end %>
+					<% else %>
+						<% if talk.customer != current_customer %>
+							<tr>
+								<td>from 会員</td>
+								<td>
+									<%= link_to customers_talk_path(talk.customer.id, talk.talk_room.id) do %>
+										<%= talk.customer.full_name %> さん
+									<% end %>
+								</td>
+								<td><%= talk.body %></td>
+								<td><%= talk.created_at.to_s(:datetime_jp) %></td>
+							</tr>
+						<% end %>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

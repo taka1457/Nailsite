@@ -3,13 +3,14 @@ class Public::CustomersController < ApplicationController
   before_action :set_current_customer, except: [:index, :show]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(6)
   end
 
   def show
     @customer = Customer.find(params[:id])
     @reservation_history = ReservationHistory.all.reverse_order
     @history_comments = HistoryComment.all
+
   end
 
   def mypage
@@ -33,6 +34,12 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_active: false)
     reset_session
     redirect_to root_path
+  end
+
+  def follows
+  end
+
+  def followers
   end
 
   private

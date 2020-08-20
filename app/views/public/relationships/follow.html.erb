@@ -1,0 +1,65 @@
+<div class="row">
+	<div class="col-md-5 col-md-offset-1">
+		<% if @follower_customers.count > 0 %>
+			<h3>フォローされているユーザー　　<%= @follower_customers.count %>人</h3>
+		<% else %>
+			<h3>フォローしているユーザーはいません</h3>
+		<% end %>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ユーザー名</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @follower_customers.each do |follower_customer| %>
+							<tr>
+								<td>
+									<%= link_to customer_path(follower_customer) do %>
+										<%= follower_customer.full_name %>
+									<% end %>　さん
+								</td>
+								<td><%= link_to 'chatを始める', talk_path(follower_customer.id), class: "btn btn-default btn-xs"%></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<% if @following_customers.count > 0 %>
+			<h3>フォローしているユーザー　　　<%= @following_customers.count %>人</h3>
+		<% else %>
+			<h3>フォローしているユーザーはいません</h3>
+		<% end %>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ユーザー名</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @following_customers.each do |following_customer| %>
+							<tr>
+								<td>
+									<%= link_to customer_path(following_customer) do %>
+										<%= following_customer.full_name %>
+									<% end %>　さん
+								</td>
+								<td><%= link_to 'chatを始める', talk_path(following_customer.id), class: "btn btn-default btn-xs"%></td>
+								<td><%= link_to 'フォロー外す', customer_relationships_path(following_customer.id), method: :delete, class: "btn btn-default btn-xs" %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

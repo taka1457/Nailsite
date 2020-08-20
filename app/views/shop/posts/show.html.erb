@@ -15,7 +15,13 @@
 					<td>
 						<%= @post.body %><br><br><br>
 						<%= @post.created_at.to_s(:datetime_jp) %><br><br>
-						いいね数
+						<% if customer_signed_in? %>
+							<div id="show_like"><%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %></div>
+						<% else %>
+							<%= link_to new_customer_session_path do %>
+								<span class="glyphicon glyphicon-heart-empty">　<%= @post.favorites.count %>件</span>
+							<% end %>
+						<% end %>
 					</td>
 				</tr>
 			</tbody>
@@ -34,16 +40,16 @@
 					<th></th>
 				</tr>
 			</thead>
-			<tbody class="comment">
-						<%= render 'comment', shop: @shop, post: @post, post_comments: @post.post_comments %>
+			<tbody id="comment">
+						<%= render partial: 'shop/posts/comment',locals: { shop: @shop, post: @post, post_comments: @post.post_comments } %>
 			</tbody>
 		</table>
 	</div>
 </div>
 <div class="row">
-		<%= form_with model:[@post_comment], url: shop_post_post_comments_path(@shop.id, @post.id) do |f| %>
+		<%= form_with model:[@post_comment], url: shop_post_post_comments_path(@shop.id, @post.id), remote: true do |f| %>
 			<div class="col-md-8 col-md-offset-2 comment-form">
-				<%= f.text_area :body %>
+				<%= f.text_area :body, id: "comment_body" %>
 			</div>
 			<div class="col-md-offset-10">
 				<% if customer_signed_in? %>

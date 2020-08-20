@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<h2>会員一覧</h2>
+		<h2>会員一覧<span class="sub_title">　のメニュー　　　<%= paginate @customers %></span></h2>
 		<% @customers.each do |customer| %>
 			<div class="col-md-4">
 				<%= link_to customer_path(customer) do %>
@@ -13,10 +13,18 @@
 						<% end %>
 					</div>
 					<div class="col-md-5">
-						<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
+						<% if current_customer != customer %>
+							<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
+						<% end %>
 					</div>
 					<div class="col-md-6">
-						<%= link_to 'フォローする', "", class: "btn btn-default nav-btn" %>
+						<% if customer_signed_in? %>
+							<% if current_customer != customer %>
+								<%= render partial: 'public/relationships/form', locals: { customer: customer } %>
+							<% end %>
+						<% else %>
+							<%= link_to 'フォローする', new_customer_session_path, class: "btn btn-default nav-btn" %><br><br><br>
+						<% end %>
 					</div>
 			</div>
 			</div>

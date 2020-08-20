@@ -1,10 +1,19 @@
 <div class="row">
-	<div class="col-md-offset-2">
+	<div class="col-md-6 col-md-offset-2">
 		<h2>
-			店舗一覧おすすめ順
+			おすすめ順
 			<span class="sub_title"> (全<%= @shops.total_count %>件)　　　<%= paginate @shops %></span>
+			<%= link_to 'マップ表示', shops_map_path, class: "btn btn-default nav-btn" %>
 		</h2>
 	</div>
+	<div class="col-md-4 search_box sub_title">
+    <%= form_tag(search_path, method: :get) do %>
+      <%= text_field_tag 'search[content]', '', class: 'shop_index_search_form', placeholder: "【例：nailsalon、梅田】"%>
+      <%= submit_tag '検索', class: "btn btn-default search_btn" %>
+    <% end %>
+	</div>
+</div>
+<div class="row">
 	<div class="col-md-2">
 		<table class="table table-bordered">
 			<tbody>
@@ -19,25 +28,10 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="col-md-9">
+	<div class="col-md-10">
 		<table class="table">
-			<tbody>
-				<% @shops.each do |shop| %>
-					<tr>
-						<td>
-							<%= link_to shop_path(shop) do %>
-			        	<%= attachment_image_tag shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "preview_image" %>
-			        <% end %>
-			      </td>
-						<td>
-							<%= link_to shop_path(shop) do %>
-								<h3><%= shop.name %></h3>
-							<% end %>
-							<h4><%= shop.promotion %></h4><br>
-							<span><%= shop.full_address %></span>
-						</td>
-					</tr>
-				<% end %>
+			<tbody id="bookmark">
+				<%= render partial: 'shop/bookmarks/index_form', locals: { shops: @shops } %>
 			</tbody>
 		</table>
 	</div>

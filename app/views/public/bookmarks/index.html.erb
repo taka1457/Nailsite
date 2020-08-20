@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>お気に入りサロン一覧</h2>
+		<table class="table">
+			<tbody>
+				<% @bookmarks.each do |bookmark| %>
+					<tr>
+						<td>
+							<%= link_to shop_path(bookmark.shop) do %>
+			        	<%= attachment_image_tag bookmark.shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "preview_image" %>
+			        <% end %>
+			      </td>
+						<td>
+							<h3>
+								<%= link_to shop_path(bookmark.shop) do %>
+									<%= bookmark.shop.name %>
+								<% end %>
+							</h3>
+							<h4><%= bookmark.shop.promotion %></h4><br>
+							<span><%= bookmark.shop.full_address %></span>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

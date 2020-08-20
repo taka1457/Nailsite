@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  namespace :shop do
+    get 'bookmarks/create'
+    get 'bookmarks/destroy'
+  end
   devise_for :shops, controllers: {
     sessions: 'shop/sessions',
     registrations: 'shop/registrations',
@@ -22,6 +27,11 @@ Rails.application.routes.draw do
     post 'reserves/confirm', to: 'reserves#confirm', as: 'reserves_confirm_post'
     post 'reserves/create', to: 'reserves#create', as: 'reserves_create'
     get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
+    get 'customers/:customer_id/talk_rooms/:id' => 'talks#show', as: 'customers_talk'
+    get 'customers/talks' => 'talks#index', as: 'customers_talks'
+    get '/search', to: 'searchs#search'
+    get 'customers/follows' => 'relationships#follow', as: 'follow'
+    get 'customers/bookmarks' => 'bookmarks#index', as: 'bookmarks'
 
     resources :customers, only: [:index, :show] do
       resources :reservation_menus, only: [:create]
@@ -29,8 +39,10 @@ Rails.application.routes.draw do
       resources :reservation_histories, only: [:index] do
         resources :history_comments, only: [:create, :destroy]
       end
+      resource :relationships, only: [:create, :destroy]
     end
     resources :reservation_menus, only: [:index]
+    resources :talks, only: [:create]
   end
 
   scope module: :shop do
@@ -44,11 +56,17 @@ Rails.application.routes.draw do
     get 'shops/:id/menulist' => 'shops#menu', as: 'shop_menu_list'
     get 'posts/all' => 'posts#all_index'
     get 'shops/:id/postlist' => 'posts#list', as: 'shop_posts_list'
+    get 'shops/map' => 'shops#map', as: 'shops_map'
+    get 'talk_rooms/:id/:shop_id/:customer_id' => 'talks#show', as: 'shops_talk'
+    get 'shops/talks' => 'talks#index', as: 'shops_talks'
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]
+      resource :bookmarks, only: [:create, :destroy]
+      resources :talks, only: [:create]
       resources :posts do
         resources :post_comments, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
       end
     end
   end

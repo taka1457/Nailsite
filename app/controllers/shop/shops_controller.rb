@@ -1,9 +1,14 @@
 class Shop::ShopsController < ApplicationController
-  before_action :authenticate_shop!, except: [:index, :show, :menu]
-	before_action :set_current_shop, except: [:index, :show, :menu]
+  before_action :authenticate_shop!, except: [:index, :show, :menu, :map]
+	before_action :set_current_shop, except: [:index, :show, :menu, :map]
 
   def index
     @shops = Shop.page(params[:page]).per(20)
+  end
+
+  def map
+    @shops = Shop.page(params[:page]).per(5)
+    gon.shops = Shop.page(params[:page]).per(5)
   end
 
   def show
