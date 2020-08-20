@@ -31,7 +31,7 @@
         </div>
       </header>
       <div class="container main_body">
-        <main><%= yield %></main>
+        <main data-turbolinks="false"><%= yield %></main>
       </div>
     <% elsif customer_signed_in? %>
       <header class="customer-header navbar-fixed-top">
@@ -92,7 +92,7 @@
         </div>
       </header>
       <div class="container top_body">
-        <main><%= yield %></main>
+        <main data-turbolinks="false"><%= yield %></main>
       </div>
     <% else %>
       <header class="main-header navbar-fixed-top">
@@ -117,7 +117,7 @@
         </div>
       </header>
       <div class="container main_body">
-        <main><%= yield %></main>
+        <main data-turbolinks="false"><%= yield %></main>
       </div>
     <% end %>
     <div class="container">
