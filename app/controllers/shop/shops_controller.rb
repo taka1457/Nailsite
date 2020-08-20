@@ -8,7 +8,6 @@ class Shop::ShopsController < ApplicationController
 
   def map
     @shops = Shop.page(params[:page]).per(5)
-    gon.shops = Shop.page(params[:page]).per(5)
   end
 
   def show
