@@ -27,15 +27,13 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>日にち</th>
-					<th>開始時間</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>ご予約日時</td>
-					<td><%= @reserve.reservation_date %></td>
-					<td><%= @reserve.reservation_time.to_s(:datetime_jp) %></td>
+					<td><%= @reserve.reservation.to_s(:datetime_jp) %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -45,8 +43,7 @@
 	<div class="col-md-1 col-md-offset-5">
 		<% if @reservation_menus.present? %>
 			<%= form_for(@reserve, url: "/reserves/create") do |f| %>
-				<%= f.hidden_field :reservation_date %>
-				<%= f.hidden_field :reservation_time %>
+				<%= f.hidden_field :reservation %>
 				<%= f.submit 'ご予約を確定する', class: 'btn btn-success' %>
 			<% end %>
 		<% else %>

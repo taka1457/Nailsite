@@ -32,8 +32,6 @@ class Public::ReservesController < ApplicationController
   private
 
   def reserve_params
-    params.require(:reserve).permit(:customer_id,
-    																:reservation_date,
-    																:reservation_time)
+    params.require(:reserve).permit(:customer_id,:reservation)
   end
 end

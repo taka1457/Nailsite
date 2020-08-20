@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_143704) do
+ActiveRecord::Schema.define(version: 2020_08_20_110824) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "customer_id"
@@ -130,10 +130,9 @@ ActiveRecord::Schema.define(version: 2020_08_19_143704) do
 
   create_table "reserves", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.date "reservation_date", null: false
-    t.time "reservation_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "reservation"
     t.index ["customer_id"], name: "index_reserves_on_customer_id"
   end
 

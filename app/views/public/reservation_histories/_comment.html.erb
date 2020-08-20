@@ -1,7 +1,7 @@
 <% reservation_histories.each do |history| %>
 	<% if history.reserve.customer == current_customer %>
 		<tr>
-			<td><%= history.reserve.reservation_time.to_s(:datetime_jp) %></td>
+			<td><%= history.reserve.reservation.to_s(:datetime_jp) %></td>
 			<td><%= history.menu.shop.name %></td>
 			<td><%= history.menu.name %></td>
 			<td><%= history.menu.price.to_s(:delimited) %>円</td>
