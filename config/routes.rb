@@ -59,6 +59,8 @@ Rails.application.routes.draw do
     get 'shops/map' => 'shops#map', as: 'shops_map'
     get 'talk_rooms/:id/:shop_id/:customer_id' => 'talks#show', as: 'shops_talk'
     get 'shops/talks' => 'talks#index', as: 'shops_talks'
+    get 'shops/reservation_histories' => 'reservation_histories#index', as: 'shops_histories'
+    patch 'shops/reservation_histories/:id' => 'reservation_histories#update', as: 'update_history'
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]

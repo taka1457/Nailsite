@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_110824) do
+ActiveRecord::Schema.define(version: 2020_08_20_153821) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "customer_id"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_110824) do
     t.integer "reservation_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
     t.index ["menu_id"], name: "index_reservation_histories_on_menu_id"
     t.index ["reserve_id"], name: "index_reservation_histories_on_reserve_id"
   end
