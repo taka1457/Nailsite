@@ -26,6 +26,14 @@ class Customer < ApplicationRecord
   #ブックマーク機能
   has_many :bookmarks, dependent: :destroy
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :first_name_kana, presence: true
+  validates :last_name_kana, presence: true
+  validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
+  validates :email, presence: true, format: { with: /\A\S+@\S+\.\S+\z/ }
+  validates :password, presence: true, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :introduction, length: { maximum: 150}
 
   def follow(customer_id)
     follower.create(followed_id: customer_id)
