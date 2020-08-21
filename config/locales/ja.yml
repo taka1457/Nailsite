@@ -29,6 +29,35 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 ja:
+  activerecord:
+    attributes:
+      shop:
+        email: 'メールアドレス'
+        password: 'パスワード'
+        name: '店舗名'
+        postal_code: '郵便番号'
+        prefecture_code: '都道府県'
+        city: '市区町村'
+        street: '番地'
+        other_address: '建物名、部屋番号'
+        phone_number: '電話番号'
+        traffic_method: '交通手段'
+        business_hours: '営業時間'
+        budget: '店舗予算'
+        payment_method: '支払い方法'
+        seat: '席数'
+        staff: 'スタッフ数'
+        parking: '駐車場情報'
+        promotion: '店舗アピールポイント'
+        introduction: '店舗紹介'
+        genre: 'おすすめジャンル'
+      customer:
+        first_name: '名前（姓）'
+        last_name: '名前（名）'
+        first_name_kana: '名前（セイ）'
+        last_name_kana: '名前（メイ）'
+        phone_number: '電話番号'
+        password: 'パスワード'
   enums:
     shop:
       genre:
@@ -76,6 +105,6 @@ ja:
       already_confirmed: "メールアドレスは既に登録されています。"
       # not_found: "not found"
       # not_locked: "was not locked"
-      not_saved: 
+      not_saved:
         one: "エラーが発生しました。以下ご確認お願いいたします。"
         other: "エラーが発生しました。以下ご確認お願いいたします。"
