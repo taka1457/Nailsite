@@ -1,0 +1,81 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+ja:
+  enums:
+    shop:
+      genre:
+        simple: 'シンプル'
+        one_color: 'ワンカラー'
+        foot: 'フット'
+        art: 'アート'
+        bridal: 'ブライダル'
+        gradation: 'グラデーション'
+    reservation_history:
+      status:
+        confirm: '受付待ち'
+        booking: '予約済'
+        done: '来店済'
+        cancel: 'キャンセル'
+        unauthorized: '無断キャンセル'
+    talk:
+      contributor:
+        customer: '会員'
+        shop: 'サロン'
+
+  views:
+    pagination:
+      first: "≪"
+      previous: "<"
+      next: ">"
+      last: "≫"
+  devise:
+    failure:
+      already_authenticated: "既にログイン済みです。"
+      # inactive: "Your account is not activated yet."
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      not_found_in_database: "メールアドレスまたはパスワードが正しくありません。"
+      # timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "続けるにはログインが必要です。"
+    registrations:
+      signed_up: "会員登録が完了しました。ようこそNaganoCakeへ！"
+      updated: "パスワードの更新が完了しました。"
+    sessions:
+      signed_in: "ログインが完了しました。"
+      signed_out: "ログアウトが完了しました。"
+      already_signed_out: "ログアウトが完了しました。"
+  errors:
+    messages:
+      already_confirmed: "メールアドレスは既に登録されています。"
+      # not_found: "not found"
+      # not_locked: "was not locked"
+      not_saved: 
+        one: "エラーが発生しました。以下ご確認お願いいたします。"
+        other: "エラーが発生しました。以下ご確認お願いいたします。"
