@@ -28,8 +28,11 @@ class Shop::PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
   	@post.shop_id = current_shop.id
-  	@post.save
-  	redirect_to shop_posts_path
+    if @post.save
+      redirect_to shop_posts_path
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -43,9 +46,12 @@ class Shop::PostsController < ApplicationController
   end
 
   def update
-  	post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to shop_posts_path
+  	@post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to shop_posts_path
+    else
+      render :edit
+    end
   end
 
   private

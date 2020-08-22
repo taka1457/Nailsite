@@ -41,22 +41,13 @@
 				</tr>
 			</thead>
 			<tbody id="comment">
-						<%= render partial: 'shop/posts/comment',locals: { shop: @shop, post: @post, post_comments: @post.post_comments } %>
+				<%= render partial: 'shop/posts/comment',locals: { shop: @shop, post: @post, post_comments: @post.post_comments } %>
 			</tbody>
 		</table>
 	</div>
 </div>
-<div class="row">
-		<%= form_with model:[@post_comment], url: shop_post_post_comments_path(@shop.id, @post.id), remote: true do |f| %>
-			<div class="col-md-8 col-md-offset-2 comment-form">
-				<%= f.text_area :body, id: "comment_body" %>
-			</div>
-			<div class="col-md-offset-10">
-				<% if customer_signed_in? %>
-					<%= f.submit '送信', class: "btn-sm btn-primary" %>
-				<% else %>
-					<%= link_to '送信', new_customer_session_path, class: "btn-sm btn-primary" %>
-				<% end %>
-			</div>
-	<% end %>
+<div class="row" id="comment_form">
+	<%= render partial: 'shop/posts/form',locals: { shop: @shop, post: @post, post_comment: @post_comment } %>
 </div>
+
+

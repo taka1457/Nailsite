@@ -1,7 +1,6 @@
 <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <% resource.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
+  <% if @shop.errors.any? %>
   <% end %>
   <div class="row">
     <div class="col-md-8 col-md-offset-1">
@@ -15,13 +14,23 @@
           <td>
             <span class="text-danger">必須</span>　<%= f.label :店舗名 %>
           </td>
-          <td><%= f.text_field :name, autofocus: true %></td>
+          <td>
+            <%= f.text_field :name, autofocus: true %>
+            <% if @shop.errors.include?(:name) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:name).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :メールアドレス %>
           </td>
-          <td><%= f.email_field :email, autocomplete: "email" %></td>
+          <td>
+            <%= f.email_field :email, autocomplete: "email" %>
+            <% if @shop.errors.include?(:email) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:email).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
@@ -30,13 +39,23 @@
               <em>(<%= @minimum_password_length %> 文字以上）</em>
             <% end %>
           </td>
-          <td><%= f.password_field :password, autocomplete: "new-password", class: "password" %></td>
+          <td>
+            <%= f.password_field :password, autocomplete: "new-password", class: "password" %>
+            <% if @shop.errors.include?(:password) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:password).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :'パスワード(確認用）' %>
           </td>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></td>
+          <td>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %>
+            <% if @shop.errors.include?(:password_confirmation) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:password_confirmation).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>以下店舗詳細情報</td>
@@ -46,77 +65,142 @@
           <td>
             <span class="text-danger">必須</span>　<%= f.label :'郵便番号(ハイフンなし）' %>
           </td>
-          <td><%= f.text_field :postal_code %></td>
+          <td>
+            <%= f.text_field :postal_code, placeholder: "【半角数字】例: 5300051" %>
+            <% if @shop.errors.include?(:postal_code) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:postal_code).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :都道府県 %>
           </td>
-          <td><%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %></td>
+          <td>
+            <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
+            <% if @shop.errors.include?(:prefecture_code) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:prefecture_code).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :市区町村 %>
           </td>
-          <td><%= f.text_field :city %></td>
+          <td>
+            <%= f.text_field :city %>
+            <% if @shop.errors.include?(:city) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:city).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :番地 %>
           </td>
-          <td><%= f.text_field :street %></td>
+          <td>
+            <%= f.text_field :street %>
+            <% if @shop.errors.include?(:street) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:street).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
-          <td>　　　<%= f.label :'建物名、部屋番号' %></td>
-          <td><%= f.text_field :other_address %></td>
+          <td>　　　<%= f.label :'建物名、部屋番号(40文字)' %></td>
+          <td>
+            <%= f.text_field :other_address %>
+            <% if @shop.errors.include?(:other_address) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:other_address).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :'電話番号(ハイフンなし）' %>
           </td>
-          <td><%= f.text_field :phone_number %></td>
+          <td>
+            <%= f.text_field :phone_number, placeholder: "【半角数字】例: 0801234" %>
+            <% if @shop.errors.include?(:phone_number) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:phone_number).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :'店舗予算(目安）' %>
           </td>
-          <td><%= f.text_field :budget %></td>
+          <td>
+            <%= f.text_field :budget, placeholder: "【半角数字】例: 5000" %>
+            <% if @shop.errors.include?(:budget) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:budget).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :席数 %>
           </td>
-          <td><%= f.text_field :seat %></td>
+          <td>
+            <%= f.text_field :seat, placeholder: "【半角数字】例: 4" %>
+            <% if @shop.errors.include?(:seat) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:seat).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
             <span class="text-danger">必須</span>　<%= f.label :スタッフ数 %>
           </td>
-          <td><%= f.text_field :staff %></td>
+          <td>
+            <%= f.text_field :staff, placeholder: "【半角数字】例: 4" %>
+            <% if @shop.errors.include?(:staff) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:staff).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
-            <span class="text-danger">必須</span>　<%= f.label :交通手段 %>
+            <span class="text-danger">必須</span>　<%= f.label :'交通手段(200文字)' %>
           </td>
-          <td><%= f.text_area :traffic_method %></td>
+          <td>
+            <%= f.text_area :traffic_method %>
+            <% if @shop.errors.include?(:traffic_method) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:traffic_method).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
-            <span class="text-danger">必須</span>　<%= f.label :支払い方法 %>
+            <span class="text-danger">必須</span>　<%= f.label :'支払い方法(100文字)' %>
           </td>
-          <td><%= f.text_area :payment_method %></td>
+          <td>
+            <%= f.text_area :payment_method %>
+            <% if @shop.errors.include?(:payment_method) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:payment_method).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
-            <span class="text-danger">必須</span>　<%= f.label :営業時間 %>
+            <span class="text-danger">必須</span>　<%= f.label :'営業時間(100文字)' %>
           </td>
-          <td><%= f.text_area :business_hours %></td>
+          <td>
+            <%= f.text_area :business_hours %>
+            <% if @shop.errors.include?(:business_hours) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:business_hours).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td>
-            <span class="text-danger">必須</span>　<%= f.label :駐車場情報 %>
+            <span class="text-danger">必須</span>　<%= f.label :'駐車場情報(20文字)' %>
           </td>
-          <td><%= f.text_area :parking %></td>
+          <td>
+            <%= f.text_area :parking %>
+            <% if @shop.errors.include?(:parking) %>
+              <p style="color: red;"><%= @shop.errors.full_messages_for(:parking).first %>
+            <% end %>
+          </td>
         </tr>
       </table>
     </div>
@@ -124,15 +208,27 @@
         <table class="table-condensed">
           <tr>
             <td>
-              <span class="text-danger">必須</span>　<%= f.label :店舗アピールポイント %>
+              <span class="text-danger">必須</span>　<%= f.label :店舗アピール %><br>
+              <p id="promotion-counter">(0文字/50文字中)
             </td>
-            <td><%= f.text_area :promotion %></td>
+            <td>
+              <%= f.text_area :promotion, id: "promotion-input-text" %>
+              <% if @shop.errors.include?(:promotion) %>
+                <p style="color: red;"><%= @shop.errors.full_messages_for(:promotion).first %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>
-              <span class="text-danger">必須</span>　<%= f.label :店舗紹介 %>
+              <span class="text-danger">必須</span>　<%= f.label :店舗紹介 %><br>
+              <p id="introduction-counter">(0文字/150文字中)
             </td>
-            <td class="row-5"><%= f.text_area :introduction %></td>
+            <td class="row-5">
+              <%= f.text_area :introduction, id: "introduction-input-text" %>
+              <% if @shop.errors.include?(:introduction) %>
+                <p style="color: red;"><%= @shop.errors.full_messages_for(:introduction).first %>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>　　　店内写真</td>
@@ -148,6 +244,9 @@
             </td>
             <td>
               <%= f.select :genre, {シンプル: 'simple', ワンカラー: 'one_color', フット: 'foot', アート: 'art', ブライダル: 'bridal', グラデーション: 'gradation' } %>
+              <% if @shop.errors.include?(:genre) %>
+                <p style="color: red;"><%= @shop.errors.full_messages_for(:genre).first %>
+              <% end %>
             </td>
           </tr>
         </table>
@@ -166,3 +265,22 @@
     </div>
   </div>
 <% end %>
+
+<script>
+$(function(){
+  $("#promotion-input-text").on('keyup', function() {
+   let count = String($(this).val().length);
+   $("#promotion-counter").text("(" + count + "文字/50文字中)");
+  });
+
+  $("#introduction-input-text").on('keyup', function() {
+   let count = String($(this).val().length);
+   $("#introduction-counter").text("(" + count + "文字/150文字中)");
+  });
+});
+</script>
+
+
+
+
+

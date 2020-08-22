@@ -7,9 +7,8 @@ class Shop::PostCommentsController < ApplicationController
     @post_comment = @post.post_comments.new(post_comment_params)
     @post_comment.customer_id = current_customer.id
     if @post_comment.save
-      flash[:success] = "Comment was successfully created."
     else
-      @post_new = Post.new
+      @post_comment = Post.new
       @post_comments = @post.post_comments
     end
   end

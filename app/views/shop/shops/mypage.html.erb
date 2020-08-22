@@ -67,11 +67,11 @@
 		<table class="table table-bordered table-condensed">
 			<tbody>
 	      <tr>
-					<td style="width:100px;">店舗アピールポイント</td>
+					<td style="width:100px;">店舗アピール<br>(<%= @shop.promotion.length %>/50文字)</td>
 					<td class="row-2"><%= @shop.promotion %></td>
 				</tr>
 				<tr>
-					<td>店舗紹介</td>
+					<td>店舗紹介<br>(<%= @shop.introduction.length %>/150文字)</td>
 					<td class="row-5"><%= @shop.introduction %></td>
 				</tr>
 	      <tr>

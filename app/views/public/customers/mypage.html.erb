@@ -37,7 +37,7 @@
 					<td colspan="2"><%= @customer.email %></td>
 				</tr>
 				<tr>
-					<td>自己紹介</td>
+					<td>自己紹介<br><p>(<%= @customer.introduction.length %>文字/150文字中)</p></td>
 					<td colspan="2" class="row-5"><%= @customer.introduction %></td>
 				</tr>
 			</tbody>

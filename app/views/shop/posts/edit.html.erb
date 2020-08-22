@@ -6,6 +6,8 @@
 
 <div class="row">
 	<%= form_for(@post, url: shop_post_path) do |f| %>
+	<% if @post.errors.any? %>
+  <% end %>
 		<div class="col-md-3 col-md-offset-3">
 			<%= attachment_image_tag @post, :post_image, format: "jpeg", id: "img_prev", class: "preview_image", fallback: "no-image.png", class: "preview_image" %>
 			<%= f.attachment_field :post_image %><p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
@@ -14,8 +16,15 @@
 			<table class="table-condensed">
 				<tbody>
 					<tr>
-						<td>投稿内容</td>
-						<td class="row-5" style="width:300px;"><%= f.text_area :body, autofocus: true %></td>
+						<td>投稿内容<br>
+              <p id="counter">(<%= @post.body.length %>文字/140文字中)
+            </td>
+						<td class="row-5" style="width:300px;">
+							<%= f.text_area :body, autofocus: true, id: "input-text" %>
+							<% if @post.errors.include?(:body) %>
+	              <p style="color: red;"><%= @post.errors.full_messages_for(:body).first %>
+	            <% end %>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -27,3 +36,12 @@
 		</div>
 	<% end %>
 </div>
+
+<script>
+$(function(){
+  $("#input-text").on('keyup', function() {
+   let count = String($(this).val().length);
+   $("#counter").text("(" + count + "文字/140文字中)");
+  });
+});
+</script>

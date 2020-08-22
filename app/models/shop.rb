@@ -12,11 +12,11 @@ class Shop < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 40}
-  validates :email, presence: true, format: { with: /\A\S+@\S+\.\S+\z/ }
-  validates :password, presence: true, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :email, presence: true
   validates :postal_code, presence: true, format: { with: /\A\d{7}\z/ }
   validates :prefecture_code, presence: true
   validates :city, presence: true
+  validates :street, presence: true
   validates :other_address, length: { maximum: 40}
   validates :phone_number, presence: true, format: { with: /\A\d{10,11}\z/ }
   validates :budget, presence: true, format: { with: /\A[0-9]+\z/ }

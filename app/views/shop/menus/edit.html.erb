@@ -5,6 +5,8 @@
 </div>
 <div class="row">
 	<%= form_for(@menu, url: shop_menu_path) do |f| %>
+	<% if @menu.errors.any? %>
+  <% end %>
 		<div class="col-md-3 col-md-offset-3">
 			<%= attachment_image_tag @menu, :menu_image, format: "jpeg", id: "img_prev", class: "preview_image", fallback: "no-image.png", class: "preview_image" %>
       <%= f.attachment_field :menu_image %><p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
@@ -13,16 +15,33 @@
 			<table class="table-condensed">
 				<tbody>
 					<tr>
-						<td>メニュー名</td>
-						<td><%= f.text_field :name, autofocus: true %></td>
+						<td>メニュー名<br>
+              <p id="name-counter">(<%= @menu.name.length %>文字/36文字中)</td>
+						<td>
+							<%= f.text_field :name, autofocus: true, id: "name-input-text" %>
+							<% if @menu.errors.include?(:name) %>
+	              <p style="color: red;"><%= @menu.errors.full_messages_for(:name).first %>
+	            <% end %>
+						</td>
 					</tr>
 					<tr>
-						<td>メニュー説明</td>
-						<td><%= f.text_area :detail %></td>
+						<td>メニュー説明<br>
+              <p id="detail-counter">(<%= @menu.detail.length %>文字/50文字中)</td>
+						<td>
+							<%= f.text_area :detail, id: "detail-input-text" %>
+							<% if @menu.errors.include?(:detail) %>
+	              <p style="color: red;"><%= @menu.errors.full_messages_for(:detail).first %>
+	            <% end %>
+						</td>
 					</tr>
 					<tr>
 						<td>税込み価格</td>
-						<td><%= f.text_field :price %>円</td>
+						<td>
+							<%= f.text_field :price, placeholder: "【半角数字】例: 5000" %>円
+							<% if @menu.errors.include?(:price) %>
+	              <p style="color: red;"><%= @menu.errors.full_messages_for(:price).first %>
+	            <% end %>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -34,3 +53,19 @@
 		</div>
 	<% end %>
 </div>
+
+
+
+<script>
+$(function(){
+  $("#name-input-text").on('keyup', function() {
+   let count = String($(this).val().length);
+   $("#name-counter").text("(" + count + "文字/36文字中)");
+  });
+
+  $("#detail-input-text").on('keyup', function() {
+   let count = String($(this).val().length);
+   $("#detail-counter").text("(" + count + "文字/50文字中)");
+  });
+});
+</script>
