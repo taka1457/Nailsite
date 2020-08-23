@@ -55,13 +55,13 @@ $(function(){
         },
         selectable: true,
         selectHelper: true,
-        select: function(data, start, end) {
+        select: function(start) {
         	if(start.isBefore(moment())) {
 		        $('#calendar').fullCalendar('unselect');
 		        return false;
 		      }
-          console.log(data);
-          var str = moment(data).format( 'YYYY-MM-DD HH:MM' );
+          console.log(start);
+          var str = moment(start).format( 'YYYY-MM-DD hh:mm' );
           console.log(str);
           $('.reserve_form').show('1000');
           $('.select_date').val(str);
