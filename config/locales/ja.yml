@@ -51,7 +51,7 @@ ja:
         parking: '駐車場情報'
         promotion: '店舗アピールポイント'
         introduction: '店舗紹介'
-        genre: 'おすすめジャンル'
+        genre_id: 'おすすめジャンル'
       customer:
         first_name: '名前（姓）'
         last_name: '名前（名）'
@@ -68,6 +68,8 @@ ja:
         price: '税込価格'
       post:
         body: '投稿内容'
+      genre:
+        name: 'ジャンル名'
   enums:
     shop:
       genre:

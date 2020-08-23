@@ -1,14 +1,30 @@
 class Shop::ShopsController < ApplicationController
-  before_action :authenticate_shop!, except: [:index, :show, :menu, :map]
-	before_action :set_current_shop, except: [:index, :show, :menu, :map]
+  before_action :authenticate_shop!, only: [:mypage, :edit, :update, :unsubscribe, :withdraw]
+	before_action :set_current_shop, only: [:mypage, :edit, :update, :unsubscribe, :withdraw]
 
   def index
-    @shops = Shop.page(params[:page]).per(20)
+    @genres = Genre.where(is_void_flag: true)
+    @ary = Array[@genres]
+    @shops = Shop.where(genre_id: @ary).page(params[:page]).per(20)
   end
 
   def map
     @shops = Shop.page(params[:page]).per(5)
     gon.shops = Shop.page(params[:page]).per(5)
+    @genres = Genre.where(is_void_flag: true)
+  end
+
+  def search
+    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(20)
+    @genres = Genre.where(is_void_flag: true)
+    @genre = Genre.find(params[:genre_id])
+  end
+
+  def map_search
+    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(5)
+    gon.shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(5)
+    @genres = Genre.where(is_void_flag: true)
+    @genre = Genre.find(params[:genre_id])
   end
 
   def show
@@ -25,6 +41,7 @@ class Shop::ShopsController < ApplicationController
   end
 
 	def mypage
+    @genres = Genre.all
   end
 
   def edit
@@ -70,6 +87,6 @@ class Shop::ShopsController < ApplicationController
     														 :promotion,
     														 :introduction,
     														 :shop_image,
-    														 :genre)
+    														 :genre_id)
   end
 end

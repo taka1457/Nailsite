@@ -243,9 +243,9 @@
               <span class="text-danger">必須</span>　おすすめジャンル
             </td>
             <td>
-              <%= f.select :genre, {シンプル: 'simple', ワンカラー: 'one_color', フット: 'foot', アート: 'art', ブライダル: 'bridal', グラデーション: 'gradation' } %>
-              <% if @shop.errors.include?(:genre) %>
-                <p style="color: red;"><%= @shop.errors.full_messages_for(:genre).first %>
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+              <% if @shop.errors.include?(:genre_id) %>
+                <p style="color: red;"><%= @shop.errors.full_messages_for(:genre_id).first %>
               <% end %>
             </td>
           </tr>

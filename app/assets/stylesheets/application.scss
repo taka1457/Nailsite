@@ -131,18 +131,13 @@ textarea {
   height: 150px;
   object-fit: cover;
 }
-.top_profile_image {
-  width: 150px;
-  height: 150px;
+.preview_genre_image{
+  width: 60px;
+  height: 50px;
   object-fit: cover;
-  border-radius: 50%;
 }
-.profile_image {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-}
+
+
 .shop_show_top_image{
   width: 400px;
   height: 300px;
@@ -175,37 +170,18 @@ textarea {
   height: 90px;
   object-fit: cover;
 }
-.genre-image1{
-  background-image: image-url("one_color.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
+.genre-image{
+  width: 150px;
   height: 130px;
-  margin-left: 40px;
-}
-.genre-image2{
-  background-image: image-url("simple.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
-  height: 130px;
-}
-.genre-image3{
-  background-image: image-url("art.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
-  height: 130px;
-}
-.genre-image4{
-  background-image: image-url("bridal.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
-  height: 130px;
+  object-fit: cover;
 }
 
-
+.profile_image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 .genre_box {
     padding: 0.5em 1em;

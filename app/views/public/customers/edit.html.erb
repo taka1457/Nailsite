@@ -56,7 +56,11 @@
           <tr>
             <td>
               <%= f.label :introduction, "自己紹介" %><br>
-              <p id="counter">(<%= @customer.introduction.length %>文字/150文字中)</p>
+              <%if @customer.introduction.present? %>
+                <p id="counter">(<%= @customer.introduction.length %>文字/150文字中)</p>
+              <% else %>
+                <p id="counter">(0文字/150文字中)</p>
+              <% end %>
             </td>
             <td colspan="2" class="row-5">
               <%= f.text_area :introduction, autofocus: true, :placeholder =>"#{@customer.introduction}", id: "input-text" %>

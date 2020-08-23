@@ -56,5 +56,8 @@ $(document).on("turbolinks:load", function(){
   $("#menu_menu_image").change(function(){
     readURL(this);
   });
+  $("#genre_genre_image").change(function(){
+    readURL(this);
+  });
 });
 

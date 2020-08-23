@@ -14,9 +14,13 @@
 				<tr>
 					<td class="table_item_color">ジャンル検索</td>
 				</tr>
-				<% @shops.each do |shop| %>
+				<% @genres.each do |genre| %>
 					<tr>
-						<td><%= shop.genre_i18n %></td>
+						<td>
+							<%= link_to shops_map_search_path(genre_id: genre.id) do %>
+								<%= genre.name %>
+							<% end %>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>
@@ -60,7 +64,7 @@
 <style>
 #map{
   height: 500px;
-  width: 550px;
+  width: 530px;
 }
 </style>
 

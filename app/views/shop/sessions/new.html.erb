@@ -6,6 +6,9 @@
     <div class="col-md-5 col-md-offset-3">
       <h3>店舗様会員の方はこちらからログイン</h3>
     </div>
+    <div class="col-md-3">
+      <%= link_to '管理者ログインはこちら', new_admin_session_path, class: "btn btn btn-default btn-lg devise_btn" %>
+    </div>
   </div>
   <div class="row">
     <div class="col-md-8 col-md-offset-4">
@@ -13,7 +16,7 @@
         <tbody>
           <tr>
             <td><%= f.label :メールアドレス %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %>　　　デモアドレス：　aa@aa</td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %>　　　デモアドレス：　aa@aa.com</td>
           </tr>
           <tr>
             <td><%= f.label :パスワード %></td>

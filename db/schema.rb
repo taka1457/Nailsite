@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_153821) do
+ActiveRecord::Schema.define(version: 2020_08_23_140206) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "customer_id"
@@ -59,6 +71,14 @@ ActiveRecord::Schema.define(version: 2020_08_20_153821) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_favorites_on_customer_id"
     t.index ["post_id"], name: "index_favorites_on_post_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_void_flag", default: true, null: false
+    t.string "genre_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "history_comments", force: :cascade do |t|
@@ -171,11 +191,12 @@ ActiveRecord::Schema.define(version: 2020_08_20_153821) do
     t.text "promotion"
     t.text "introduction"
     t.string "shop_image_id"
-    t.integer "genre", default: 0, null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "genre_id"
     t.index ["email"], name: "index_shops_on_email", unique: true
+    t.index ["genre_id"], name: "index_shops_on_genre_id"
     t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
   end
 

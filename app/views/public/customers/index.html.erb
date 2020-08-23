@@ -12,21 +12,24 @@
 							<%= customer.full_name %>さん
 						<% end %>
 					</div>
-					<div class="col-md-5">
-						<% if current_customer != customer %>
-							<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
-						<% end %>
-					</div>
-					<div class="col-md-6">
-						<% if customer_signed_in? %>
+					<% if shop_signed_in? %>
+					<% else %>
+						<div class="col-md-5">
 							<% if current_customer != customer %>
-								<%= render partial: 'public/relationships/form', locals: { customer: customer } %>
+								<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
 							<% end %>
-						<% else %>
-							<%= link_to 'フォローする', new_customer_session_path, class: "btn btn-default nav-btn" %><br><br><br>
-						<% end %>
-					</div>
-			</div>
+						</div>
+						<div class="col-md-6">
+							<% if customer_signed_in? %>
+								<% if current_customer != customer %>
+									<%= render partial: 'public/relationships/form', locals: { customer: customer } %>
+								<% end %>
+							<% else %>
+								<%= link_to 'フォローする', new_customer_session_path, class: "btn btn-default nav-btn" %><br><br><br>
+							<% end %>
+						</div>
+					<% end %>
+				</div>
 			</div>
 		<% end %>
 	</div>

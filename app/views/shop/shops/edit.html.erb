@@ -186,7 +186,7 @@
           <tr>
             <td><span class="text-danger">必須</span>　おすすめジャンル</td>
             <td>
-              <%= f.select :genre, {シンプル: 'simple', ワンカラー: 'one_color', フット: 'foot', art: 'art', ブライダル: 'bridal', グラデーション: 'gradation' } %>
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
               <% if @shop.errors.include?(:genre) %>
                 <p style="color: red;"><%= @shop.errors.full_messages_for(:genre).first %>
               <% end %>
@@ -217,27 +217,27 @@ $(function(){
 
   $("#parking-input-text").on('keyup', function() {
    let count = String($(this).val().length);
-   $("#parking-counter").text("(" + count + "文字/20文字中)");
+   $("#parking-counter").text("　　　(" + count + "文字/20文字中)");
   });
 
   $("#business_hours-input-text").on('keyup', function() {
    let count = String($(this).val().length);
-   $("#business_hours-counter").text("(" + count + "文字/100文字中)");
+   $("#business_hours-counter").text("　　　(" + count + "文字/100文字中)");
   });
 
   $("#payment_method-input-text").on('keyup', function() {
    let count = String($(this).val().length);
-   $("#payment_method-counter").text("(" + count + "文字/100文字中)");
+   $("#payment_method-counter").text("　　　(" + count + "文字/100文字中)");
   });
 
   $("#traffic_method-input-text").on('keyup', function() {
    let count = String($(this).val().length);
-   $("#traffic_method-counter").text("(" + count + "文字/200文字中)");
+   $("#traffic_method-counter").text("　　　(" + count + "文字/200文字中)");
   });
 
   $("#other_address-input-text").on('keyup', function() {
    let count = String($(this).val().length);
-   $("#other_address-counter").text("(" + count + "文字/40文字中)");
+   $("#other_address-counter").text("　　　(" + count + "文字/40文字中)");
   });
 });
 </script>

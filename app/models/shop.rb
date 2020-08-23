@@ -4,6 +4,7 @@ class Shop < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  belongs_to :genre
 	has_many :menus, dependent: :destroy
 	has_many :posts, dependent: :destroy
   has_many :shop_rooms
@@ -12,7 +13,7 @@ class Shop < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 40}
-  validates :email, presence: true
+  validates :email, presence: true, format: { with: /\A\S+@\S+\.\S+\z/ }
   validates :postal_code, presence: true, format: { with: /\A\d{7}\z/ }
   validates :prefecture_code, presence: true
   validates :city, presence: true
@@ -28,7 +29,7 @@ class Shop < ApplicationRecord
   validates :parking, presence: true, length: { maximum: 20}
   validates :promotion, presence: true, length: { maximum: 50}
   validates :introduction, presence: true, length: { maximum: 150}
-  validates :genre, presence: true
+  validates :genre_id, presence: true
 
   attachment :shop_image
 

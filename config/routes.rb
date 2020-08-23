@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  devise_for :admin, controllers: {
+  sessions: 'admin/sessions'
+  }
   namespace :shop do
     get 'bookmarks/create'
     get 'bookmarks/destroy'
@@ -12,6 +15,9 @@ Rails.application.routes.draw do
     sessions: 'public/sessions',
     registrations: 'public/registrations',
   }
+  scope module: :admin do
+    resources :genres, only: [:index, :create, :edit, :update]
+  end
 
   scope module: :public do
   	root 'homes#top'
@@ -61,6 +67,8 @@ Rails.application.routes.draw do
     get 'shops/talks' => 'talks#index', as: 'shops_talks'
     get 'shops/reservation_histories' => 'reservation_histories#index', as: 'shops_histories'
     patch 'shops/reservation_histories/:id' => 'reservation_histories#update', as: 'update_history'
+    get '/genres/:genre_id' => 'shops#search', as: 'shops_search'
+    get '/mapgenres/:genre_id' => 'shops#map_search', as: 'shops_map_search'
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]
