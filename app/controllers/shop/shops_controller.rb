@@ -4,8 +4,7 @@ class Shop::ShopsController < ApplicationController
 
   def index
     @genres = Genre.where(is_void_flag: true)
-    @ary = Array[@genres]
-    @shops = Shop.where(genre_id: @ary).page(params[:page]).per(20)
+    @shops = Shop.page(params[:page]).per(20)
   end
 
   def map
@@ -40,8 +39,12 @@ class Shop::ShopsController < ApplicationController
     @reservation_menu = ReservationMenu.new
   end
 
+
+
 	def mypage
     @genres = Genre.all
+    @post = current_shop.posts
+    @favorites = Favorite.where(post_id: @post)
   end
 
   def edit

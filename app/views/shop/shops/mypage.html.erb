@@ -3,7 +3,10 @@
     <p class="text-active"><%= flash[:notice] %></p>
   <% end %>
   <div class="col-md-12">
-		<h2>マイページ</h2>
+		<h2>
+			マイページ
+			<span class="sub_title">いいね数合計 <%= @favorites.count %> 件</span>
+		</h2>
 		<h3>
 			登録情報
 			<%= link_to "編集する", edit_shop_information_path, data: {"turbolinks"=>false}, class: "btn btn-success" %>
