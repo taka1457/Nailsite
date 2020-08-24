@@ -57,7 +57,7 @@
       <div class="container main_body">
         <main data-turbolinks="false"><%= yield %></main>
       </div>
-    <% elsif current_page?(root_path) || current_page?(about_path) %>
+    <% elsif current_page?(root_path) %>
       <header class="top-header navbar-fixed-top">
         <div class="main-visual-content logo-link">
           <p class="main-visual-text">
@@ -67,7 +67,6 @@
             会員でない方も閲覧はできますが、<br>
             ご予約には会員登録が必要になります
           </p>
-          <a href="/"></a>
         </div>
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
@@ -122,7 +121,7 @@
       </div>
     <% end %>
     <div class="container">
-      <footer>Copyright © Hirano Takahiro. All Rights Reserved.</footer>
+      <footer>Copyright © Nailsite. All Rights Reserved.</footer>
     </div>
   </body>
 </html>

@@ -29,16 +29,6 @@
   color: #EEEEEE;
   text-decoration: none !important;
 }
-.logo-link{
-  position: relative;
-  a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height:100%;
-    width: 100%;
-  }
-}
 
 .reserve_form{
   display: none;
@@ -50,7 +40,7 @@
 }
 .top-header {
 	height: 200px;
-	background-image: image-url("background.jpg");
+	background-image: image-url("bg-1.jpg");
 	background-size: cover;
   background-position: center;
 }
@@ -85,7 +75,7 @@
   padding-top: 210px;
 }
 .main_body{
-  padding-top: 90px;
+  padding-top: 80px;
 }
 
 
@@ -224,5 +214,89 @@ textarea {
 }
 
 
+#skippr{
+  height: 300px;
+  width: 100%;
+}
+
+.bg-1{
+  background-image: image-url("bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-2{
+  background-image: image-url("bg-2.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-3{
+  background-image: image-url("bg-3.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-4{
+  background-image: image-url("bg-4.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
 
 
+.about_box{
+  text-align: center;
+  line-height: 100px;
+  height: 100px;
+  width: 100%;
+  background-color: #FFEEFF;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.about-row{
+  margin-top: 80px;
+}
+
+.demo1{
+  background-image: image-url("demo1.png");
+  background-size: cover;
+  background-position: center;
+  height: 230px;
+  width: 100%;
+}
+.demo2{
+  background-image: image-url("demo2.png");
+  background-size: cover;
+  background-position: center;
+  height: 280px;
+  width: 100%;
+}
+.demo3{
+  background-image: image-url("demo3.png");
+  background-size: cover;
+  background-position: center;
+  height: 220px;
+  width: 100%;
+}
+.demo4{
+  background-image: image-url("demo4.png");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+
+.top_link{
+  background-image: image-url("bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.top_link_main{
+  background-color: white;
+}

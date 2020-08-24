@@ -19,7 +19,7 @@
 				<% end %>
 			</div>
 		</div>
-		<h2>投稿から探す<span class="sub_title"><%= link_to '＞もっと見る', posts_all_path %></span></h2>
+		<h2 style="margin-top: 100px;">投稿から探す<span class="sub_title"><%= link_to '＞もっと見る', posts_all_path %></span></h2>
 		<div class="row">
 			<div class="col-md-12">
 				<% @posts.shuffle.first(4).each do |post| %>
@@ -31,7 +31,7 @@
 				<% end %>
 			</div>
 		</div>
-		<h2>ユーザーから探す<span class="sub_title"><%= link_to '＞もっと見る', customers_path %></span></h2>
+		<h2 style="margin-top: 100px;">ユーザーから探す<span class="sub_title"><%= link_to '＞もっと見る', customers_path %></span></h2>
 		<div class="row">
 			<div class="col-md-12">
 				<% @customers.shuffle.first(4).each do |customer| %>
