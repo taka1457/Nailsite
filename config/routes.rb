@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     put 'shops/withdraw' => 'shops#withdraw'
     get 'shops/:id/menulist' => 'shops#menu', as: 'shop_menu_list'
     get 'posts/all' => 'posts#all_index'
+    get 'posts/rank' => 'posts#rank'
     get 'shops/:id/postlist' => 'posts#list', as: 'shop_posts_list'
     get 'shops/map' => 'shops#map', as: 'shops_map'
     get 'talk_rooms/:id/:shop_id/:customer_id' => 'talks#show', as: 'shops_talk'

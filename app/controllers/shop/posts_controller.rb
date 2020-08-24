@@ -1,8 +1,12 @@
 class Shop::PostsController < ApplicationController
-  before_action :authenticate_shop!, except: [:all_index, :show, :list]
+  before_action :authenticate_shop!, except: [:all_index, :show, :list, :rank]
 
   def all_index
     @posts = Post.page(params[:page]).reverse_order.per(9)
+  end
+
+  def rank
+    @posts = Kaminari.paginate_array(Post.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))).page(params[:page]).per(9)
   end
 
   def show
