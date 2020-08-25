@@ -17,6 +17,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* --application-- */
+
 .logo{
   font-family: cursive;
   font-size: 60px;
@@ -29,11 +32,9 @@
   color: #EEEEEE;
   text-decoration: none !important;
 }
-
 .reserve_form{
   display: none;
 }
-
 .main-header {
 	height: 80px;
 	background-color: #FFBEDA;
@@ -77,16 +78,11 @@
 .main_body{
   padding-top: 80px;
 }
-
-
-
 footer {
   padding: 40px 0 20px 0;
   font-size: 14px;
   text-align: center;
 }
-
-
 .devise_btn{
   margin-top: 20px;
   margin-bottom: 20px;
@@ -95,6 +91,9 @@ footer {
   width: 430px;
 }
 
+
+
+/* --text_area-- */
 
 textarea {
   resize: none;
@@ -116,6 +115,8 @@ textarea {
 
 
 
+/* --images-- */
+
 .preview_image {
   width: 250px;
   height: 150px;
@@ -126,8 +127,6 @@ textarea {
   height: 50px;
   object-fit: cover;
 }
-
-
 .shop_show_top_image{
   width: 400px;
   height: 300px;
@@ -143,8 +142,6 @@ textarea {
   height: 150px;
   object-fit: cover;
 }
-
-
 .post_image{
   width: 250px;
   height: 200px;
@@ -165,13 +162,16 @@ textarea {
   height: 130px;
   object-fit: cover;
 }
-
 .profile_image {
   width: 200px;
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
 }
+
+
+
+/* --shops_show-- */
 
 .genre_box {
     padding: 0.5em 1em;
@@ -191,6 +191,9 @@ textarea {
 }
 
 
+
+/* --search-- */
+
 .search_form{
   width: 350px;
   height: 50px;
@@ -207,6 +210,10 @@ textarea {
   height: 50px;
 }
 
+
+
+/* --shops_index_map-- */
+
 .scroll{
   overflow: scroll;
   height: 500px;
@@ -214,11 +221,13 @@ textarea {
 }
 
 
+
+/* --homes_about-- */
+
 #skippr{
   height: 300px;
   width: 100%;
 }
-
 .bg-1{
   background-image: image-url("bg-1.jpg");
   background-size: cover;
@@ -247,8 +256,6 @@ textarea {
   height: 300px;
   width: 100%;
 }
-
-
 .about_box{
   text-align: center;
   line-height: 100px;
@@ -258,11 +265,9 @@ textarea {
   font-size: 30px;
   margin-top: 30px;
 }
-
 .about-row{
   margin-top: 80px;
 }
-
 .demo1{
   background-image: image-url("demo1.png");
   background-size: cover;
@@ -298,7 +303,6 @@ textarea {
   height: 330px;
   width: 100%;
 }
-
 .top_link{
   background-image: image-url("bg-1.jpg");
   background-size: cover;

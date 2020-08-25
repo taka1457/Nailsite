@@ -19,7 +19,7 @@
 				<% end %>
 			</div>
 		</div>
-		<h2 style="margin-top: 100px;">投稿から探す<span class="sub_title"><%= link_to '＞もっと見る', posts_all_path %></span></h2>
+		<h2 style="margin-top: 80px;">投稿から探す<span class="sub_title"><%= link_to '＞もっと見る', posts_all_path %></span></h2>
 		<div class="row">
 			<div class="col-md-12">
 				<% @posts.shuffle.first(4).each do |post| %>
@@ -35,7 +35,7 @@
 									</div>
 								<% else %>
 									<%= link_to new_customer_session_path do %>
-										<span class="glyphicon glyphicon-heart-empty">　<%= post.favorites.count %>件</span>
+										<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
 									<% end %>
 								<% end %>
 							</div>
@@ -44,7 +44,7 @@
 				<% end %>
 			</div>
 		</div>
-		<h2 style="margin-top: 100px;">ユーザーから探す<span class="sub_title"><%= link_to '＞もっと見る', customers_path %></span></h2>
+		<h2 style="margin-top: 80px;">ユーザーから探す<span class="sub_title"><%= link_to '＞もっと見る', customers_path %></span></h2>
 		<div class="row">
 			<div class="col-md-12">
 				<% @customers.shuffle.first(4).each do |customer| %>
