@@ -30,9 +30,13 @@
 						<div class="row">
 							<div class="col-md-12 text-center">
 								<% if customer_signed_in? %>
-									<div id="show_like">
-										<%= render partial: 'shop/favorites/form', locals: { shop: post.shop, post: post } %>
-									</div>
+									<%= link_to shop_post_path(post.shop, post) do %>
+										<% if post.favorited_by?(current_customer) %>
+											<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%></span>
+										<% else %>
+											<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
+										<% end %>
+									<% end %>
 								<% else %>
 									<%= link_to new_customer_session_path do %>
 										<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
