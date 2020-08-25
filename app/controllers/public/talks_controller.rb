@@ -14,7 +14,7 @@ class Public::TalksController < ApplicationController
       else
         @talk_room = customer_rooms.talk_room
       end
-      @talks = @talk_room.talks
+      @talks = @talk_room.talks.reverse_order
       @talk = Talk.new(talk_room_id: @talk_room.id)
     elsif shop_signed_in?
       @customer = Customer.find(params[:customer_id])
@@ -29,7 +29,7 @@ class Public::TalksController < ApplicationController
       else
         @talk_room = shop_rooms.talk_room
       end
-      @talks = Talk.where(shop_id: current_shop.id).where(customer_id: @customer.id)
+      @talks = Talk.where(shop_id: current_shop.id).where(customer_id: @customer.id).reverse_order
       @talk = Talk.new(talk_room_id: @talk_room.id)
     else
       redirect_to new_customer_session_path
