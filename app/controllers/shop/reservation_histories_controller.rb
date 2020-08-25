@@ -1,19 +1,19 @@
 class Shop::ReservationHistoriesController < ApplicationController
-	before_action :authenticate_shop!
+  before_action :authenticate_shop!
 
-	def index
-		@reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
-	end
+  def index
+    @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
+  end
 
-	def update
+  def update
     @reservation_history = ReservationHistory.find(params[:id])
     @reservation_history.update(reservation_history_params)
     redirect_to request.referer
-	end
+  end
 
-	private
+  private
 
-	def reservation_history_params
+  def reservation_history_params
     params.require(:reservation_history).permit(:status)
   end
 end

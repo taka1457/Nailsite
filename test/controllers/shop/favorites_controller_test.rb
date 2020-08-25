@@ -10,5 +10,4 @@ class Shop::FavoritesControllerTest < ActionDispatch::IntegrationTest
     get shop_favorites_destroy_url
     assert_response :success
   end
-
 end

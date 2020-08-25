@@ -10,5 +10,4 @@ class Shop::BookmarksControllerTest < ActionDispatch::IntegrationTest
     get shop_bookmarks_destroy_url
     assert_response :success
   end
-
 end

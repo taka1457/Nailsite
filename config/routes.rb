@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
   devise_for :admin, controllers: {
-  sessions: 'admin/sessions'
+    sessions: 'admin/sessions',
   }
   namespace :shop do
     get 'bookmarks/create'
@@ -20,8 +19,8 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-  	root 'homes#top'
-  	get 'about', to: 'homes#about'
+    root 'homes#top'
+    get 'about', to: 'homes#about'
     get 'customers/mypage' => 'customers#mypage', as: 'mypage'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
     patch 'customers/information' => 'customers#update', as: 'update_information'
@@ -81,5 +80,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
 end

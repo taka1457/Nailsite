@@ -1,11 +1,11 @@
 class Public::ReservesController < ApplicationController
   before_action :authenticate_customer!
 
-	def new
-		@reserve = Reserve.new
-	end
+  def new
+    @reserve = Reserve.new
+  end
 
-	def confirm
+  def confirm
     @reserve = Reserve.new(reserve_params)
     @reserve.customer = current_customer
     @reservation_menus = current_customer.reservation_menus.all
@@ -33,6 +33,6 @@ class Public::ReservesController < ApplicationController
   private
 
   def reserve_params
-    params.require(:reserve).permit(:customer_id,:reservation)
+    params.require(:reserve).permit(:customer_id, :reservation)
   end
 end

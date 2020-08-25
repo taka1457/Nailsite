@@ -1,7 +1,7 @@
 class Public::HistoryCommentsController < ApplicationController
   before_action :authenticate_customer!
 
-	def create
+  def create
     @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
     @reservation_history = ReservationHistory.find(params[:reservation_history_id])
     @history_comment = @reservation_history.history_comment.new(history_comment_params)
