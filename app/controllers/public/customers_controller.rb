@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
   before_action :set_current_customer, except: [:index, :show]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page]).per(6)
   end
 
   def show
@@ -35,6 +35,12 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
+  def follows
+  end
+
+  def followers
+  end
+
   private
 
   def set_current_customer
@@ -43,12 +49,12 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:last_name,
-    																 :first_name,
-    																 :first_name_kana,
-    																 :last_name_kana,
-    																 :email,
-    																 :phone_number,
-    																 :introduction,
-    																 :profile_image)
+                                     :first_name,
+                                     :first_name_kana,
+                                     :last_name_kana,
+                                     :email,
+                                     :phone_number,
+                                     :introduction,
+                                     :profile_image)
   end
 end

@@ -17,17 +17,31 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* --application-- */
+
+.logo{
+  font-family: cursive;
+  font-size: 60px;
+  color: #666666;
+  text-decoration: none !important;
+}
+.root_logo{
+  font-family: cursive;
+  font-size: 60px;
+  color: #EEEEEE;
+  text-decoration: none !important;
+}
 .reserve_form{
   display: none;
 }
-
 .main-header {
 	height: 80px;
 	background-color: #FFBEDA;
 }
 .top-header {
 	height: 200px;
-	background-image: image-url("background.jpg");
+	background-image: image-url("bg-1.jpg");
 	background-size: cover;
   background-position: center;
 }
@@ -49,14 +63,26 @@
 	border-radius : 8px;
 	background: #ffffff;
 }
-
+.main-visual-content{
+  width: 30%;
+  height: 200px;
+  text-align: center;
+  background-color: rgba( 0, 0, 0, 0.5);
+}
+.main-visual-text {
+  color: #fff;
+}
+.top_body{
+  padding-top: 210px;
+}
+.main_body{
+  padding-top: 80px;
+}
 footer {
-  padding: 15px 0;
+  padding: 40px 0 20px 0;
   font-size: 14px;
   text-align: center;
 }
-
-
 .devise_btn{
   margin-top: 20px;
   margin-bottom: 20px;
@@ -65,6 +91,9 @@ footer {
   width: 430px;
 }
 
+
+
+/* --text_area-- */
 
 textarea {
   resize: none;
@@ -86,39 +115,116 @@ textarea {
 
 
 
-.preview_image {
-  width: 250px;
-  height: 150px;
+/* --images-- */
+
+/* --admin_genre_index
+                _edit
+     shop_index
+         _mypage
+         _menu_new
+              _edit
+              _images-- */
+.default_image{
+  width: 280px;
+  height: 210px;
+  border-radius: 3%;
   object-fit: cover;
 }
+
+/* --shop_show_post
+   --post_show
+         _all_index
+         _list
+         _rank
+         _new
+         _edit
+         _images-- */
+.post_default_image{
+  width: 250px;
+  height: 200px;
+  border-radius: 3%;
+  object-fit: cover;
+}
+
+/* --homes_top
+    -customer-- */
 .profile_image {
   width: 200px;
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
 }
-.shop_show_top_image{
-  width: 400px;
-  height: 300px;
+.profile_talk_image{
+  width: 50px;
+  height: 50px;
   object-fit: cover;
+  border-radius: 50%;
 }
-.shop_menu_image{
-  width: 120px;
-  height: 100px;
-  object-fit: cover;
-}
-.shop_show_post_image{
-  width: 180px;
-  height: 150px;
-  object-fit: cover;
-}
-.post_image{
-  width: 69px;
+
+.admin_genre_index_image{
+  width: 60px;
   height: 50px;
   object-fit: cover;
 }
 
+/* --shop_show_images-- */
+.shop_show_top_image{
+  width: 400px;
+  height: 300px;
+  border-radius: 3%;
+  object-fit: cover;
+}
 
+/* --shop_map_image-- */
+.map_shop_image{
+  width: 110px;
+  height: 90px;
+  border-radius: 3%;
+  object-fit: cover;
+}
+
+/* --shop-menu_images-- */
+.shop_menu_image{
+  width: 120px;
+  height: 100px;
+  border-radius: 3%;
+  object-fit: cover;
+}
+
+/* --post_index_image-- */
+.post_index_image{
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+}
+
+
+/* --posts_all_index
+          _rank_images-- */
+.posts .caption {
+  font-size: 130%;
+  color: #fff;
+  text-align: center;
+  line-height: 200px;
+}
+.posts .mask {
+  width: 250px;
+  height: 200px;
+  border-radius: 3%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+  transition: 0.5s;
+  transform: scale(0);
+  // 見えなくする
+}
+.posts:hover .mask {
+  transform: scale(1);
+  // 1倍で表示
+}
+
+
+/* --shops_show-- */
 
 .genre_box {
     padding: 0.5em 1em;
@@ -137,7 +243,137 @@ textarea {
   font-weight: bold;
 }
 
-.post_image{
+
+
+/* --search-- */
+
+.search_form{
+  width: 350px;
+  height: 50px;
+}
+.search_box{
+  margin-top: 30px;
+}
+.search_btn{
+  height: 50px;
+}
+.shop_index_search_form{
+  font-size: 15px;
   width: 250px;
-  height: 200px;
+  height: 50px;
+}
+
+
+
+/* --shops_index_map-- */
+
+.scroll{
+  overflow: scroll;
+  height: 500px;
+  width: 400;
+}
+
+
+
+/* --homes_about-- */
+
+#skippr{
+  height: 300px;
+  width: 100%;
+}
+.bg-1{
+  background-image: image-url("bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-2{
+  background-image: image-url("bg-2.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-3{
+  background-image: image-url("bg-3.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-4{
+  background-image: image-url("bg-4.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.about_box{
+  text-align: center;
+  line-height: 100px;
+  height: 100px;
+  width: 100%;
+  background-color: #FFEEFF;
+  font-size: 30px;
+  margin-top: 30px;
+}
+.about-row{
+  margin-top: 80px;
+}
+.demo1{
+  background-image: image-url("demo1.png");
+  background-size: cover;
+  background-position: center;
+  height: 230px;
+  width: 100%;
+}
+.demo2{
+  background-image: image-url("demo2.png");
+  background-size: cover;
+  background-position: center;
+  height: 280px;
+  width: 100%;
+}
+.demo3{
+  background-image: image-url("demo3.png");
+  background-size: cover;
+  background-position: center;
+  height: 220px;
+  width: 100%;
+}
+.demo4{
+  background-image: image-url("demo4.png");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.demo5{
+  background-image: image-url("demo5.png");
+  background-size: cover;
+  background-position: center;
+  height: 330px;
+  width: 100%;
+}
+.top_link{
+  background-image: image-url("bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.top_link_main{
+  background-color: white;
+}
+
+
+.talk_form{
+  border: solid 0.5px black;
+}
+
+.left_talk{
+  text-align: left;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  border: solid 2px black;
+  border-radius: 10px;
 }

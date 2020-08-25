@@ -1,11 +1,24 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<h2>最近の投稿一覧<span class="sub_title">　　　　<%= paginate @posts %></span></h2>
+		<h2>最近の投稿一覧<span class="sub_title">　　　　<%= paginate @posts %></span>
+			<%= link_to 'いいね順', posts_rank_path, class: "btn btn-default nav-btn" %>
+		</h2>
 		<% @posts.each do |post| %>
 			<div class="col-md-4">
-				<%= link_to shop_post_path(post.shop, post) do %>
-					<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_image" %>
-				<% end %>
+				<div class="posts">
+					<%= link_to shop_post_path(post.shop, post) do %>
+						<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %>
+						<div class="mask">
+							<div class="caption">
+								<% if post.favorited_by?(current_customer) %>
+									<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%></span>
+								<% else %>
+									<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
+								<% end %>
+							</div>
+						</div>
+					<% end %>
+				</div>
 			</div>
 		<% end %>
 	</div>

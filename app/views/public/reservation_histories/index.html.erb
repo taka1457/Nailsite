@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
-		<h2>予約履歴一覧<span class="sub_title">　　　　<%= paginate @reservation_histories %></span></h2>
+		<h2>予約履歴一覧</h2>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -11,28 +11,8 @@
 					<th>コメント</th>
 				</tr>
 			</thead>
-			<tbody data-turbolinks="false">
-				<% @reservation_histories.each do |reservation_history| %>
-					<% if reservation_history.reserve.customer == current_customer %>
-						<tr>
-							<td><%= reservation_history.reserve.reservation_time.to_s(:datetime_jp) %></td>
-							<td><%= reservation_history.menu.shop.name %></td>
-							<td><%= reservation_history.menu.name %></td>
-							<td><%= reservation_history.menu.price.to_s(:delimited) %>円</td>
-							<% if reservation_history.history_comment.present? %>
-								<% reservation_history.history_comment.each do |history_comment| %>
-									<td><%= history_comment.body %></td>
-									<td><%= link_to '削除', customer_reservation_history_history_comment_path(current_customer.id, reservation_history.id, history_comment.id), class: 'btn-sm btn-danger', method: :delete %></td>
-								<% end %>
-							<% else %>
-								<%= form_with model:[@history_comment], url: customer_reservation_history_history_comments_path(current_customer.id, reservation_history.id) do |f| %>
-									<td><%= f.text_area :body %></td>
-									<td><%= f.submit '投稿', class: "btn-sm btn-primary" %></td>
-								<% end %>
-							<% end %>
-						</tr>
-					<% end %>
-				<% end %>
+			<tbody data-turbolinks="false" id="history_comment">
+					<%= render partial: 'public/reservation_histories/comment',locals: { history_comment: @history_comment, reservation_histories: @reservation_histories } %>
 			</tbody>
 		</table>
 	</div>

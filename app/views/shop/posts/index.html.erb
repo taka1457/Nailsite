@@ -1,27 +1,27 @@
 <div class="row">
-	<div class="col-md-6 col-md-offset-1">
-		<h2>投稿一覧<span class="sub_title">　　　<%= paginate @posts %></span></h2>
-	</div>
-	<div class="col-md-1 col-md-offset-10">
-		<%= link_to new_shop_post_path do %>
-			<button type="button">＋</button>
-		<% end %>
+	<div class="col-md-10 col-md-offset-2">
+		<h2>投稿一覧
+			<span class="sub_title">　　　<%= paginate @posts %>
+				<%= link_to new_shop_post_path do %>
+					<button class="col-md-offset-6" type="button">＋</button>
+				<% end %>
+			</span>
+		</h2>
 	</div>
 </div>
-
 <div class="row">
-	<div class="col-md-10 col-md-offset-1">
-		<table class="table" style="table-layout:fixed;">
+	<div class="col-md-8 col-md-offset-2">
+		<table class="table">
 			<tbody>
 				<% @posts.each do |post| %>
 					<tr>
-						<td><%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_image" %></td>
-						<td style="width:400px;">
-							<div class="row-4"><%= post.body %></div><br>
-							<%= post.created_at.to_s(:datetime_jp) %>　　　いいね数
+						<td><%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_index_image" %></td>
+						<td>
+							<div class="row-2"><%= post.body %></div><br>
+							<%= post.created_at.to_s(:datetime_jp) %>　　　いいね数 <%= post.favorites.count%>件
 						</td>
-						<td style="width:70px;"><%= link_to "編集", edit_shop_post_path(current_shop, post), class: "btn btn-success ml2" %></td>
-						<td style="width:70px;"><%= link_to "削除", shop_post_path(current_shop, post), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
+						<td><%= link_to "編集", edit_shop_post_path(current_shop, post), class: "btn btn-success ml2" %></td>
+						<td><%= link_to "削除", shop_post_path(current_shop, post), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>
 					</tr>
 				<% end %>
 			</tbody>

@@ -1,6 +1,19 @@
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
-		<h2><%= @shop.name %></h2>
+		<h2 class="col-md-11">
+			<%= @shop.name %>
+		</h2>
+		<h2 class="col-md-1">
+			<% if customer_signed_in? %>
+				<span id="show_bookmark"><%= render partial: 'shop/bookmarks/form', locals: { shop: @shop } %></span>
+			<% elsif shop_signed_in? %>
+				<span>　</span>
+			<% else %>
+				<%= link_to new_customer_session_path do %>
+					<span class="glyphicon glyphicon-star-empty"></span>
+				<% end %>
+			<% end %>
+		</h2>
 		<table class="table">
 			<tbody>
 				<tr>
@@ -10,7 +23,7 @@
 					<td>
 						<h3><%= @shop.promotion %></h3><br><br>
 						<%= @shop.introduction %><br><br>
-						<h4>おすすめジャンル　　　<span class="genre_box"><%= @shop.genre %></span></h4>
+						<h4>おすすめジャンル　　　<span class="genre_box"><%= @shop.genre.name %></span></h4>
 					</td>
 				</tr>
 			</tbody>
@@ -52,10 +65,21 @@
 		<h3>最近の投稿　　<span class="sub_title"><%= link_to 'もっと見る>', shop_posts_list_path(@shop) %></span></h4>
 		<% @posts.each do |post| %>
 			<div class="col-md-4">
-				<%= link_to shop_post_path(@shop, post) do %>
-					<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "shop_show_post_image" %><br>
-				<% end %>
-				<%= post.body %>
+				<div class="posts">
+					<%= link_to shop_post_path(@shop, post) do %>
+						<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %><br>
+						<div class="mask">
+							<div class="caption">
+								<% if post.favorited_by?(current_customer) %>
+									<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%></span>
+								<% else %>
+									<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
+								<% end %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+				<span style="white-space: pre-wrap;"><%= post.body %></span>
 			</div>
 		<% end %>
 	</div>
@@ -74,15 +98,18 @@
 				</tr>
 				<tr>
 					<td class="table_item_color">住所</td>
-					<td><%= @shop.full_address %></td>
+					<td>
+						<%= @shop.full_address %>
+						<div id='map' class="<%= @shop.prefecture_code + @shop.city + @shop.street %>"></div>
+					</td>
 				</tr>
 				<tr>
 					<td class="table_item_color">交通手段</td>
-					<td><%= @shop.traffic_method %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.traffic_method %></td>
 				</tr>
 				<tr>
 					<td class="table_item_color">営業時間</td>
-					<td><%= @shop.business_hours %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.business_hours %></td>
 				</tr>
 				<tr>
 					<td class="table_item_color">予算</td>
@@ -90,7 +117,7 @@
 				</tr>
 				<tr>
 					<td class="table_item_color">お支払い方法</td>
-					<td><%= @shop.payment_method %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.payment_method %></td>
 				</tr>
 				<tr>
 					<td class="table_item_color">席数</td>
@@ -102,12 +129,61 @@
 				</tr>
 				<tr>
 					<td class="table_item_color">駐車場</td>
-					<td><%= @shop.parking %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.parking %></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
+
+
+<style>
+#map{
+  height: 200px;
+}
+</style>
+
+<script>
+/*
+mapを関数の外で定義(codeAddressでも使うため)
+geocoderを用意
+*/
+
+let map
+let geocoder
+
+function initMap(){
+  // geocoderを初期化
+  geocoder = new google.maps.Geocoder()
+  geocoder.geocode( { 'address': $('#map').attr('class')}, function(results, status) {
+    if (status == 'OK') {
+　　　　　　　　　　　　// map.setCenterで地図が移動
+      map.setCenter(results[0].geometry.location);
+
+　　　　　　　　　　　　// google.maps.MarkerでGoogleMap上の指定位置にマーカが立つ
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+  map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: 34.7024, lng: 135.4959},
+  zoom: 14
+  });
+}
+
+function codeAddress(){
+  // 入力を取得
+  let inputAddress = document.getElementById('address').value;
+
+  // geocodingしたあとmapを移動
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['SECRET_KEY'] %>&callback=initMap" async defer></script>
 
 
 

@@ -11,15 +11,33 @@
 				<tr>
 					<td>
 						<h3><%= @customer.full_name %>さん</h3><br><br>
-						<%= @customer.introduction %>
+						<span style="white-space: pre-wrap;"><%= @customer.introduction %></span><br><br>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div class="row">
+			<div class="col-md-5">
+				<span>Follow: <%= @customer.following_customer.count %></span>
+			</div>
+			<div class="col-md-6">
+				<span>Follower: <%= @customer.follower_customer.count %></span>
+			</div>
+		</div>
 	</div>
 	<div class="col-md-3">
-		<%= link_to 'フォローする', "", class: "btn btn-default nav-btn" %><br><br><br>
-		<%= link_to 'フォローする', "", class: "btn btn-default nav-btn" %>
+		<% if customer_signed_in? %>
+			<% if current_customer != @customer %>
+				<%= render partial: 'public/relationships/form', locals: { customer: @customer } %><br><br>
+				<%= link_to 'Contact', customers_talk_path(@customer.id), class: "btn btn-default nav-btn"%>
+			<% end %>
+		<% elsif shop_signed_in? %>
+
+			<%= link_to 'Contact', customers_talk_path(@customer.id), class: "btn btn-default nav-btn"%>
+		<% else %>
+			<%= link_to 'Follow', new_customer_session_path, class: "btn btn-default nav-btn" %><br><br>
+	  		<%= link_to 'Contact', new_customer_session_path, class: "btn btn-default nav-btn"%>
+		<% end %>
 	</div>
 </div>
 <div class="row">
@@ -41,7 +59,7 @@
 					<tr>
 						<td><%= reservation_history.menu.shop.name %></td>
 						<td><%= reservation_history.menu.name %></td>
-						<td>
+						<td style="white-space: pre-wrap;">
 							<% reservation_history.history_comment.each do |history_comment| %>
 								<%= history_comment.body %>
 							<% end %>

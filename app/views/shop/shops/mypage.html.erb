@@ -3,7 +3,10 @@
     <p class="text-active"><%= flash[:notice] %></p>
   <% end %>
   <div class="col-md-12">
-		<h2>マイページ</h2>
+		<h2>
+			マイページ
+			<span class="sub_title">いいね数合計 <%= @favorites.count %> 件</span>
+		</h2>
 		<h3>
 			登録情報
 			<%= link_to "編集する", edit_shop_information_path, data: {"turbolinks"=>false}, class: "btn btn-success" %>
@@ -41,50 +44,51 @@
 				</tr>
 				<tr>
 					<td>交通手段</td>
-					<td><%= @shop.traffic_method %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.traffic_method %></td>
 				</tr>
 				<tr>
 					<td>お支払い方法</td>
-					<td><%= @shop.payment_method %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.payment_method %></td>
 				</tr>
 				<tr>
 					<td>営業時間</td>
-					<td><%= @shop.business_hours %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.business_hours %></td>
 				</tr>
 				<tr>
 					<td>駐車場情報</td>
-					<td><%= @shop.parking %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.parking %></td>
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<h3>他店舗</h3>
+			<%= link_to "店舗一覧", shops_path, class: "btn btn-primary" %>
+			<%= link_to "投稿一覧", posts_all_path, class: "btn btn-primary ml2" %>
+		</div>
 	</div>
 	<div class="col-md-6">
 		<table class="table table-bordered table-condensed">
 			<tbody>
 	      <tr>
-					<td style="width:100px;">店舗アピールポイント</td>
+					<td style="width:100px;">店舗アピール<br>(<%= @shop.promotion.length %>/50文字)</td>
 					<td class="row-2"><%= @shop.promotion %></td>
 				</tr>
 				<tr>
-					<td>店舗紹介</td>
+					<td>店舗紹介<br>(<%= @shop.introduction.length %>/150文字)</td>
 					<td class="row-5"><%= @shop.introduction %></td>
 				</tr>
 	      <tr>
 	        <td>店内写真</td>
 	        <td>
-	            <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_image" %>
+	            <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "default_image" %>
 	        </td>
 	      </tr>
 	      <tr>
 	        <td>おすすめ<br>ジャンル</td>
-	        <td><%= @shop.genre %></td>
+	        <td><%= @shop.genre.name %></td>
 	      </tr>
 	    </tbody>
     </table>
-  </div>
-	<div>
-		<%= link_to "配送先一覧", "", class: "btn btn-primary" %>
-		<%= link_to "注文履歴一覧", "", class: "btn btn-primary ml2" %>
 	</div>
 </div>
 

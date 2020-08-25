@@ -1,0 +1,117 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-2">
+		<h2>会員詳細</h2>
+	</div>
+	<div class="col-md-3 col-md-offset-2">
+		<%= link_to customer_path(@customer) do %>
+			<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
+			<% end %>
+	</div>
+	<div class="col-md-4">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<h3>
+							<%= link_to customer_path(@customer) do %>
+								<%= @customer.full_name %>
+							<% end %>さん<br><br>
+						</h3>
+						<span style="white-space: pre-wrap;"><%= @customer.introduction %></span><br><br>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row">
+			<div class="col-md-5">
+				<span>Follow: <%= @customer.following_customer.count %></span>
+			</div>
+			<div class="col-md-6">
+				<span>Follower: <%= @customer.follower_customer.count %></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<% if customer_signed_in? %>
+			<%= render partial: 'public/relationships/form', locals: { customer: @customer } %>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h3>Contact</h3>
+		<%= form_with model: @talk do |f| %>
+			<div class="row">
+				<div class="col-md-9 col-md-offset-1 row-5">
+				  <%= f.text_area :body, autofocus: true %>
+				  <%= f.hidden_field :talk_room_id %>
+				  <%= f.hidden_field :to_customer, value: @customer.id %>
+				  <% if customer_signed_in? %>
+				  	<%= f.hidden_field :customer_id, value: current_customer.id %>
+				  <% elsif shop_signed_in? %>
+				  	<%= f.hidden_field :customer_id, value: @customer.id %>
+				  	<%= f.hidden_field :contributor, {value: 'shop'}  %>
+				  <% end %>
+				</div>
+				<div class="col-md-1"><br>
+					<%= f.submit "送信", class: "btn btn-success btn-lg" %>
+				</div>
+			</div>
+		<% end %>
+		<div class="row">
+			<div class="col-md-9 col-md-offset-1">
+			  <% @talks.each do |talk| %>
+			  	<table class="table" style="table-layout:fixed;">
+			  		<tr>
+						  <% if customer_signed_in? %>
+						    <% if talk.customer_id == current_customer.id %>
+						    	<td class="col-md-3 text-center">
+						    		<%= link_to customer_path(current_customer) do %>
+											<%= attachment_image_tag current_customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
+										<% end %><br>
+										<span>You</span><br>
+										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
+										<%= talk.created_at.strftime("%H時%M分").to_s %>
+						    	</td>
+						    	<td class="col-md-8" style="white-space: pre-wrap;"><%= talk.body %></td>
+							  <% else %>
+								  <td class="col-md-3 text-center">
+								  	<%= link_to customer_path(@customer) do %>
+											<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
+										<% end %><br>
+										<span><%= @customer.last_name %>さん</span><br>
+										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
+										<%= talk.created_at.strftime("%H時%M分").to_s %>
+								  </td>
+								  <td class="col-md-8" style="white-space: pre-wrap;"><%= talk.body %></td>
+						    <% end %>
+						  <% elsif shop_signed_in? %>
+						    <% if talk.contributor == "shop" %>
+							    <td class="col-md-3 text-center">
+						    		<%= link_to customer_path(current_shop) do %>
+											<%= attachment_image_tag current_shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
+										<% end %><br>
+										<span>You</span><br>
+										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
+										<%= talk.created_at.strftime("%H時%M分").to_s %>
+						    	</td>
+						    	<td class="col-md-8" style="white-space: pre-wrap;"><%= talk.body %></td>
+							  <% else %>
+							    <td class="col-md-3 text-center">
+								  	<%= link_to customer_path(@customer) do %>
+											<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
+										<% end %><br>
+										<span><%= @customer.last_name %>さん</span><br>
+										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
+										<%= talk.created_at.strftime("%H時%M分").to_s %>
+								  </td>
+								  <td class="col-md-8" style="white-space: pre-wrap;"><%= talk.body %></td>
+						    <% end %>
+						  <% end %>
+						</tr>
+					</table>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

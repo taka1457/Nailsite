@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col-md-7 col-md-offset-1 shop_talk_scroll">
+		<h2>受信一覧</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>コンタクト相手</th>
+					<th>コンタクト内容</th>
+					<th>投稿時間</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @talks.each do |talk| %>
+					<% if talk.contributor != 'shop' %>
+						<tr>
+							<td>
+								<%= link_to customers_talk_path(talk.customer.id, talk.talk_room.id) do %>
+									<%= talk.customer.full_name %> さん
+								<% end %>
+							</td>
+							<td><%= talk.body %></td>
+							<td><%= talk.created_at.to_s(:datetime_jp) %></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+		<span class="sub_title col-md-offset-4"><%= paginate @talks %></span>
+	</div>
+	<div class="col-md-4">
+		<h2>送信一覧</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>送信相手</th>
+					<th>投稿時間</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @sends.each do |send| %>
+					<% if send.contributor == 'shop' %>
+						<tr>
+							<td>
+								<%= link_to customers_talk_path(send.customer.id, send.talk_room.id) do %>
+									<%= send.customer.full_name %> さん
+								<% end %>
+							</td>
+							<td><%= send.created_at.to_s(:datetime_jp) %></td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+		<span class="sub_title col-md-offset-2"><%= paginate @sends %></span>
+	</div>
+</div>

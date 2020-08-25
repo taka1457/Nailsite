@@ -1,9 +1,29 @@
 class Shop::ShopsController < ApplicationController
-  before_action :authenticate_shop!, except: [:index, :show, :menu]
-	before_action :set_current_shop, except: [:index, :show, :menu]
+  before_action :authenticate_shop!, only: [:mypage, :edit, :update, :unsubscribe, :withdraw]
+  before_action :set_current_shop, only: [:mypage, :edit, :update, :unsubscribe, :withdraw]
 
   def index
+    @genres = Genre.where(is_void_flag: true)
     @shops = Shop.page(params[:page]).per(20)
+  end
+
+  def map
+    @shops = Shop.page(params[:page]).per(5)
+    gon.shops = Shop.page(params[:page]).per(5)
+    @genres = Genre.where(is_void_flag: true)
+  end
+
+  def search
+    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(20)
+    @genres = Genre.where(is_void_flag: true)
+    @genre = Genre.find(params[:genre_id])
+  end
+
+  def map_search
+    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(5)
+    gon.shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(5)
+    @genres = Genre.where(is_void_flag: true)
+    @genre = Genre.find(params[:genre_id])
   end
 
   def show
@@ -19,7 +39,10 @@ class Shop::ShopsController < ApplicationController
     @reservation_menu = ReservationMenu.new
   end
 
-	def mypage
+  def mypage
+    @genres = Genre.all
+    @post = current_shop.posts
+    @favorites = Favorite.where(post_id: @post)
   end
 
   def edit
@@ -50,21 +73,21 @@ class Shop::ShopsController < ApplicationController
 
   def shop_params
     params.require(:shop).permit(:name,
-    														 :phone_number,
-    														 :postal_code,
-    														 :prefecture_code,
-    														 :city, :street,
-    														 :other_address,
-    														 :traffic_method,
-    														 :business_hours,
-    														 :budget,
-    														 :payment_method,
-    														 :seat,
-    														 :staff,
-    														 :parking,
-    														 :promotion,
-    														 :introduction,
-    														 :shop_image,
-    														 :genre)
+                                 :phone_number,
+                                 :postal_code,
+                                 :prefecture_code,
+                                 :city, :street,
+                                 :other_address,
+                                 :traffic_method,
+                                 :business_hours,
+                                 :budget,
+                                 :payment_method,
+                                 :seat,
+                                 :staff,
+                                 :parking,
+                                 :promotion,
+                                 :introduction,
+                                 :shop_image,
+                                 :genre_id)
   end
 end
