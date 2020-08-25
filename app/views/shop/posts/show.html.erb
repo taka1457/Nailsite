@@ -39,7 +39,9 @@
 					<th>コメント内容</th>
 					<th>投稿者</th>
 					<th>投稿日時</th>
-					<th></th>
+					<% if customer_signed_in? %>
+						<th></th>
+					<% end %>
 				</tr>
 			</thead>
 			<tbody id="comment">

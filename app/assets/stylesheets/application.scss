@@ -193,6 +193,30 @@ textarea {
 }
 
 
+/* --posts_all_index
+          _rank_images-- */
+.posts .caption {
+  font-size: 130%;
+  color: #fff;
+  text-align: center;
+  line-height: 200px;
+}
+.posts .mask {
+  width: 250px;
+  height: 200px;
+  border-radius: 3%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+  transition: 0.5s;
+  transform: scale(0);
+  // 見えなくする
+}
+.posts:hover .mask {
+  transform: scale(1);
+  // 1倍で表示
+}
+
 
 /* --shops_show-- */
 
