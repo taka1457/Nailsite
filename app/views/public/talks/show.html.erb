@@ -24,7 +24,9 @@
 		</table>
 	</div>
 	<div class="col-md-3">
-		<%= render partial: 'public/relationships/form', locals: { customer: @customer } %>
+		<% if customer_signed_in? %>
+			<%= render partial: 'public/relationships/form', locals: { customer: @customer } %>
+		<% end %>
 	</div>
 </div>
 

@@ -16,7 +16,9 @@
 						<%= @post.body %><br><br><br>
 						<%= @post.created_at.to_s(:datetime_jp) %><br><br>
 						<% if customer_signed_in? %>
-							<div id="show_like"><%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %></div>
+							<div id="show_like">
+								<%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %>
+							</div>
 						<% else %>
 							<%= link_to new_customer_session_path do %>
 								<span class="glyphicon glyphicon-heart-empty">　<%= @post.favorites.count %>件</span>
