@@ -27,6 +27,19 @@
 						<%= link_to shop_post_path(post.shop, post) do %>
 							<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 						<% end %>
+						<div class="row">
+							<div class="col-md-12 text-center">
+								<% if customer_signed_in? %>
+									<div id="show_like">
+										<%= render partial: 'shop/favorites/form', locals: { shop: post.shop, post: post } %>
+									</div>
+								<% else %>
+									<%= link_to new_customer_session_path do %>
+										<span class="glyphicon glyphicon-heart-empty">　<%= post.favorites.count %>件</span>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
 					</div>
 				<% end %>
 			</div>
