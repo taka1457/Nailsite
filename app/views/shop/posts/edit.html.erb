@@ -20,7 +20,7 @@
               <p id="counter">(<%= @post.body.length %>文字/140文字中)
             </td>
 						<td class="row-5" style="width:300px;">
-							<%= f.text_area :body, autofocus: true, id: "input-text" %>
+							<%= f.text_area :body, autofocus: true, id: "input-text" style:"white-space: pre-wrap;" %>
 							<% if @post.errors.include?(:body) %>
 	              <p style="color: red;"><%= @post.errors.full_messages_for(:body).first %>
 	            <% end %>

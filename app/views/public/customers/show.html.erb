@@ -11,7 +11,7 @@
 				<tr>
 					<td>
 						<h3><%= @customer.full_name %>さん</h3><br><br>
-						<%= @customer.introduction %>
+						<span style="white-space: pre-wrap;"><%= @customer.introduction %></span><br><br>
 					</td>
 				</tr>
 			</tbody>
@@ -59,7 +59,7 @@
 					<tr>
 						<td><%= reservation_history.menu.shop.name %></td>
 						<td><%= reservation_history.menu.name %></td>
-						<td>
+						<td style="white-space: pre-wrap;">
 							<% reservation_history.history_comment.each do |history_comment| %>
 								<%= history_comment.body %>
 							<% end %>

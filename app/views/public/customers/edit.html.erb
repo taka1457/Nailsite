@@ -63,7 +63,7 @@
               <% end %>
             </td>
             <td colspan="2" class="row-5">
-              <%= f.text_area :introduction, autofocus: true, :placeholder =>"#{@customer.introduction}", id: "input-text" %>
+              <%= f.text_area :introduction, autofocus: true, :placeholder =>"#{@customer.introduction}", id: "input-text", style:"white-space: pre-wrap;" %>
               <% if @customer.errors.include?(:introduction) %>
                 <p style="color: red;"><%= @customer.errors.full_messages_for(:introduction).first %>
               <% end %>

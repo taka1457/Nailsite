@@ -114,7 +114,7 @@
           <td><span class="text-danger">必須</span>　<%= f.label :交通手段 %><br>
               <p id="traffic_method-counter">　　　(<%= @shop.traffic_method.length %>文字/200文字中)</td>
           <td>
-            <%= f.text_area :traffic_method, :placeholder =>"#{@shop.traffic_method}", id: "traffic_method-input-text" %>
+            <%= f.text_area :traffic_method, :placeholder =>"#{@shop.traffic_method}", id: "traffic_method-input-text", style:"white-space: pre-wrap;" %>
             <% if @shop.errors.include?(:traffic_method) %>
               <p style="color: red;"><%= @shop.errors.full_messages_for(:traffic_method).first %>
             <% end %>
@@ -124,7 +124,7 @@
           <td><span class="text-danger">必須</span>　<%= f.label :お支払い方法 %><br>
               <p id="payment_method-counter">　　　(<%= @shop.payment_method.length %>文字/100文字中)</td>
           <td>
-            <%= f.text_area :payment_method, :placeholder =>"#{@shop.payment_method}", id: "payment_method-input-text" %>
+            <%= f.text_area :payment_method, :placeholder =>"#{@shop.payment_method}", id: "payment_method-input-text" style:"white-space: pre-wrap;" %>
             <% if @shop.errors.include?(:payment_method) %>
               <p style="color: red;"><%= @shop.errors.full_messages_for(:payment_method).first %>
             <% end %>
@@ -134,7 +134,7 @@
           <td><span class="text-danger">必須</span>　<%= f.label :営業時間 %><br>
               <p id="business_hours-counter">　　　(<%= @shop.business_hours.length %>文字/100文字中)</td>
           <td>
-            <%= f.text_area :business_hours, :placeholder =>"#{@shop.business_hours}", id: "business_hours-input-text" %>
+            <%= f.text_area :business_hours, :placeholder =>"#{@shop.business_hours}", id: "business_hours-input-text" style:"white-space: pre-wrap;" %>
             <% if @shop.errors.include?(:business_hours) %>
               <p style="color: red;"><%= @shop.errors.full_messages_for(:business_hours).first %>
             <% end %>
@@ -144,7 +144,7 @@
           <td><span class="text-danger">必須</span>　<%= f.label :駐車場情報 %><br>
               <p id="parking-counter">　　　(<%= @shop.parking.length %>文字/20文字中)</td>
           <td>
-            <%= f.text_area :parking, :placeholder =>"#{@shop.parking}", id: "parking-input-text" %>
+            <%= f.text_area :parking, :placeholder =>"#{@shop.parking}", id: "parking-input-text" style:"white-space: pre-wrap;" %>
             <% if @shop.errors.include?(:parking) %>
               <p style="color: red;"><%= @shop.errors.full_messages_for(:parking).first %>
             <% end %>
