@@ -3,7 +3,10 @@
     <p class="text-active"><%= flash[:notice] %></p>
   <% end %>
   <div class="col-md-12">
-		<h2>マイページ</h2>
+		<h2>
+			マイページ
+			<span class="sub_title">いいね数合計 <%= @favorites.count %> 件</span>
+		</h2>
 		<h3>
 			登録情報
 			<%= link_to "編集する", edit_shop_information_path, data: {"turbolinks"=>false}, class: "btn btn-success" %>
@@ -67,11 +70,11 @@
 		<table class="table table-bordered table-condensed">
 			<tbody>
 	      <tr>
-					<td style="width:100px;">店舗アピールポイント</td>
+					<td style="width:100px;">店舗アピール<br>(<%= @shop.promotion.length %>/50文字)</td>
 					<td class="row-2"><%= @shop.promotion %></td>
 				</tr>
 				<tr>
-					<td>店舗紹介</td>
+					<td>店舗紹介<br>(<%= @shop.introduction.length %>/150文字)</td>
 					<td class="row-5"><%= @shop.introduction %></td>
 				</tr>
 	      <tr>
@@ -82,7 +85,7 @@
 	      </tr>
 	      <tr>
 	        <td>おすすめ<br>ジャンル</td>
-	        <td><%= @shop.genre %></td>
+	        <td><%= @shop.genre.name %></td>
 	      </tr>
 	    </tbody>
     </table>

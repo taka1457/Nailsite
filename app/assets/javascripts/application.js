@@ -19,6 +19,33 @@
 //= require fullcalendar
 //= require_tree .
 
+
+$(document).on('turbolinks:load', function() {
+  $("#theTarget").skippr({
+    // スライドショーの変化 ("fade" or "slide")
+    transition : 'slide',
+    // 変化に係る時間(ミリ秒)
+    speed : 1000,
+    // easingの種類
+    easing : 'easeOutQuart',
+    // ナビゲーションの形("block" or "bubble")
+    navType : 'bubble',
+    // 子要素の種類("div" or "img")
+    childrenElementType : 'div',
+    // ナビゲーション矢印の表示(trueで表示)
+    arrows : true,
+    // スライドショーの自動再生(falseで自動再生なし)
+    autoPlay : true,
+    // 自動再生時のスライド切替間隔(ミリ秒)
+    autoPlayDuration : 3000,
+    // キーボードの矢印キーによるスライド送りの設定(trueで有効)
+    keyboardOnAlways : true,
+    // 一枚目のスライド表示時に戻る矢印を表示するかどうか(falseで非表示)
+    hidePrevious : false
+  });
+});
+
+
 $(function() {
   $(document).on('turbolinks:load', () => {
     $('#shop_postal_code').jpostal({
@@ -56,38 +83,10 @@ $(document).on("turbolinks:load", function(){
   $("#menu_menu_image").change(function(){
     readURL(this);
   });
+  $("#genre_genre_image").change(function(){
+    readURL(this);
+  });
 });
 
 
-$(function(){
-    $('#calendar').fullCalendar({
-        reserves: '/reserves.json',
-        titleFormat: 'YYYY年 M月',
-        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
-        header: {
-            left: '',
-            center: 'title',
-            right: 'today prev,next'
-        },
-        defaultTimedEventDuration: '03:00:00',
-        buttonText: {
-            prev: '前',
-            next: '次',
-            prevYear: '前年',
-            nextYear: '翌年',
-            today: '今日',
-            month: '月',
-            week: '週',
-            day: '日'
-        },
-        selectable: true,
-        selectHelper: true,
-        select: function(data) {
-          console.log(data);
-          var str = moment(data).format( 'YYYY-MM-DD' );
-          console.log(str);
-          $('.reserve_form').show('1000');
-          $('.f_date').val(str);
-        }
-    });
-});
+

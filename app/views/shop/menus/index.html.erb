@@ -1,16 +1,15 @@
 <div class="row">
-	<div class="col-md-6 col-md-offset-1">
-		<h2>メニュ一覧<span class="sub_title">　　　<%= paginate @menus %></span></h2>
+	<div class="col-md-10 col-md-offset-1">
+		<h2>メニュ一覧
+			<span class="sub_title">　　　<%= paginate @menus %>
+				<%= link_to new_shop_menu_path do %>
+					<button class="col-md-offset-8" type="button">＋</button>
+				<% end %>
+			</span>
+		</h2>
 	</div>
 </div>
-
 <div class="row">
-	<div class="col-md-1 col-md-offset-10">
-		<%= link_to new_shop_menu_path do %>
-			<button type="button">＋</button>
-		<% end %>
-	</div>
-
 	<div class="col-md-10 col-md-offset-1">
 		<table class="table table-bordered table-condensed" style="table-layout:fixed;">
 			<thead>

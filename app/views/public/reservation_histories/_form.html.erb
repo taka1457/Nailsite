@@ -1,4 +1,0 @@
-<%= form_with model:[history_comment], url: customer_reservation_history_history_comments_path(current_customer.id, reservation_history.id), remote: true do |f| %>
-	<td><%= f.text_area :body %></td>
-	<td><%= f.submit '投稿', class: "btn-sm btn-primary" %></td>
-<% end %>

@@ -6,6 +6,8 @@
 		<h2 class="col-md-1">
 			<% if customer_signed_in? %>
 				<span id="show_bookmark"><%= render partial: 'shop/bookmarks/form', locals: { shop: @shop } %></span>
+			<% elsif shop_signed_in? %>
+				<span>　</span>
 			<% else %>
 				<%= link_to new_customer_session_path do %>
 					<span class="glyphicon glyphicon-star-empty"></span>
@@ -21,7 +23,7 @@
 					<td>
 						<h3><%= @shop.promotion %></h3><br><br>
 						<%= @shop.introduction %><br><br>
-						<h4>おすすめジャンル　　　<span class="genre_box"><%= @shop.genre %></span></h4>
+						<h4>おすすめジャンル　　　<span class="genre_box"><%= @shop.genre.name %></span></h4>
 					</td>
 				</tr>
 			</tbody>

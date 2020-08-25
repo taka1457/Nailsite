@@ -24,6 +24,8 @@
 							<% end %>
 						<% end %>
 					</span>
+				<% elsif shop_signed_in? %>
+					<span>　</span>
 				<% else %>
 					<%= link_to new_customer_session_path do %>
 						<span class="glyphicon glyphicon-star-empty"></span>

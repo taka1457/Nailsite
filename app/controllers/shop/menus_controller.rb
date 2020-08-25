@@ -12,9 +12,13 @@ class Shop::MenusController < ApplicationController
 	def create
 		@menu = Menu.new(menu_params)
   	@menu.shop_id = current_shop.id
-  	@menu.save
-  	redirect_to shop_menus_path
+    if @menu.save
+      redirect_to shop_menus_path
+    else
+      render :new
+    end
   end
+
   def destroy
   	@menu = Menu.find(params[:id])
     @menu.destroy
@@ -26,9 +30,12 @@ class Shop::MenusController < ApplicationController
   end
 
   def update
-  	menu = Menu.find(params[:id])
-    menu.update(menu_params)
-    redirect_to shop_menus_path
+  	@menu = Menu.find(params[:id])
+    if @menu.update(menu_params)
+      redirect_to shop_menus_path
+    else
+      render :edit
+    end
   end
 
   private

@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>ジャンル一覧・追加</h2>
+  </div>
+  <div class="col-md-offset-2">
+    <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "btn btn-default nav-btn" %>
+  </div>
+</div>
+<div class="row">
+  <%= form_for(@genre, url: genres_path) do |f| %>
+  <% if @genre.errors.any? %>
+  <% end %>
+    <div class="col-md-3 col-md-offset-3">
+      <div class="image_field">
+        <%= attachment_image_tag @genre, :genre_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_image" %>
+        <%= f.attachment_field :genre_image %>
+        <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table-condensed">
+        <tbody>
+          <tr>
+            <td>ジャンル名<br>
+            <td>
+              <%= f.text_field :name, autofocus: true%>
+              <% if @genre.errors.include?(:name) %>
+                <p style="color: red;"><%= @genre.errors.full_messages_for(:name).first %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <%= f.radio_button :is_void_flag, true, checked: true %>
+              <%= f.label :is_void_flag, '有効', value: true %>
+              <%= f.radio_button :is_void_flag, false %>
+              <%= f.label :is_void_flag, '無効', value: false %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-md-offset-2 devise_btn">
+          <%= f.submit "追加", class: "btn btn-primary btn-lg" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <table class="table table-bordered">
+      <thead class="t-color">
+        <tr>
+          <th>写真</th>
+          <th>ジャンル</th>
+          <th>状態</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td><%= attachment_image_tag genre, :genre_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_genre_image" %></td>
+            <td><%= genre.name %></td>
+            <td>
+              <% if (genre.is_void_flag == true) %>
+                有効
+              <% else %>
+                無効
+              <% end %>
+            </td>
+            <td>
+              <%= link_to "編集する",  edit_genre_path(genre), class: "btn-sm btn-success" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

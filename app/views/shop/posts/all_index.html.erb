@@ -1,6 +1,8 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<h2>最近の投稿一覧<span class="sub_title">　　　　<%= paginate @posts %></span></h2>
+		<h2>最近の投稿一覧<span class="sub_title">　　　　<%= paginate @posts %></span>
+			<%= link_to 'いいね順', posts_rank_path, class: "btn btn-default nav-btn" %>
+		</h2>
 		<% @posts.each do |post| %>
 			<div class="col-md-4">
 				<%= link_to shop_post_path(post.shop, post) do %>

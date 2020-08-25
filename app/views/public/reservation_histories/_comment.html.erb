@@ -1,17 +1,38 @@
 <% reservation_histories.each do |history| %>
 	<% if history.reserve.customer == current_customer %>
 		<tr>
-			<td><%= history.reserve.reservation_time.to_s(:datetime_jp) %></td>
+			<td><%= history.reserve.reservation.to_s(:datetime_jp) %></td>
 			<td><%= history.menu.shop.name %></td>
 			<td><%= history.menu.name %></td>
 			<td><%= history.menu.price.to_s(:delimited) %>円</td>
-			<% if history.history_comment.present? %>
-				<% history.history_comment.each do |comment| %>
-					<td><%= comment.body %></td>
-					<td><%= link_to '削除', customer_reservation_history_history_comment_path(current_customer.id, history.id, comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true %></td>
+			<% if history.status == 'confirm' %>
+				<td>ご予約確認中です。<br>ご予約完了までしばらくお待ち下さい。</td>
+			<% elsif (history.status == 'booking')%>
+				<% if history.reserve.reservation >= Date.today %>
+					<td>ご予約完了しました！<br>ご来店お待ちしております！	</td>
+				<% else %>
+					<td>施術を受けられた方は<br>しばらくお待ち下さい。</td>
+				<% end %>
+			<% elsif (history.status == 'done')%>
+				<% if history.history_comment.present? %>
+					<% history.history_comment.each do |comment| %>
+						<td>
+							<%= comment.body %>
+							<%= link_to '削除', customer_reservation_history_history_comment_path(current_customer.id, history.id, comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true %>
+						</td>
 					<% end %>
-			<% else %>
-				<%= render partial: 'public/reservation_histories/form',locals: { history_comment: history_comment, reservation_history: history} %>
+				<% else %>
+					<%= form_with model:[history_comment], url: customer_reservation_history_history_comments_path(current_customer.id, history.id), remote: true do |f| %>
+						<td>
+							<%= f.text_area :body, placeholder: "施術の感想をお書きください" %>
+							<%= f.submit '投稿', class: "btn-sm btn-primary" %>
+						</td>
+					<% end %>
+				<% end %>
+			<% elsif (history.status == 'cancel')%>
+				<td>正常にキャンセルされました。<br>次回ご予約お待ちしております。</td>
+			<% elsif (history.status == 'unauthorized')%>
+				<td>キャンセルされる際は、<br>サロンへご連絡をお願いします。</td>
 			<% end %>
 		</tr>
 	<% end %>

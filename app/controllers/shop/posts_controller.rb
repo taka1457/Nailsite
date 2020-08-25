@@ -1,8 +1,12 @@
 class Shop::PostsController < ApplicationController
-  before_action :authenticate_shop!, except: [:all_index, :show, :list]
+  before_action :authenticate_shop!, except: [:all_index, :show, :list, :rank]
 
   def all_index
     @posts = Post.page(params[:page]).reverse_order.per(9)
+  end
+
+  def rank
+    @posts = Kaminari.paginate_array(Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))).page(params[:page]).per(9)
   end
 
   def show
@@ -28,8 +32,11 @@ class Shop::PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
   	@post.shop_id = current_shop.id
-  	@post.save
-  	redirect_to shop_posts_path
+    if @post.save
+      redirect_to shop_posts_path
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -43,9 +50,12 @@ class Shop::PostsController < ApplicationController
   end
 
   def update
-  	post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to shop_posts_path
+  	@post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to shop_posts_path
+    else
+      render :edit
+    end
   end
 
   private

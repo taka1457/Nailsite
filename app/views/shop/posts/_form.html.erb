@@ -1,0 +1,27 @@
+<%= form_with model:[post_comment], url: shop_post_post_comments_path(shop.id, post.id), remote: true do |f| %>
+<% if post_comment.errors.any? %>
+<% end %>
+	<div class="col-md-8 col-md-offset-2 comment-form">
+		<%= f.text_area :body, id: "comment_body" %><br>
+    <p id="counter">(0文字/140文字中)
+		<% if post_comment.errors.include?(:body) %>
+      <p style="color: red;"><%= post_comment.errors.full_messages_for(:body).first %>
+    <% end %>
+	</div>
+	<div class="col-md-offset-10">
+		<% if customer_signed_in? %>
+			<%= f.submit '送信', class: "btn-sm btn-primary" %>
+		<% else %>
+			<%= link_to '送信', new_customer_session_path, class: "btn-sm btn-primary" %>
+		<% end %>
+	</div>
+<% end %>
+
+<script>
+$(function(){
+  $("#comment_body").on('keyup', function() {
+   let count = String($(this).val().length);
+   $("#counter").text("(" + count + "文字/140文字中)");
+  });
+});
+</script>

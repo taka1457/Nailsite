@@ -17,6 +17,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* --application-- */
+
 .logo{
   font-family: cursive;
   font-size: 60px;
@@ -29,28 +32,16 @@
   color: #EEEEEE;
   text-decoration: none !important;
 }
-.logo-link{
-  position: relative;
-  a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height:100%;
-    width: 100%;
-  }
-}
-
 .reserve_form{
   display: none;
 }
-
 .main-header {
 	height: 80px;
 	background-color: #FFBEDA;
 }
 .top-header {
 	height: 200px;
-	background-image: image-url("background.jpg");
+	background-image: image-url("bg-1.jpg");
 	background-size: cover;
   background-position: center;
 }
@@ -85,18 +76,13 @@
   padding-top: 210px;
 }
 .main_body{
-  padding-top: 90px;
+  padding-top: 80px;
 }
-
-
-
 footer {
-  padding: 15px 0;
+  padding: 40px 0 20px 0;
   font-size: 14px;
   text-align: center;
 }
-
-
 .devise_btn{
   margin-top: 20px;
   margin-bottom: 20px;
@@ -105,6 +91,9 @@ footer {
   width: 430px;
 }
 
+
+
+/* --text_area-- */
 
 textarea {
   resize: none;
@@ -126,22 +115,17 @@ textarea {
 
 
 
+/* --images-- */
+
 .preview_image {
   width: 250px;
   height: 150px;
   object-fit: cover;
 }
-.top_profile_image {
-  width: 150px;
-  height: 150px;
+.preview_genre_image{
+  width: 60px;
+  height: 50px;
   object-fit: cover;
-  border-radius: 50%;
-}
-.profile_image {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 .shop_show_top_image{
   width: 400px;
@@ -158,8 +142,6 @@ textarea {
   height: 150px;
   object-fit: cover;
 }
-
-
 .post_image{
   width: 250px;
   height: 200px;
@@ -175,37 +157,21 @@ textarea {
   height: 90px;
   object-fit: cover;
 }
-.genre-image1{
-  background-image: image-url("one_color.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
+.genre-image{
+  width: 150px;
   height: 130px;
-  margin-left: 40px;
+  object-fit: cover;
 }
-.genre-image2{
-  background-image: image-url("simple.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
-  height: 130px;
-}
-.genre-image3{
-  background-image: image-url("art.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
-  height: 130px;
-}
-.genre-image4{
-  background-image: image-url("bridal.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 160px;
-  height: 130px;
+.profile_image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 
+
+/* --shops_show-- */
 
 .genre_box {
     padding: 0.5em 1em;
@@ -225,6 +191,9 @@ textarea {
 }
 
 
+
+/* --search-- */
+
 .search_form{
   width: 350px;
   height: 50px;
@@ -241,6 +210,10 @@ textarea {
   height: 50px;
 }
 
+
+
+/* --shops_index_map-- */
+
 .scroll{
   overflow: scroll;
   height: 500px;
@@ -249,4 +222,92 @@ textarea {
 
 
 
+/* --homes_about-- */
 
+#skippr{
+  height: 300px;
+  width: 100%;
+}
+.bg-1{
+  background-image: image-url("bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-2{
+  background-image: image-url("bg-2.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-3{
+  background-image: image-url("bg-3.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.bg-4{
+  background-image: image-url("bg-4.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.about_box{
+  text-align: center;
+  line-height: 100px;
+  height: 100px;
+  width: 100%;
+  background-color: #FFEEFF;
+  font-size: 30px;
+  margin-top: 30px;
+}
+.about-row{
+  margin-top: 80px;
+}
+.demo1{
+  background-image: image-url("demo1.png");
+  background-size: cover;
+  background-position: center;
+  height: 230px;
+  width: 100%;
+}
+.demo2{
+  background-image: image-url("demo2.png");
+  background-size: cover;
+  background-position: center;
+  height: 280px;
+  width: 100%;
+}
+.demo3{
+  background-image: image-url("demo3.png");
+  background-size: cover;
+  background-position: center;
+  height: 220px;
+  width: 100%;
+}
+.demo4{
+  background-image: image-url("demo4.png");
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 100%;
+}
+.demo5{
+  background-image: image-url("demo5.png");
+  background-size: cover;
+  background-position: center;
+  height: 330px;
+  width: 100%;
+}
+.top_link{
+  background-image: image-url("bg-1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.top_link_main{
+  background-color: white;
+}

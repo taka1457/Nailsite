@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h2>予約履歴一覧</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>予約日</th>
+					<th>予約者</th>
+					<th>メニュー名</th>
+					<th>メニュー金額</th>
+					<th>ご来店状況</th>
+				</tr>
+			</thead>
+			<tbody data-turbolinks="false" id="history_comment">
+				<% @reservation_histories.each do |history| %>
+					<% if history.menu.shop == current_shop %>
+						<tr>
+							<td><%= history.reserve.reservation.to_s(:datetime_jp) %></td>
+							<td>
+								<%= link_to customer_path(history.reserve.customer) do %>
+									<%= history.reserve.customer.full_name %></td>
+								<% end %>
+							<td><%= history.menu.name %></td>
+							<td><%= history.menu.price.to_s(:delimited) %>円</td>
+							<% if history.status == 'booking' or history.status =='confirm' %>
+								<td><%= form_for(history, url: update_history_path(history)) do |f| %>
+									<%= f.select :status, { 受付待ち: 'confirm', 予約済: 'booking', 来店済: 'done', キャンセル: 'cancel', 無断キャンセル: 'unauthorized'} %>
+									<%= f.submit "更新", data: { confirm: "一度「来店済み」「キャンセル」「無断キャンセル」に更新すると変更ができません。更新してもよろしいでしょうか？"}, class: "btn btn-primary" %>
+								<% end %>
+							</td>
+							<% else %>
+								<td><%=history.status_i18n %></td>
+							<% end %>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

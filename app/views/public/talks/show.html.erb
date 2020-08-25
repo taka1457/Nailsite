@@ -15,22 +15,31 @@
 						<h3>
 							<%= link_to customer_path(@customer) do %>
 								<%= @customer.full_name %>
-							<% end %>
-							さん</h3><br><br>
-							<%= @customer.introduction %>
+							<% end %>さん<br><br>
+						</h3>
+						<%= @customer.introduction %>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div class="row">
+			<div class="col-md-5">
+				<span>Follow: <%= @customer.following_customer.count %></span>
+			</div>
+			<div class="col-md-6">
+				<span>Follower: <%= @customer.follower_customer.count %></span>
+			</div>
+		</div>
 	</div>
 	<div class="col-md-3">
-		<%= link_to 'フォローする', "", class: "btn btn-default nav-btn" %>
+		<% if customer_signed_in? %>
+			<%= render partial: 'public/relationships/form', locals: { customer: @customer } %>
+		<% end %>
 	</div>
 </div>
-
 <div class="row">
 	<div class="col-md-4 col-md-offset-4">
-		<h3>コンタクト</h3>
+		<h3>Contact</h3>
 		<div class="message">
 		  <% @talks.each do |talk| %>
 			  <% if customer_signed_in? %>
@@ -48,7 +57,6 @@
 			  <% end %>
 			<% end %>
 		</div>
-
 		<div class="col-md-12">
 			<%= form_with model: @talk do |f| %>
 			  <%= f.text_area :body, autofocus: true %>

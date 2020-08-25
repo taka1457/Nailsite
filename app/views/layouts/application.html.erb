@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Nailsite</title>
+    <%= include_gon %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -19,8 +20,8 @@
             <div>
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', shop_mypage_path, class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to '予約一覧', "", class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to '連絡一覧', shops_talks_path(current_shop), class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '予約一覧', shops_histories_path, data: {"turbolinks"=>false}, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '連絡一覧', shops_talks_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'メニュー', shop_menus_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿一覧', shop_posts_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
@@ -56,7 +57,7 @@
       <div class="container main_body">
         <main data-turbolinks="false"><%= yield %></main>
       </div>
-    <% elsif current_page?(root_path) || current_page?(about_path) %>
+    <% elsif current_page?(root_path) %>
       <header class="top-header navbar-fixed-top">
         <div class="main-visual-content logo-link">
           <p class="main-visual-text">
@@ -66,7 +67,6 @@
             会員でない方も閲覧はできますが、<br>
             ご予約には会員登録が必要になります
           </p>
-          <a href="/"></a>
         </div>
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
@@ -121,7 +121,7 @@
       </div>
     <% end %>
     <div class="container">
-      <footer>Copyright © Hirano Takahiro. All Rights Reserved.</footer>
+      <footer>Copyright © Nailsite. All Rights Reserved.</footer>
     </div>
   </body>
 </html>

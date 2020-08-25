@@ -9,35 +9,64 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <% if @customer.errors.any? %>
       <% end %>
       <table class="table-condensed">
         <tr>
           <td><%= f.label :名前 %></td>
           <td><%= f.label :'(姓）' %></td>
-          <td><%= f.text_field :last_name, autofocus: true, class: "last_name" %></td>
+          <td>
+            <%= f.text_field :last_name, autofocus: true, class: "last_name" %>
+            <% if @customer.errors.include?(:last_name) %>
+                <p style="color: red;"><%= @customer.errors.full_messages_for(:last_name).first %>
+              <% end %>
+          </td>
           <td><%= f.label :'　　(名）' %></td>
-          <td><%= f.text_field :first_name, class: "first_name" %></td>
+          <td>
+            <%= f.text_field :first_name, class: "first_name" %>
+            <% if @customer.errors.include?(:first_name) %>
+              <p style="color: red;"><%= @customer.errors.full_messages_for(:first_name).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td><%= f.label :フリガナ %></td>
           <td><%= f.label :'(セイ)' %></td>
-          <td><%= f.text_field :last_name_kana, class: "last_name_kana" %></td>
+          <td>
+            <%= f.text_field :last_name_kana, class: "last_name_kana" %>
+            <% if @customer.errors.include?(:last_name_kana) %>
+                <p style="color: red;"><%= @customer.errors.full_messages_for(:last_name_kana).first %>
+              <% end %>
+          </td>
           <td><%= f.label :'　　(メイ)' %></td>
-          <td><%= f.text_field :first_name_kana, class: "first_name_kana" %></td>
+          <td>
+            <%= f.text_field :first_name_kana, class: "first_name_kana" %>
+            <% if @customer.errors.include?(:first_name_kana) %>
+              <p style="color: red;"><%= @customer.errors.full_messages_for(:first_name_kana).first %>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td><%= f.label :'電話番号(ハイフンなし）' %></td>
           <td></td>
-          <td><%= f.text_field :phone_number, class: "phone_number" %></td>
+          <td>
+            <%= f.text_field :phone_number, class: "phone_number" %>
+            <% if @customer.errors.include?(:phone_number) %>
+              <p style="color: red;"><%= @customer.errors.full_messages_for(:phone_number).first %>
+            <% end %>
+          </td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td><%= f.label :メールアドレス %></td>
           <td></td>
-          <td><%= f.email_field :email, autocomplete: "email", class: "email" %></td>
+          <td>
+            <%= f.email_field :email, autocomplete: "email", class: "email" %>
+            <% if @customer.errors.include?(:email) %>
+              <p style="color: red;"><%= @customer.errors.full_messages_for(:email).first %>
+            <% end %>
+          </td>
           <td></td>
           <td></td>
         </tr>
@@ -49,14 +78,24 @@
               <% end %>
           </td>
           <td></td>
-          <td><%= f.password_field :password, autocomplete: "new-password", class: "password" %></td>
+          <td>
+            <%= f.password_field :password, autocomplete: "new-password", class: "password" %>
+            <% if @customer.errors.include?(:password) %>
+              <p style="color: red;"><%= @customer.errors.full_messages_for(:password).first %>
+            <% end %>
+          </td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td><%= f.label :'パスワード(確認用）' %></td>
           <td></td>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %></td>
+          <td>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirmation" %>
+            <% if @customer.errors.include?(:password_confirmation) %>
+              <p style="color: red;"><%= @customer.errors.full_messages_for(:password_confirmation).first %>
+            <% end %>
+          </td>
           <td></td>
           <td></td>
         </tr>

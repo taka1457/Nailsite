@@ -8,18 +8,14 @@
 			<table class="table">
 				<tbody>
 					<%= form_for(@reserve, url: "/reserves/confirm") do |f| %>
-
 						<tr>
 							<td><%= f.label :ご予約日程 %></td>
-							<td><%= f.date_field :reservation_date, autofocus: true, class: "f_date" %></td>
-						</tr>
-						<tr>
-							<td><%= f.label :ご予約時間 %></td>
-							<td><%= f.time_field :reservation_time, :placeholder => "15時30分" %></td>
+							<td><%= f.text_field :reservation, autofocus: true, class: "select_date" %></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><%= f.submit "確認画面へ進む", class: "btn btn-danger btn-wide btn-lg" %></td>
+							<td>
+								<%= f.submit "確認画面へ進む", class: "btn btn-danger btn-wide btn-lg" %></td>
 						</tr>
 					<% end %>
 				</tbody>
@@ -30,3 +26,46 @@
 	</div>
 </div>
 
+<script>
+$(function(){
+    $('#calendar').fullCalendar({
+        reserves: '/reserves.json',
+        titleFormat: 'YYYY年 M月',
+        dayNamesShort: ['日', '月', '火', '水', '木', '金', '土'],
+        header: {
+            left: '',
+            center: 'title',
+            right: 'today prev,next'
+        },
+        defaultView: 'agendaWeek',
+        defaultTimedEventDuration: '15:00:00',
+        minTime: "10:00:00",
+				maxTime: "20:00:00",
+				firstDay:"today",
+				snapDuration: '01:30:00',
+        buttonText: {
+            prev: '前',
+            next: '次',
+            prevYear: '前年',
+            nextYear: '翌年',
+            today: '今日',
+            month: '月',
+            week: '週',
+            day: '日'
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function(start) {
+        	if(start.isBefore(moment())) {
+		        $('#calendar').fullCalendar('unselect');
+		        return false;
+		      }
+          console.log(start);
+          var str = moment(start).format( 'YYYY-MM-DD hh:mm' );
+          console.log(str);
+          $('.reserve_form').show('1000');
+          $('.select_date').val(str);
+        }
+    });
+});
+</script>
