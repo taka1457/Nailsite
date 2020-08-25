@@ -4,7 +4,10 @@
 			<%= link_to shop_path(@shop) do %>
 				<%= @shop.name %>
 			<% end %>
-			<span class="sub_title">　の投稿</span>
+			<span class="sub_title">　の投稿　　　　　　　</span>
+			<%= link_to shop_posts_list_path(@shop), class: "btn btn-default nav-btn" do %>
+				<%= @shop.name %>の投稿一覧
+			<% end %>
 		</h2>
 		<table class="table">
 			<tbody>
@@ -13,7 +16,7 @@
 		        <%= attachment_image_tag @post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %>
 		      </td>
 					<td>
-						<%= @post.body %><br><br><br>
+						<span style="white-space: pre-wrap;"><%= @post.body %></span><br><br><br>
 						<%= @post.created_at.to_s(:datetime_jp) %><br><br>
 						<% if customer_signed_in? %>
 							<div id="show_like">
@@ -21,7 +24,12 @@
 							</div>
 						<% else %>
 							<%= link_to new_customer_session_path do %>
-								<span class="glyphicon glyphicon-heart-empty"> <%= @post.favorites.count %></span>
+								<div class="row">
+									<div class="col-md-offset-2">
+										<span class="glyphicon glyphicon-heart-empty"> <%= @post.favorites.count %>　　</span>
+										<span class="glyphicon glyphicon-envelope"> <%= @post.post_comments.count %></span>
+									</div>
+								</div>
 							<% end %>
 						<% end %>
 					</td>
