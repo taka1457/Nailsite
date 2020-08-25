@@ -16,8 +16,8 @@
 			<% elsif (history.status == 'done')%>
 				<% if history.history_comment.present? %>
 					<% history.history_comment.each do |comment| %>
-						<td style="white-space: pre-wrap;">
-							<%= comment.body %>
+						<td>
+							<span style="white-space: pre-wrap;"><%= comment.body %></span><br>
 							<%= link_to '削除', customer_reservation_history_history_comment_path(current_customer.id, history.id, comment.id), class: 'btn-sm btn-danger', method: :delete %>
 						</td>
 					<% end %>

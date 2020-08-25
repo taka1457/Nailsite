@@ -11,10 +11,11 @@
 						<div class="mask">
 							<div class="caption">
 								<% if post.favorited_by?(current_customer) %>
-									<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%></span>
+									<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%>　</span>
 								<% else %>
-									<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
+									<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %>　</span>
 								<% end %>
+								<span class="glyphicon glyphicon-envelope"> <%= post.post_comments.count %></span>
 							</div>
 						</div>
 					<% end %>

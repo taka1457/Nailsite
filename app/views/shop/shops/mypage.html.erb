@@ -3,9 +3,9 @@
     <p class="text-active"><%= flash[:notice] %></p>
   <% end %>
   <div class="col-md-12">
-		<h2>
-			マイページ
-			<span class="sub_title">いいね数合計 <%= @favorites.count %> 件</span>
+		<h2>マイページ　
+			<span class="sub_title glyphicon glyphicon-heart-empty"> 合計<%= @favorites.count %>　</span>
+			<span class="sub_title glyphicon glyphicon-envelope"> 合計<%= @post_comments.count %></span>
 		</h2>
 		<h3>
 			登録情報
