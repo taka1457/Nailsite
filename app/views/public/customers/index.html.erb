@@ -13,6 +13,14 @@
 						<% end %>
 					</div>
 					<div class="row">
+						<div class="col-md-5 col-md-offset-1">
+							<span>Follow: <%= customer.following_customer.count %></span>
+						</div>
+						<div class="col-md-6">
+							<span>Follower: <%= customer.follower_customer.count %></span>
+						</div>
+					</div>
+					<div class="row">
 						<% if shop_signed_in? %>
 						<% elsif customer_signed_in?%>
 							<% if current_customer != customer %>

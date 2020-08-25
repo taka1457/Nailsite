@@ -40,10 +40,18 @@
 							<%= attachment_image_tag customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 						<% end %>
 						<div class="row">
-							<div class="col-md-8 col-md-offset-2 btn btn-default">
+							<div class="col-md-10 col-md-offset-1 text_center btn btn-default">
 								<%= link_to customer_path(customer) do %>
 									<%= customer.full_name %> さん
 								<% end %>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-5 col-md-offset-1">
+								<span>Follow: <%= customer.following_customer.count %></span>
+							</div>
+							<div class="col-md-6">
+								<span>Follower: <%= customer.follower_customer.count %></span>
 							</div>
 						</div>
 					</div>
