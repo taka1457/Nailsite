@@ -22,7 +22,7 @@ class Shop::PostsController < ApplicationController
   end
 
   def index
-    @posts = current_shop.posts.page(params[:page]).reverse_order.per(5)
+    @posts = current_shop.posts.page(params[:page]).reverse_order.per(9)
   end
 
   def new

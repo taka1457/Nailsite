@@ -32,14 +32,16 @@
 								<% if customer_signed_in? %>
 									<%= link_to shop_post_path(post.shop, post) do %>
 										<% if post.favorited_by?(current_customer) %>
-											<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%></span>
+											<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%>　</span>
 										<% else %>
-											<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
+											<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %>　</span>
 										<% end %>
+										<span class="glyphicon glyphicon-envelope"> <%= post.post_comments.count %></span>
 									<% end %>
 								<% else %>
 									<%= link_to new_customer_session_path do %>
-										<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
+										<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %>　</span>
+										<span class="glyphicon glyphicon-envelope"> <%= post.post_comments.count %></span>
 									<% end %>
 								<% end %>
 							</div>

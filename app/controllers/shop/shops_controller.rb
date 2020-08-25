@@ -43,6 +43,7 @@ class Shop::ShopsController < ApplicationController
     @genres = Genre.all
     @post = current_shop.posts
     @favorites = Favorite.where(post_id: @post)
+    @post_comments = PostComment.where(post_id: @post)
   end
 
   def edit
