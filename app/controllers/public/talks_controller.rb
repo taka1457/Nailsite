@@ -1,12 +1,11 @@
 class Public::TalksController < ApplicationController
-
+	before_action :authenticate_customer!, only: [:index]
 
 	def show
-	  @customer = Customer.find(params[:customer_id])
-
 	  if customer_signed_in?
-	  talk_rooms = current_customer.talk_rooms.pluck(:talk_room_id)
-	  customer_rooms = CustomerRoom.find_by(customer_id: @customer.id, talk_room_id: talk_rooms)
+		  @customer = Customer.find(params[:customer_id])
+		  talk_rooms = current_customer.talk_rooms.pluck(:talk_room_id)
+		  customer_rooms = CustomerRoom.find_by(customer_id: @customer.id, talk_room_id: talk_rooms)
 		  unless customer_rooms.nil?
 		    @talk_room = customer_rooms.talk_room
 		  else
@@ -16,7 +15,9 @@ class Public::TalksController < ApplicationController
 		    CustomerRoom.create(customer_id: @customer.id, talk_room_id: @talk_room.id)
 		  end
 		  @talks = @talk_room.talks
+		  @talk = Talk.new(talk_room_id: @talk_room.id)
 		elsif shop_signed_in?
+			@customer = Customer.find(params[:customer_id])
 			@shop = current_shop
 			talk_rooms = current_shop.talk_rooms.pluck(:talk_room_id)
 			shop_rooms = ShopRoom.find_by(shop_id: @shop.id, talk_room_id: talk_rooms)
@@ -29,18 +30,24 @@ class Public::TalksController < ApplicationController
 		    ShopRoom.create(shop_id: @shop.id, talk_room_id: @talk_room.id)
 		  end
 		  @talks = Talk.where(shop_id: current_shop.id).where(customer_id: @customer.id)
+		  @talk = Talk.new(talk_room_id: @talk_room.id)
+		else
+			redirect_to new_customer_session_path
 		end
-	  @talk = Talk.new(talk_room_id: @talk_room.id)
 	end
 
 	def create
 		if customer_signed_in?
 			@talk = current_customer.talks.new(talk_params)
+			@talk.save!
+	  	redirect_to request.referer
 		elsif shop_signed_in?
 			@talk = current_shop.talks.new(talk_params)
+			@talk.save!
+	  	redirect_to request.referer
+	  else
+	  	redirect_to new_customer_session_path
 		end
-	  @talk.save!
-	  redirect_to request.referer
 	end
 
 	def index
