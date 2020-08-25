@@ -59,9 +59,9 @@
 					<tr>
 						<td><%= reservation_history.menu.shop.name %></td>
 						<td><%= reservation_history.menu.name %></td>
-						<td style="white-space: pre-wrap;">
+						<td>
 							<% reservation_history.history_comment.each do |history_comment| %>
-								<%= history_comment.body %>
+								<span style="white-space: pre-wrap;"><%= history_comment.body %></span>
 							<% end %>
 						</td>
 					</tr>

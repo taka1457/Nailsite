@@ -13,7 +13,7 @@
 		        <%= attachment_image_tag @post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %>
 		      </td>
 					<td>
-						<%= @post.body %><br><br><br>
+						<span style="white-space: pre-wrap;"><%= @post.body %></span><br><br><br>
 						<%= @post.created_at.to_s(:datetime_jp) %><br><br>
 						<% if customer_signed_in? %>
 							<div id="show_like">
