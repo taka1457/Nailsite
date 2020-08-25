@@ -1,5 +1,6 @@
 class Public::TalksController < ApplicationController
 
+
 	def show
 	  @customer = Customer.find(params[:customer_id])
 
@@ -15,7 +16,7 @@ class Public::TalksController < ApplicationController
 		    CustomerRoom.create(customer_id: @customer.id, talk_room_id: @talk_room.id)
 		  end
 		  @talks = @talk_room.talks
-		else shop_signed_in?
+		elsif shop_signed_in?
 			@shop = current_shop
 			talk_rooms = current_shop.talk_rooms.pluck(:talk_room_id)
 			shop_rooms = ShopRoom.find_by(shop_id: @shop.id, talk_room_id: talk_rooms)

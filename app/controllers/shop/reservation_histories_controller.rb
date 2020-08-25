@@ -1,4 +1,5 @@
 class Shop::ReservationHistoriesController < ApplicationController
+	before_action :authenticate_shop!
 
 	def index
 		@reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")

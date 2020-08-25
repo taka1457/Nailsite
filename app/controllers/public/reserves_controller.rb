@@ -1,4 +1,5 @@
 class Public::ReservesController < ApplicationController
+  before_action :authenticate_customer!
 
 	def new
 		@reserve = Reserve.new

@@ -1,4 +1,5 @@
 class Public::HistoryCommentsController < ApplicationController
+  before_action :authenticate_customer!
 
 	def create
     @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
