@@ -21,7 +21,7 @@
 										<%= talk.shop.name %>
 									<% end %>
 								</td>
-								<td><%= talk.body %></td>
+								<td style="white-space: pre-wrap;"><%= talk.body %></td>
 								<td><%= talk.created_at.to_s(:datetime_jp) %></td>
 							</tr>
 						<% end %>
@@ -34,7 +34,7 @@
 										<%= talk.customer.full_name %> さん
 									<% end %>
 								</td>
-								<td><%= talk.body %></td>
+								<td style="white-space: pre-wrap;"><%= talk.body %></td>
 								<td><%= talk.created_at.to_s(:datetime_jp) %></td>
 							</tr>
 						<% end %>

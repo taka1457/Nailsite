@@ -233,7 +233,7 @@
           <tr>
             <td>　　　店内写真</td>
             <td class="image_field">
-              <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_image" %>
+              <%= attachment_image_tag @shop, :shop_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "default_image" %>
               <%= f.attachment_field :shop_image %>
               <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
             </td>

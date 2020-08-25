@@ -1,6 +1,6 @@
 class Shop::ShopsController < ApplicationController
   before_action :authenticate_shop!, only: [:mypage, :edit, :update, :unsubscribe, :withdraw]
-	before_action :set_current_shop, only: [:mypage, :edit, :update, :unsubscribe, :withdraw]
+  before_action :set_current_shop, only: [:mypage, :edit, :update, :unsubscribe, :withdraw]
 
   def index
     @genres = Genre.where(is_void_flag: true)
@@ -39,9 +39,7 @@ class Shop::ShopsController < ApplicationController
     @reservation_menu = ReservationMenu.new
   end
 
-
-
-	def mypage
+  def mypage
     @genres = Genre.all
     @post = current_shop.posts
     @favorites = Favorite.where(post_id: @post)
@@ -75,21 +73,21 @@ class Shop::ShopsController < ApplicationController
 
   def shop_params
     params.require(:shop).permit(:name,
-    														 :phone_number,
-    														 :postal_code,
-    														 :prefecture_code,
-    														 :city, :street,
-    														 :other_address,
-    														 :traffic_method,
-    														 :business_hours,
-    														 :budget,
-    														 :payment_method,
-    														 :seat,
-    														 :staff,
-    														 :parking,
-    														 :promotion,
-    														 :introduction,
-    														 :shop_image,
-    														 :genre_id)
+                                 :phone_number,
+                                 :postal_code,
+                                 :prefecture_code,
+                                 :city, :street,
+                                 :other_address,
+                                 :traffic_method,
+                                 :business_hours,
+                                 :budget,
+                                 :payment_method,
+                                 :seat,
+                                 :staff,
+                                 :parking,
+                                 :promotion,
+                                 :introduction,
+                                 :shop_image,
+                                 :genre_id)
   end
 end

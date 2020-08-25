@@ -12,7 +12,7 @@
   <% end %>
     <div class="col-md-3 col-md-offset-3">
       <div class="image_field">
-        <%= attachment_image_tag @genre, :genre_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_image" %>
+        <%= attachment_image_tag @genre, :genre_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "default_image" %>
         <%= f.attachment_field :genre_image %>
         <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
       </div>
@@ -62,7 +62,7 @@
       <tbody>
         <% @genres.each do |genre| %>
           <tr>
-            <td><%= attachment_image_tag genre, :genre_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "preview_genre_image" %></td>
+            <td><%= attachment_image_tag genre, :genre_image, format: "jpeg", id: "img_prev", fallback: "no-image.png", class: "admin_genre_index_image" %></td>
             <td><%= genre.name %></td>
             <td>
               <% if (genre.is_void_flag == true) %>

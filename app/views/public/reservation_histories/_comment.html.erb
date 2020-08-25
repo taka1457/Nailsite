@@ -16,13 +16,13 @@
 			<% elsif (history.status == 'done')%>
 				<% if history.history_comment.present? %>
 					<% history.history_comment.each do |comment| %>
-						<td>
+						<td style="white-space: pre-wrap;">
 							<%= comment.body %>
-							<%= link_to '削除', customer_reservation_history_history_comment_path(current_customer.id, history.id, comment.id), class: 'btn-sm btn-danger', method: :delete, remote: true %>
+							<%= link_to '削除', customer_reservation_history_history_comment_path(current_customer.id, history.id, comment.id), class: 'btn-sm btn-danger', method: :delete %>
 						</td>
 					<% end %>
 				<% else %>
-					<%= form_with model:[history_comment], url: customer_reservation_history_history_comments_path(current_customer.id, history.id), remote: true do |f| %>
+					<%= form_with model:[history_comment], url: customer_reservation_history_history_comments_path(current_customer.id, history.id) do |f| %>
 						<td>
 							<%= f.text_area :body, placeholder: "施術の感想をお書きください" %>
 							<%= f.submit '投稿', class: "btn-sm btn-primary" %>

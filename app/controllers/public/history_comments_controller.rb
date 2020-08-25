@@ -1,14 +1,15 @@
 class Public::HistoryCommentsController < ApplicationController
+  before_action :authenticate_customer!
 
-	def create
+  def create
     @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
     @reservation_history = ReservationHistory.find(params[:reservation_history_id])
     @history_comment = @reservation_history.history_comment.new(history_comment_params)
     @history_comment.customer_id = current_customer.id
     if @history_comment.save
+      redirect_to request.referer
     else
-      @reservation_history_new = Post.new
-      @history_comments = @reservation_history.history_comments
+      redirect_to request.referer
     end
   end
 
@@ -16,8 +17,10 @@ class Public::HistoryCommentsController < ApplicationController
     @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
     @reservation_history = ReservationHistory.find(params[:reservation_history_id])
     @history_comment = HistoryComment.find(params[:id])
-    if @history_comment.customer == current_customer
-      @history_comment.destroy
+    if @history_comment.destroy
+      redirect_to request.referer
+    else
+      redirect_to request.referer
     end
   end
 

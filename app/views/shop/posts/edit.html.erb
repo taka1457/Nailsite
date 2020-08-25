@@ -9,7 +9,7 @@
 	<% if @post.errors.any? %>
   <% end %>
 		<div class="col-md-3 col-md-offset-3">
-			<%= attachment_image_tag @post, :post_image, format: "jpeg", id: "img_prev", class: "preview_image", fallback: "no-image.png", class: "preview_image" %>
+			<%= attachment_image_tag @post, :post_image, format: "jpeg", id: "img_prev", class: "preview_image", fallback: "no-image.png", class: "post_default_image" %>
 			<%= f.attachment_field :post_image %><p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
     </div>
 		<div class="col-md-6">
@@ -20,7 +20,7 @@
               <p id="counter">(<%= @post.body.length %>文字/140文字中)
             </td>
 						<td class="row-5" style="width:300px;">
-							<%= f.text_area :body, autofocus: true, id: "input-text" %>
+							<%= f.text_area :body, autofocus: true, id: "input-text" style:"white-space: pre-wrap;" %>
 							<% if @post.errors.include?(:body) %>
 	              <p style="color: red;"><%= @post.errors.full_messages_for(:body).first %>
 	            <% end %>

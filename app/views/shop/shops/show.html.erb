@@ -65,10 +65,21 @@
 		<h3>最近の投稿　　<span class="sub_title"><%= link_to 'もっと見る>', shop_posts_list_path(@shop) %></span></h4>
 		<% @posts.each do |post| %>
 			<div class="col-md-4">
-				<%= link_to shop_post_path(@shop, post) do %>
-					<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "shop_show_post_image" %><br>
-				<% end %>
-				<%= post.body %>
+				<div class="posts">
+					<%= link_to shop_post_path(@shop, post) do %>
+						<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %><br>
+						<div class="mask">
+							<div class="caption">
+								<% if post.favorited_by?(current_customer) %>
+									<span class="glyphicon glyphicon-heart"> <%= post.favorites.count%></span>
+								<% else %>
+									<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %></span>
+								<% end %>
+							</div>
+						</div>
+					<% end %>
+				</div>
+				<span style="white-space: pre-wrap;"><%= post.body %></span>
 			</div>
 		<% end %>
 	</div>
@@ -94,11 +105,11 @@
 				</tr>
 				<tr>
 					<td class="table_item_color">交通手段</td>
-					<td><%= @shop.traffic_method %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.traffic_method %></td>
 				</tr>
 				<tr>
 					<td class="table_item_color">営業時間</td>
-					<td><%= @shop.business_hours %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.business_hours %></td>
 				</tr>
 				<tr>
 					<td class="table_item_color">予算</td>
@@ -106,7 +117,7 @@
 				</tr>
 				<tr>
 					<td class="table_item_color">お支払い方法</td>
-					<td><%= @shop.payment_method %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.payment_method %></td>
 				</tr>
 				<tr>
 					<td class="table_item_color">席数</td>
@@ -118,7 +129,7 @@
 				</tr>
 				<tr>
 					<td class="table_item_color">駐車場</td>
-					<td><%= @shop.parking %></td>
+					<td style="white-space: pre-wrap;"><%= @shop.parking %></td>
 				</tr>
 			</tbody>
 		</table>

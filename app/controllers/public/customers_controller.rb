@@ -10,7 +10,6 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @reservation_history = ReservationHistory.all.reverse_order
     @history_comments = HistoryComment.all
-
   end
 
   def mypage
@@ -50,12 +49,12 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:last_name,
-    																 :first_name,
-    																 :first_name_kana,
-    																 :last_name_kana,
-    																 :email,
-    																 :phone_number,
-    																 :introduction,
-    																 :profile_image)
+                                     :first_name,
+                                     :first_name_kana,
+                                     :last_name_kana,
+                                     :email,
+                                     :phone_number,
+                                     :introduction,
+                                     :profile_image)
   end
 end
