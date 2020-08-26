@@ -48,8 +48,9 @@ class DeviseCreateShops < ActiveRecord::Migration[5.2]
       t.text :promotion
       t.text :introduction
       t.string :shop_image_id
-      t.integer :genre, null: false, default: 0
+      t.string :genre, null: false
       t.boolean :is_active, null: false, default: true
+      t.references :genre, foreign_key: true, null: false
 
       t.timestamps null: false
     end

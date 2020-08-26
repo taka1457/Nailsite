@@ -4,6 +4,7 @@ class CreateReservationHistories < ActiveRecord::Migration[5.2]
       t.references :reserve, foreign_key: true, null: false
       t.references :menu, foreign_key: true, null: false
       t.integer :reservation_price, null: false
+      t.integer :status, null: false, default: 0
 
       t.timestamps
     end

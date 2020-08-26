@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_123019) do
+ActiveRecord::Schema.define(version: 2020_08_23_092939) do
 
   create_table "admin", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2020_08_25_123019) do
   end
 
   create_table "bookmarks", force: :cascade do |t|
-    t.integer "customer_id"
-    t.integer "shop_id"
+    t.integer "customer_id", null: false
+    t.integer "shop_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_bookmarks_on_customer_id"
@@ -130,9 +130,9 @@ ActiveRecord::Schema.define(version: 2020_08_25_123019) do
     t.integer "reserve_id", null: false
     t.integer "menu_id", null: false
     t.integer "reservation_price", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0, null: false
     t.index ["menu_id"], name: "index_reservation_histories_on_menu_id"
     t.index ["reserve_id"], name: "index_reservation_histories_on_reserve_id"
   end
@@ -149,18 +149,18 @@ ActiveRecord::Schema.define(version: 2020_08_25_123019) do
 
   create_table "reserves", force: :cascade do |t|
     t.integer "customer_id", null: false
+    t.datetime "reservation", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "reservation"
     t.index ["customer_id"], name: "index_reserves_on_customer_id"
   end
 
   create_table "shop_rooms", force: :cascade do |t|
     t.integer "shop_id", null: false
     t.integer "talk_room_id", null: false
+    t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "customer_id"
     t.index ["customer_id"], name: "index_shop_rooms_on_customer_id"
     t.index ["shop_id"], name: "index_shop_rooms_on_shop_id"
     t.index ["talk_room_id"], name: "index_shop_rooms_on_talk_room_id"
@@ -189,10 +189,11 @@ ActiveRecord::Schema.define(version: 2020_08_25_123019) do
     t.text "promotion"
     t.text "introduction"
     t.string "shop_image_id"
+    t.string "genre", null: false
     t.boolean "is_active", default: true, null: false
+    t.integer "genre_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "genre_id"
     t.index ["email"], name: "index_shops_on_email", unique: true
     t.index ["genre_id"], name: "index_shops_on_genre_id"
     t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
@@ -208,10 +209,10 @@ ActiveRecord::Schema.define(version: 2020_08_25_123019) do
     t.integer "shop_id"
     t.integer "talk_room_id", null: false
     t.string "body", null: false
+    t.integer "contributor", null: false
+    t.integer "to_customer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "contributor", default: 0, null: false
-    t.integer "to_customer"
     t.index ["customer_id"], name: "index_talks_on_customer_id"
     t.index ["shop_id"], name: "index_talks_on_shop_id"
     t.index ["talk_room_id"], name: "index_talks_on_talk_room_id"
