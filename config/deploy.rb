@@ -2,7 +2,7 @@
 lock "~> 3.14.1"
 
 set :application, "Nailsite"
-set :repo_url, "git@github.com:taka1457/Portfolio.git"
+set :repo_url, "git@github.com:taka1457/Nailsite.git"
 set :deploy_to, "/home/ec2-user/Nailsite"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
