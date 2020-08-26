@@ -21,7 +21,11 @@
 				</tr>
 				<% @records.each do |record| %>
 					<tr>
-						<td><%= record.genre %></td>
+						<td>
+							<%= link_to shops_search_path(genre_id: record.genre.id) do %>
+								<%= record.genre.name %>
+							<% end %>
+						</td>
 					</tr>
 				<% end %>
 			</tbody>

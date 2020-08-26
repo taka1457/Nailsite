@@ -189,7 +189,6 @@ ActiveRecord::Schema.define(version: 2020_08_23_090857) do
     t.text "promotion"
     t.text "introduction"
     t.string "shop_image_id"
-    t.string "genre", null: false
     t.boolean "is_active", default: true, null: false
     t.integer "genre_id", null: false
     t.datetime "created_at", null: false
@@ -209,7 +208,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_090857) do
     t.integer "shop_id"
     t.integer "talk_room_id", null: false
     t.string "body", null: false
-    t.integer "contributor", null: false
+    t.integer "contributor", default: 0, null: false
     t.integer "to_customer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
