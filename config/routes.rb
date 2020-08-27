@@ -38,15 +38,16 @@ Rails.application.routes.draw do
     get 'map_search', to: 'searchs#map_search', as: 'map_search'
     get 'customers/follows' => 'relationships#follow', as: 'follow'
     get 'customers/bookmarks' => 'bookmarks#index', as: 'bookmarks'
+    get 'customers/reserve' => 'reserves#new', as: 'reserve'
 
     resources :customers, only: [:index, :show] do
+      resource :relationships, only: [:create, :destroy]
       resources :reservation_menus, only: [:create]
-      resources :reserves, only: [:new, :index, :show]
       resources :reservation_histories, only: [:index] do
         resources :history_comments, only: [:create, :destroy]
       end
-      resource :relationships, only: [:create, :destroy]
     end
+
     resources :reservation_menus, only: [:index]
     resources :talks, only: [:create]
   end

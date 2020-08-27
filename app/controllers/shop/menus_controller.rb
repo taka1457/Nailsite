@@ -1,5 +1,6 @@
 class Shop::MenusController < ApplicationController
   before_action :authenticate_shop!
+  before_action :ensure_menu, only: [:edit, :update, :destroy]
 
   def index
     @menus = current_shop.menus.page(params[:page]).per(5)
@@ -19,18 +20,10 @@ class Shop::MenusController < ApplicationController
     end
   end
 
-  def destroy
-    @menu = Menu.find(params[:id])
-    @menu.destroy
-    redirect_to request.referer
-  end
-
   def edit
-    @menu = Menu.find(params[:id])
   end
 
   def update
-    @menu = Menu.find(params[:id])
     if @menu.update(menu_params)
       redirect_to shop_menus_path
     else
@@ -38,7 +31,20 @@ class Shop::MenusController < ApplicationController
     end
   end
 
+  def destroy
+    @menu.destroy
+    redirect_to request.referer
+  end
+
   private
+
+  def ensure_menu
+      @menus = current_shop.menus
+      @menu = @menus.find_by(id: params[:id])
+    unless @menu
+      redirect_to shop_menus_path(current_shop)
+    end
+  end
 
   def menu_params
     params.require(:menu).permit(:name,

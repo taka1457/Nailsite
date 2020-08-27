@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-6 col-md-offset-2">
+	<div class="col-md-6 col-md-offset-3">
 		<h2>予約情報</h2>
 		<table class="table table-bordered">
 			<thead>
@@ -22,14 +22,8 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-6 col-md-offset-2">
+	<div class="col-md-6 col-md-offset-3">
 		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
 			<tbody>
 				<tr>
 					<td>ご予約日時</td>
@@ -47,7 +41,7 @@
 				<%= f.submit 'ご予約を確定する', class: 'btn btn-success' %>
 			<% end %>
 		<% else %>
-			<%= link_to '店舗一覧に戻る', shops_path, class: "btn btn-success cart-order-index-btn" %>
+			<%= link_to '店舗一覧に戻る', shops_path, class: "btn btn-success btn-lg" %>
 		<% end %>
 	</div>
 </div>

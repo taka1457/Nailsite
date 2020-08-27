@@ -2,13 +2,20 @@ class Shop::ReservationHistoriesController < ApplicationController
   before_action :authenticate_shop!
 
   def index
-    @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
+    @menus = Menu.where(shop_id: current_shop)
+    @reservation_histories = ReservationHistory.where(menu_id: @menus).includes(:reserve).order("reserves.reservation DESC")
   end
 
   def update
-    @reservation_history = ReservationHistory.find(params[:id])
-    @reservation_history.update(reservation_history_params)
-    redirect_to request.referer
+    @menus = Menu.where(shop_id: current_shop)
+    @reservation_histories = ReservationHistory.where(menu_id: @menus)
+    @reservation_history = @reservation_histories.find_by(id: params[:id])
+    if @reservation_history.present?
+      @reservation_history.update(reservation_history_params)
+      redirect_to request.referer
+    else
+      redirect_to shops_histories_path
+    end
   end
 
   private

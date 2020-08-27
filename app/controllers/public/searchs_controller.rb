@@ -1,4 +1,5 @@
 class Public::SearchsController < ApplicationController
+
   def search
     @content = params["search"]["content"]
     @records = search_for(@content).page(params[:page]).per(20)

@@ -1,5 +1,6 @@
 class Shop::PostsController < ApplicationController
-  before_action :authenticate_shop!, except: [:all_index, :show, :list, :rank]
+  before_action :authenticate_shop!, except: [:all_index, :rank, :show, :list]
+  before_action :ensure_post, only: [:edit, :update, :destroy]
 
   def all_index
     @posts = Post.page(params[:page]).reverse_order.per(9)
@@ -21,6 +22,8 @@ class Shop::PostsController < ApplicationController
     @posts = @shop.posts.page(params[:page]).reverse_order.per(9)
   end
 
+
+
   def index
     @posts = current_shop.posts.page(params[:page]).reverse_order.per(9)
   end
@@ -40,17 +43,14 @@ class Shop::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     redirect_to request.referer
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to shop_posts_path
     else
@@ -59,6 +59,14 @@ class Shop::PostsController < ApplicationController
   end
 
   private
+
+  def ensure_post
+      @posts = current_shop.posts
+      @post = @posts.find_by(id: params[:id])
+    unless @post
+      redirect_to shop_posts_path(current_shop)
+    end
+  end
 
   def post_params
     params.require(:post).permit(:body, :post_image)

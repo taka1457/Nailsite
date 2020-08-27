@@ -1,6 +1,7 @@
 class Shop::TalksController < ApplicationController
   before_action :authenticate_shop!, only: [:index]
   before_action :authenticate_customer!, only: [:show, :create]
+
   def index
     @talks = Talk.where(shop_id: current_shop.id).page(params[:page]).reverse_order.per(50)
     @sends = Talk.where(shop_id: current_shop.id, contributor: 'shop').page(params[:page]).reverse_order.per(50)
@@ -14,6 +15,9 @@ class Shop::TalksController < ApplicationController
     @talk_room = shop_rooms.talk_room
     @talks = Talk.where(shop_id: @shop.id).where(customer_id: current_customer).reverse_order
     @talk = Talk.new(talk_room_id: @talk_room.id)
+    if @talk.customer_id != current_customer
+      redirect_to shops_path
+    end
   end
 
   def create
