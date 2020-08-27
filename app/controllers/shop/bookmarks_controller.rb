@@ -4,6 +4,7 @@ class Shop::BookmarksController < ApplicationController
   def create
     @shop = Shop.find(params[:shop_id])
     @shops = Shop.page(params[:page]).per(20)
+    @genres = Genre.page(params[:page]).per(20)
     bookmark = @shop.bookmarks.new(customer_id: current_customer.id)
     bookmark.save
   end
@@ -11,6 +12,7 @@ class Shop::BookmarksController < ApplicationController
   def destroy
     @shop = Shop.find(params[:shop_id])
     @shops = Shop.page(params[:page]).per(20)
+    @genres = Genre.page(params[:page]).per(20)
     bookmark = @shop.bookmarks.find_by(customer_id: current_customer.id)
     bookmark.destroy
   end

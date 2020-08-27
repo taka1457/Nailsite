@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-2">
 		<h2>
-			おすすめ順
+			サロン一覧
 			<span class="sub_title"> (全<%= @shops.total_count %>件)　　　<%= paginate @shops %></span>
 			<%= link_to 'マップ表示', shops_map_path, class: "btn btn-default nav-btn" %>
 		</h2>
@@ -13,30 +13,6 @@
     <% end %>
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-2">
-		<table class="table table-bordered">
-			<tbody>
-				<tr>
-					<td class="table_item_color">ジャンル検索</td>
-				</tr>
-				<% @genres.each do |genre| %>
-					<tr>
-						<td>
-							<%= link_to shops_search_path(genre_id: genre.id) do %>
-								<%= genre.name %>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-	<div class="col-md-10">
-		<table class="table">
-			<tbody id="bookmark">
-				<%= render partial: 'shop/bookmarks/index_form', locals: { shops: @shops } %>
-			</tbody>
-		</table>
-	</div>
+<div class="row" id="bookmark">
+	<%= render partial: 'shop/shops/index_form', locals: { genres: @genres, shops: @shops } %>
 </div>

@@ -5,6 +5,12 @@ class Public::SearchsController < ApplicationController
     @genres = Genre.where(is_void_flag: true)
   end
 
+  def map_search
+    @content = params["search"]["content"]
+    @records = search_for(@content).page(params[:page]).per(20)
+    @genres = Genre.where(is_void_flag: true)
+  end
+
   private
 
   def search_for(content)

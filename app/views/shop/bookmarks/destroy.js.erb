@@ -1,2 +1,2 @@
-$("#bookmark").html("<%= j(render partial: 'shop/bookmarks/index_form', locals: { shops: @shops }) %>");
+$("#bookmark").html("<%= j(render partial: 'shop/shops/index_form', locals: { genres: @genres, shops: @shops }) %>");
 $("#show_bookmark").html("<%= j(render partial: 'shop/bookmarks/form', locals: { shop: @shop }) %>");

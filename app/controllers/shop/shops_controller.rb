@@ -20,8 +20,8 @@ class Shop::ShopsController < ApplicationController
   end
 
   def map_search
-    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(5)
-    gon.shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(5)
+    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(20)
+    gon.shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(20)
     @genres = Genre.where(is_void_flag: true)
     @genre = Genre.find(params[:genre_id])
   end

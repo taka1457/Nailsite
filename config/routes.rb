@@ -34,7 +34,8 @@ Rails.application.routes.draw do
     get 'reserves/done', to: 'reserves#done', as: 'reserves_done'
     get 'customers/:customer_id/talk_rooms/:id' => 'talks#show', as: 'customers_talk'
     get 'customers/talks' => 'talks#index', as: 'customers_talks'
-    get '/search', to: 'searchs#search'
+    get 'search', to: 'searchs#search', as: 'search'
+    get 'map_search', to: 'searchs#map_search', as: 'map_search'
     get 'customers/follows' => 'relationships#follow', as: 'follow'
     get 'customers/bookmarks' => 'bookmarks#index', as: 'bookmarks'
 

@@ -1,0 +1,59 @@
+<div class="col-md-2">
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td class="table_item_color">ジャンル検索</td>
+			</tr>
+			<% @genres.each do |genre| %>
+				<tr>
+					<td>
+						<%= link_to shops_search_path(genre_id: genre.id) do %>
+							<%= genre.name %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div class="col-md-10">
+	<table class="table">
+		<tbody>
+			<% shops.each do |shop| %>
+				<tr>
+					<td>
+						<div class="col-md-2">
+						<%= link_to shop_path(shop) do %>
+			      	<%= attachment_image_tag shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "default_image" %>
+			      <% end %>
+			    </div>
+			    </td>
+					<td>
+							<h3 class="col-md-8 text-left">
+								<%= link_to shop_path(shop) do %>
+									<%= shop.name %>
+								<% end %>
+							</h3>
+							<h3 class="col-md-2">
+								<% if customer_signed_in? %>
+									<span>
+										<%= render 'shop/bookmarks/form', shop: shop %>
+									</span>
+								<% elsif shop_signed_in? %>
+									<span>　</span>
+								<% else %>
+									<%= link_to new_customer_session_path do %>
+										<span class="glyphicon glyphicon-star-empty"></span>
+									<% end %>
+								<% end %>
+							</h3>
+							<div class="col-md-9">
+								<h4><%= shop.promotion %></h4><br>
+								<span><%= shop.full_address %></span>
+							</div>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

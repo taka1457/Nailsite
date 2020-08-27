@@ -12,30 +12,6 @@
     <% end %>
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-2">
-		<table class="table table-bordered">
-			<tbody>
-				<tr>
-					<td class="table_item_color">ジャンル検索</td>
-				</tr>
-				<% @records.each do |record| %>
-					<tr>
-						<td>
-							<%= link_to shops_search_path(genre_id: record.genre.id) do %>
-								<%= record.genre.name %>
-							<% end %>
-						</td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-	<div class="col-md-10">
-		<table class="table">
-			<tbody id="bookmark">
-				<%= render partial: 'shop/bookmarks/index_form', locals: { shops: @records } %>
-			</tbody>
-		</table>
-	</div>
+<div class="row" id="bookmark">
+	<%= render partial: 'shop/shops/index_form', locals: { genres: @genres, shops: @records } %>
 </div>
