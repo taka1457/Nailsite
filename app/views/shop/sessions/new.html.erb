@@ -28,7 +28,7 @@
   </div>
   <div class="row">
     <div class="col-md-offset-6">
-      <a href="/members/password/new">=>パスワードを忘れた方はこちら</a>
+      <%= link_to "=>パスワードを忘れた方はこちら", new_password_path(resource_name) %>
     </div>
     <div class="col-md-4 col-md-offset-5 devise_btn">
       <%= f.submit "ログイン", class: "btn btn-primary btn-lg"%>
