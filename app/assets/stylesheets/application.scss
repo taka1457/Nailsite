@@ -18,6 +18,8 @@
 @import "bootstrap";
 
 
+
+
 /* --application-- */
 
 .logo{
@@ -277,36 +279,32 @@ textarea {
 
 /* --homes_about-- */
 
-#skippr{
-  height: 300px;
-  width: 100%;
-}
 .bg-1{
   background-image: image-url("bg-1.jpg");
   background-size: cover;
   background-position: center;
-  height: 300px;
+  height: 400px;
   width: 100%;
 }
 .bg-2{
   background-image: image-url("bg-2.jpg");
   background-size: cover;
   background-position: center;
-  height: 300px;
+  height: 400px;
   width: 100%;
 }
 .bg-3{
   background-image: image-url("bg-3.jpg");
   background-size: cover;
   background-position: center;
-  height: 300px;
+  height: 400px;
   width: 100%;
 }
 .bg-4{
   background-image: image-url("bg-4.jpg");
   background-size: cover;
   background-position: center;
-  height: 300px;
+  height: 400px;
   width: 100%;
 }
 .about_box{
@@ -325,14 +323,14 @@ textarea {
   background-image: image-url("demo1.png");
   background-size: cover;
   background-position: center;
-  height: 230px;
+  height: 350px;
   width: 100%;
 }
 .demo2{
   background-image: image-url("demo2.png");
   background-size: cover;
   background-position: center;
-  height: 280px;
+  height: 400px;
   width: 100%;
 }
 .demo3{

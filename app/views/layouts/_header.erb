@@ -1,0 +1,21 @@
+<header class="main-header navbar-fixed-top">
+  <div class="container navbar-fixed-top nav-head">
+    <div class="row">
+      <div class="main-header">
+        <div class="nav navbar-nav navbar-left">
+          <%= link_to 'Nailsite', root_path, class: "logo" %>
+        </div>
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
+            <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
+            <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
+            <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
+            <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default nav-btn" %></li>
+            <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default nav-btn" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

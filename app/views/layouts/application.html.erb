@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body classs="scroll-table">
+  <body>
     <% if shop_signed_in? %>
       <header class="shop-header navbar-fixed-top">
         <div class="container navbar-fixed-top nav-head">
@@ -94,32 +94,17 @@
       <div class="container top_body">
         <main data-turbolinks="false"><%= yield %></main>
       </div>
-    <% else %>
-      <header class="main-header navbar-fixed-top">
-        <div class="container navbar-fixed-top nav-head">
-          <div class="row">
-            <div class="main-header">
-              <div class="nav navbar-nav navbar-left">
-                <%= link_to 'Nailsite', root_path, class: "logo" %>
-              </div>
-              <div>
-                <ul class="nav navbar-nav navbar-right">
-                  <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default nav-btn" %></li>
-                  <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default nav-btn" %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <div class="container main_body">
+    <% elsif current_page?(about_path)%>
+      <%= render 'layouts/header' %>
+      <div class="main_body">
         <main data-turbolinks="false"><%= yield %></main>
       </div>
-    <% end %>
+    <% else %>
+      <%= render 'layouts/header' %>
+        <div class="container main_body">
+          <main data-turbolinks="false"><%= yield %></main>
+        </div>
+      <% end %>
     <div class="container">
       <footer>Copyright © Nailsite. All Rights Reserved.</footer>
     </div>
