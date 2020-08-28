@@ -7,9 +7,9 @@ class Public::HistoryCommentsController < ApplicationController
     @history_comment = @reservation_history.history_comment.new(history_comment_params)
     @history_comment.customer_id = current_customer.id
     if @history_comment.save
-      redirect_to request.referer
+      redirect_back(fallback_location: customer_reservation_histories_path(current_customer.id))
     else
-      redirect_to request.referer
+      redirect_back(fallback_location: customer_reservation_histories_path(current_customer.id))
     end
   end
 

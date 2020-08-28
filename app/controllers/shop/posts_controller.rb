@@ -22,8 +22,6 @@ class Shop::PostsController < ApplicationController
     @posts = @shop.posts.page(params[:page]).reverse_order.per(9)
   end
 
-
-
   def index
     @posts = current_shop.posts.page(params[:page]).reverse_order.per(9)
   end
@@ -61,8 +59,8 @@ class Shop::PostsController < ApplicationController
   private
 
   def ensure_post
-      @posts = current_shop.posts
-      @post = @posts.find_by(id: params[:id])
+    @posts = current_shop.posts
+    @post = @posts.find_by(id: params[:id])
     unless @post
       redirect_to shop_posts_path(current_shop)
     end

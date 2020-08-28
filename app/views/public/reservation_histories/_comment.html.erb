@@ -22,7 +22,7 @@
 				<% end %>
 			<% else %>
 				<%= form_with model:[history_comment], url: customer_reservation_history_history_comments_path(current_customer.id, history.id) do |f| %>
-					<td>
+					<td data-turbolinks="false">
 						<%= f.text_area :body, placeholder: "施術の感想をお書きください" %>
 						<%= f.submit '投稿', class: "btn-sm btn-primary" %>
 					</td>

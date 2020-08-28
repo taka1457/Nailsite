@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<h2>
+			<%= link_to shop_path(@shop) do %>
+				<%= @shop.name %>
+			<% end %>
+			<span> のレビュー</span>
+		</h2>
+		<% if @history_comments.present? %>
+			<table class="table table-condensed" style="table-layout:fixed;">
+				<thead>
+					<tr>
+						<th>投稿者</th>
+						<th>予約メニュー</th>
+						<th>レビュー</th>
+						<th>レビュー日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @history_comments.each do |comment| %>
+						<tr>
+							<td>
+								<%= link_to customer_path(comment.reservation_history.reserve.customer) do %>
+									<%= attachment_image_tag comment.reservation_history.reserve.customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
+									<span><%= comment.reservation_history.reserve.customer.full_name %>さん</span>
+								<% end %>
+							</td>
+							<td><%= comment.reservation_history.menu.name %></td>
+							<td><span style="white-space: pre-wrap;"><%= comment.body %></span></td>
+							<td><%= comment.created_at.strftime("%Y年%m月%d日").to_s %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<h3>まだレビューはありません</h3>
+		<% end %>
+	</div>
+</div>
