@@ -3,7 +3,7 @@ class Shop::ReservationHistoriesController < ApplicationController
 
   def review
     @shop = Shop.find(params[:id])
-    @menus = @shop.menus.page(params[:page]).per(20)
+    @menus = @shop.menus.page(params[:page])
     @reservation_histories = ReservationHistory.where(menu_id: @menus)
     @history_comments = HistoryComment.where(reservation_history_id: @reservation_histories).reverse_order
   end
