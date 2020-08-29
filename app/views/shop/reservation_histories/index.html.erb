@@ -9,6 +9,7 @@
 					<th>メニュー名</th>
 					<th>メニュー金額</th>
 					<th>ご来店状況</th>
+					<th>レビュー</th>
 				</tr>
 			</thead>
 			<tbody data-turbolinks="false" id="history_comment">
@@ -31,6 +32,11 @@
 							<% else %>
 								<td><%=history.status_i18n %></td>
 							<% end %>
+							<td>
+								<% history.history_comment.each do |comment| %>
+									<span style="white-space: pre-wrap;"><%= comment.body %></span>
+								<% end %>
+							</td>
 						</tr>
 					<% end %>
 				<% end %>

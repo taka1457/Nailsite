@@ -1,9 +1,16 @@
 class Shop::ReservationHistoriesController < ApplicationController
-  before_action :authenticate_shop!
+  before_action :authenticate_shop!, except: [:review]
+
+  def review
+    @shop = Shop.find(params[:id])
+    @menus = @shop.menus.page(params[:page]).per(20)
+    @reservation_histories = ReservationHistory.where(menu_id: @menus)
+    @history_comments = HistoryComment.where(reservation_history_id: @reservation_histories).reverse_order
+  end
 
   def index
     @menus = Menu.where(shop_id: current_shop)
-    @reservation_histories = ReservationHistory.where(menu_id: @menus).includes(:reserve).order("reserves.reservation DESC")
+    @reservation_histories = ReservationHistory.where(menu_id: @menus).where(menu_id: @menus).includes(:reserve).order("reserves.reservation DESC")
   end
 
   def update

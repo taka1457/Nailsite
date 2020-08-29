@@ -39,7 +39,6 @@ class Shop::ShopsController < ApplicationController
     @reservation_menu = ReservationMenu.new
   end
 
-
   def mypage
     @genres = Genre.all
     @post = current_shop.posts

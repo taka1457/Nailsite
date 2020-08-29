@@ -2,6 +2,7 @@
 	<div class="col-md-10 col-md-offset-1">
 		<h2 class="col-md-11">
 			<%= @shop.name %>
+			<%= link_to 'レビューを見る', shop_review_path, class: "btn btn-default nav-btn" %>
 		</h2>
 		<h2 class="col-md-1">
 			<% if customer_signed_in? %>
