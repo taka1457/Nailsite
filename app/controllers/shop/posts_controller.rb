@@ -7,7 +7,7 @@ class Shop::PostsController < ApplicationController
   end
 
   def rank
-    @posts = Post.where(id: Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id)).page(params[:page]).per(9)
+    Kaminari.paginate_array(Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))).page(params[:page]).per(9)
   end
 
   def show
