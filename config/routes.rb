@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     patch 'shops/reservation_histories/:id' => 'reservation_histories#update', as: 'update_history'
     get '/genres/:genre_id' => 'shops#search', as: 'shops_search'
     get '/mapgenres/:genre_id' => 'shops#map_search', as: 'shops_map_search'
+    get 'shops/:id/review' => 'reservation_histories#review', as: 'shop_review'
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]

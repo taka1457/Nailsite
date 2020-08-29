@@ -39,8 +39,8 @@ class Shop::MenusController < ApplicationController
   private
 
   def ensure_menu
-      @menus = current_shop.menus
-      @menu = @menus.find_by(id: params[:id])
+    @menus = current_shop.menus
+    @menu = @menus.find_by(id: params[:id])
     unless @menu
       redirect_to shop_menus_path(current_shop)
     end
