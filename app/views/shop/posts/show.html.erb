@@ -21,8 +21,8 @@
 						<% if customer_signed_in? %>
 							<div>
 								<span id="show_like">
-									<%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %>　　
-								</span>
+									<%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %>
+								</span>　　
 								<span id="comment_count" class="glyphicon glyphicon-envelope"> <%= @post.post_comments.count %></span>
 							</div>
 						<% else %>
