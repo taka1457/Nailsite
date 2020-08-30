@@ -3,11 +3,11 @@ class Public::CustomersController < ApplicationController
   before_action :set_current_customer, except: [:index, :show]
 
   def index
-    @customers = Customer.page(params[:page]).per(6)
+    @customers = Customer.where(is_active: true).page(params[:page]).per(6)
   end
 
   def show
-    @customer = Customer.find(params[:id])
+    @customer = Customer.where(is_active: true).find(params[:id])
     @reservation_history = ReservationHistory.all.reverse_order
     @history_comments = HistoryComment.all
   end

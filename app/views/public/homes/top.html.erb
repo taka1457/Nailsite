@@ -28,7 +28,7 @@
 							<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 						<% end %>
 						<div class="row">
-							<div class="col-md-12 col-xs-9 col-xs-offset-3 text-center">
+							<div class="col-md-12 col-xs-12 text-center">
 								<% if customer_signed_in? %>
 									<%= link_to shop_post_path(post.shop, post) do %>
 										<% if post.favorited_by?(current_customer) %>
@@ -66,10 +66,10 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-5 col-md-offset-1 col-xs-6 col-xs-offset-4">
+							<div class="col-md-5 col-xs-6 col-xs-offset-4">
 								<span>Follow: <%= customer.following_customer.count %></span>
 							</div>
-							<div class="col-md-6 col-xs-7 col-xs-offset-4">
+							<div class="col-md-7 col-xs-7 col-xs-offset-4">
 								<span>Follower: <%= customer.follower_customer.count %></span>
 							</div>
 						</div>

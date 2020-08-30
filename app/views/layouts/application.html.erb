@@ -7,7 +7,6 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
   </head>
   <body>
     <% if shop_signed_in? %>
@@ -19,7 +18,22 @@
               <span>　　　ようこそ、<%= current_shop.name %>様!</span>
             </div>
             <nav>
-              <ul class="nav navbar-nav navbar-right">
+              <ul id="reveal" class="nav navbar-nav navbar-right col-xs-2 col-xs-offset-10">
+                <li role="presentation" class="dropdown">
+                  <a class="dropdown-toggle btn btn-default nav-btn" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    メニュー <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><%= link_to 'マイページ', shop_mypage_path %></li>
+                    <li role="presentation"><%= link_to '予約一覧', shops_histories_path, data: {"turbolinks"=>false} %></li>
+                    <li role="presentation"><%= link_to '連絡一覧', shops_talks_path %></li>
+                    <li role="presentation"><%= link_to 'メニュー', shop_menus_path(current_shop) %></li>
+                    <li role="presentation"><%= link_to '投稿一覧', shop_posts_path(current_shop) %></li>
+                    <li role="presentation"><%= link_to 'ログアウト', destroy_shop_session_path, method: :delete %></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul id="erase" class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', shop_mypage_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '予約一覧', shops_histories_path, data: {"turbolinks"=>false}, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '連絡一覧', shops_talks_path, class: "btn btn-default nav-btn" %></li>
@@ -44,7 +58,21 @@
               <span>　　　ようこそ、<%= current_customer.full_name %>さん!</span>
             </div>
             <nav>
-              <ul class="nav navbar-nav navbar-right">
+              <ul id="reveal" class="nav navbar-nav navbar-right col-xs-2 col-xs-offset-10">
+                <li role="presentation" class="dropdown">
+                  <a class="dropdown-toggle btn btn-default nav-btn" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    メニュー <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><%= link_to 'マイページ', mypage_path %></li>
+                    <li role="presentation"><%= link_to '店舗一覧', shops_path %></li>
+                    <li role="presentation"><%= link_to '投稿一覧', posts_all_path %></li>
+                    <li role="presentation"><%= link_to '会員一覧', customers_path %></li>
+                    <li role="presentation"><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete %></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul id="erase" class="nav navbar-nav navbar-right">
                 <li><%= link_to 'マイページ', mypage_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
@@ -71,7 +99,7 @@
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
             <nav>
-              <ul id="dropdown_list" class="nav navbar-nav navbar-right col-xs-2 col-xs-offset-10">
+              <ul id="reveal" class="nav navbar-nav navbar-right col-xs-2 col-xs-offset-10">
                 <li role="presentation" class="dropdown">
                   <a class="dropdown-toggle btn btn-default nav-btn" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
                     メニュー <span class="caret"></span>
@@ -86,7 +114,7 @@
                   </ul>
                 </li>
               </ul>
-              <ul id="main_menu" class="nav navbar-nav navbar-right">
+              <ul id="erase" class="nav navbar-nav navbar-right">
                 <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>

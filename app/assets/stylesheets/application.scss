@@ -377,15 +377,15 @@ textarea {
 }
 
 
-#dropdown_list{
+#reveal{
   display: none;
 }
 
 @media screen and (max-width: 1000px) {
-  #main_menu{
+  #erase{
     display: none !important;
   }
-  #dropdown_list{
+  #reveal{
     display: block !important;
   }
 }

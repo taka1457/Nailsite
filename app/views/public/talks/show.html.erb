@@ -2,12 +2,12 @@
 	<div class="col-md-10 col-md-offset-2">
 		<h2>会員詳細</h2>
 	</div>
-	<div class="col-md-3 col-md-offset-2 col-xs-3">
+	<div class="col-md-3 col-md-offset-2 col-xs-4">
 		<%= link_to customer_path(@customer) do %>
 			<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 			<% end %>
 	</div>
-	<div class="col-md-4 col-xs-4 col-xs-offset-2">
+	<div class="col-md-4 col-xs-4">
 		<table>
 			<tbody>
 				<tr>

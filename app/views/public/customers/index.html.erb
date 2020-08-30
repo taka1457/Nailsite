@@ -13,7 +13,7 @@
 						<% end %>
 					</div>
 					<div class="row">
-						<div class="col-md-5 col-md-offset-1 col-xs-5 col-xs-offset-1">
+						<div class="col-md-4 col-xs-offset-2 col-xs-4">
 							<span>Follow: <%= customer.following_customer.count %></span>
 						</div>
 						<div class="col-md-6 col-xs-6">
@@ -24,7 +24,7 @@
 						<% if shop_signed_in? %>
 						<% elsif customer_signed_in?%>
 							<% if current_customer != customer %>
-								<div class="col-md-4 col-md-offset-1 col-xs-3 col-xs-offset-1">
+								<div class="col-md-4 col-xs-offset-1 col-xs-4">
 									<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
 								</div>
 								<div class="col-md-5 col-xs-5">
@@ -36,7 +36,7 @@
 								</div>
 							<% end %>
 						<% else %>
-							<div class="col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1">
+							<div class="col-md-4 col-xs-offset-1 col-xs-4">
 								<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
 							</div>
 							<div class="col-md-5 col-xs-5">

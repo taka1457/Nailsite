@@ -4,37 +4,37 @@ class Shop::ShopsController < ApplicationController
 
   def index
     @genres = Genre.where(is_void_flag: true)
-    @shops = Shop.page(params[:page]).per(20)
+    @shops = Shop.where(is_active: true).page(params[:page]).per(20)
   end
 
   def map
-    @shops = Shop.page(params[:page]).per(10)
-    gon.shops = Shop.page(params[:page]).per(10)
+    @shops = Shop.where(is_active: true).page(params[:page]).per(10)
+    gon.shops = Shop.where(is_active: true).page(params[:page]).per(10)
     @genres = Genre.where(is_void_flag: true)
   end
 
   def search
-    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(20)
+    @shops = Shop.where(is_active: true).where(genre_id: params[:genre_id]).page(params[:page]).per(20)
     @genres = Genre.where(is_void_flag: true)
     @genre = Genre.find(params[:genre_id])
   end
 
   def map_search
-    @shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(10)
-    gon.shops = Shop.where(genre_id: params[:genre_id]).page(params[:page]).per(10)
+    @shops = Shop.where(is_active: true).where(genre_id: params[:genre_id]).page(params[:page]).per(10)
+    gon.shops = Shop.where(is_active: true).where(genre_id: params[:genre_id]).page(params[:page]).per(10)
     @genres = Genre.where(is_void_flag: true)
     @genre = Genre.find(params[:genre_id])
   end
 
   def show
-    @shop = Shop.find(params[:id])
+    @shop = Shop.where(is_active: true).find(params[:id])
     @menus = @shop.menus.page(params[:page]).first(5)
     @posts = @shop.posts.page(params[:page]).reverse_order.first(3)
     @reservation_menu = ReservationMenu.new
   end
 
   def menu
-    @shop = Shop.find(params[:id])
+    @shop = Shop.where(is_active: true).find(params[:id])
     @menus = @shop.menus.page(params[:page]).per(10)
     @reservation_menu = ReservationMenu.new
   end

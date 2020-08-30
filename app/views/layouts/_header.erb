@@ -5,8 +5,23 @@
         <div class="nav navbar-nav navbar-left">
           <%= link_to 'Nailsite', root_path, class: "logo" %>
         </div>
-        <div>
-          <ul class="nav navbar-nav navbar-right">
+        <nav>
+          <ul id="reveal" class="nav navbar-nav navbar-right col-xs-2 col-xs-offset-10">
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle btn btn-default nav-btn" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                メニュー <span class="caret"></span>
+              </a>
+              <ul id="dropdown-menu" class="dropdown-menu" role="menu">
+                <li role="presentation"><%= link_to '使い方', about_path %></li>
+                <li role="presentation"><%= link_to '店舗一覧', shops_path %></li>
+                <li role="presentation"><%= link_to '投稿一覧', posts_all_path %></li>
+                <li role="presentation"><%= link_to '会員一覧', customers_path %></li>
+                <li role="presentation"><%= link_to '新規登録', new_customer_registration_path %></li>
+                <li role="presentation"><%= link_to 'ログイン', new_customer_session_path %></li>
+              </ul>
+            </li>
+          </ul>
+          <ul id="erase" class="nav navbar-nav navbar-right">
             <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
             <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
             <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
@@ -14,7 +29,7 @@
             <li><%= link_to '新規登録', new_customer_registration_path, class: "btn btn-default nav-btn" %></li>
             <li><%= link_to 'ログイン', new_customer_session_path, class: "btn btn-default nav-btn" %></li>
           </ul>
-        </div>
+        </nav>
       </div>
     </div>
   </div>

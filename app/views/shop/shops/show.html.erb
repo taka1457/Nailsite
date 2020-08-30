@@ -24,7 +24,7 @@
 					<td>
 						<h3><%= @shop.promotion %></h3><br><br>
 						<%= @shop.introduction %><br><br>
-						<h4>おすすめジャンル　　　<span class="genre_box"><%= @shop.genre.name %></span></h4>
+						<h4>おすすめジャンル　<span class="genre_box"><%= @shop.genre.name %></span></h4>
 					</td>
 				</tr>
 			</tbody>
@@ -81,7 +81,9 @@
 						</div>
 					<% end %>
 				</div>
-				<span style="white-space: pre-wrap;"><%= post.body %></span>
+				<div class="col-xs-offset-1" style="width: 210px; word-wrap: break-word; white-space: pre-wrap;">
+					<%= post.body %>
+				</div>
 			</div>
 		<% end %>
 	</div>
