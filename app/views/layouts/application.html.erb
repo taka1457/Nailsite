@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
   </head>
   <body>
     <% if shop_signed_in? %>
@@ -70,7 +71,22 @@
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
             <nav>
-              <ul class="nav navbar-nav navbar-right">
+              <ul id="dropdown_list" class="nav navbar-nav navbar-right col-xs-2 col-xs-offset-10">
+                <li role="presentation" class="dropdown">
+                  <a class="dropdown-toggle btn btn-default nav-btn" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                    メニュー <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><%= link_to '使い方', about_path %></li>
+                    <li role="presentation"><%= link_to '店舗一覧', shops_path %></li>
+                    <li role="presentation"><%= link_to '投稿一覧', posts_all_path %></li>
+                    <li role="presentation"><%= link_to '会員一覧', customers_path %></li>
+                    <li role="presentation"><%= link_to '新規登録', new_customer_registration_path %></li>
+                    <li role="presentation"><%= link_to 'ログイン', new_customer_session_path %></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul id="main_menu" class="nav navbar-nav navbar-right">
                 <li><%= link_to '使い方', about_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '店舗一覧', shops_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿一覧', posts_all_path, class: "btn btn-default nav-btn" %></li>
@@ -81,7 +97,7 @@
             </nav>
           </div>
           <div class="row">
-            <div class="col-md-offset-7 col-xs-offset-5 search_box">
+            <div class="col-md-offset-6 col-xs-offset-5 search_box">
               <%= form_tag(search_path, method: :get) do %>
                 <%= text_field_tag 'search[content]', '', class: 'search_form', placeholder: "店名/場所から探す　【例：nailsalon、梅田】"%>
                 <%= submit_tag '検索', class: "btn btn-default search_btn" %>

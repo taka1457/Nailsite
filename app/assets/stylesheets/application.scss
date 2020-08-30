@@ -375,3 +375,17 @@ textarea {
   border: solid 2px black;
   border-radius: 10px;
 }
+
+
+#dropdown_list{
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  #main_menu{
+    display: none !important;
+  }
+  #dropdown_list{
+    display: block !important;
+  }
+}
