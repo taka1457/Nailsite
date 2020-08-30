@@ -20,6 +20,24 @@ class Shop::ReservationHistoriesController < ApplicationController
     end
   end
 
+  def update
+    @menus = Menu.where(shop_id: current_shop)
+    @reservation_histories = ReservationHistory.where(menu_id: @menus)
+    @reservation_history = @reservation_histories.find_by(id: params[:id])
+    if @reservation_history.present?
+      @reservation_history.update(reservation_history_params)
+      redirect_to request.referer
+    else
+      redirect_to shops_histories_path
+    end
+  end
+
+  private
+
+  def reservation_history_params
+    params.require(:reservation_history).permit(:status)
+  end
+
   def send_reservation_histories_csv(reservation_histories)
     csv_data = CSV.generate do |csv|
       column_names = %w(予約日時 予約者 予約メニュー メニュー金額 来店状況)
@@ -38,23 +56,5 @@ class Shop::ReservationHistoriesController < ApplicationController
 
     end
     send_data(csv_data, filename: "予約状況.csv")
-  end
-
-  def update
-    @menus = Menu.where(shop_id: current_shop)
-    @reservation_histories = ReservationHistory.where(menu_id: @menus)
-    @reservation_history = @reservation_histories.find_by(id: params[:id])
-    if @reservation_history.present?
-      @reservation_history.update(reservation_history_params)
-      redirect_to request.referer
-    else
-      redirect_to shops_histories_path
-    end
-  end
-
-  private
-
-  def reservation_history_params
-    params.require(:reservation_history).permit(:status)
   end
 end
