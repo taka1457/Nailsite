@@ -4,12 +4,12 @@
 		<div class="row">
 			<div class="col-md-12">
 				<% @genres.shuffle.first(4).each do |genre| %>
-					<div class="col-md-3">
+					<div class="col-md-3 col-xs-3">
 						<%= link_to shops_search_path(genre_id: genre.id) do %>
 							<%= attachment_image_tag genre, :genre_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 						<% end %>
 						<div class="row">
-							<div class="col-md-8 col-md-offset-2 btn btn-default">
+							<div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-4 btn btn-default">
 								<%= link_to shops_search_path(genre_id: genre.id) do %>
 									<%= genre.name %>
 								<% end %>
@@ -23,12 +23,12 @@
 		<div class="row">
 			<div class="col-md-12">
 				<% @posts.shuffle.first(4).each do |post| %>
-					<div class="col-md-3">
+					<div class="col-md-3 col-xs-3">
 						<%= link_to shop_post_path(post.shop, post) do %>
 							<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 						<% end %>
 						<div class="row">
-							<div class="col-md-12 text-center">
+							<div class="col-md-12 col-xs-9 col-xs-offset-3 text-center">
 								<% if customer_signed_in? %>
 									<%= link_to shop_post_path(post.shop, post) do %>
 										<% if post.favorited_by?(current_customer) %>
@@ -52,24 +52,24 @@
 		</div>
 		<h2 style="margin-top: 80px;">ユーザーから探す<span class="sub_title"><%= link_to '＞もっと見る', customers_path %></span></h2>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 col-xs-12">
 				<% @customers.shuffle.first(4).each do |customer| %>
-					<div class="col-md-3">
+					<div class="col-md-3 col-xs-3">
 						<%= link_to customer_path(customer) do %>
 							<%= attachment_image_tag customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 						<% end %>
 						<div class="row">
-							<div class="col-md-10 col-md-offset-1 text_center btn btn-default">
+							<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-3 text_center btn btn-default">
 								<%= link_to customer_path(customer) do %>
 									<%= customer.full_name %> さん
 								<% end %>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-5 col-md-offset-1">
+							<div class="col-md-5 col-md-offset-1 col-xs-6 col-xs-offset-4">
 								<span>Follow: <%= customer.following_customer.count %></span>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6 col-xs-7 col-xs-offset-4">
 								<span>Follower: <%= customer.follower_customer.count %></span>
 							</div>
 						</div>

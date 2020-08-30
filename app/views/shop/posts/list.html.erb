@@ -7,7 +7,7 @@
 			<span class="sub_title">　の投稿一覧　　　<%= paginate @posts %></span>
 		</h2>
 		<% @posts.each do |post| %>
-			<div class="col-md-4">
+			<div class="col-md-4 col-xs-4">
 				<div class="posts">
 					<%= link_to shop_post_path(@shop, post) do %>
 						<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %>

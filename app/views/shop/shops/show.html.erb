@@ -65,7 +65,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h3>最近の投稿　　<span class="sub_title"><%= link_to 'もっと見る>', shop_posts_list_path(@shop) %></span></h4>
 		<% @posts.each do |post| %>
-			<div class="col-md-4">
+			<div class="col-md-4 col-xs-4">
 				<div class="posts">
 					<%= link_to shop_post_path(@shop, post) do %>
 						<%= attachment_image_tag post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %><br>

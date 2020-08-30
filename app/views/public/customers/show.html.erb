@@ -2,10 +2,10 @@
 	<div class="col-md-10 col-md-offset-2">
 		<h2>会員詳細</h2>
 	</div>
-	<div class="col-md-3 col-md-offset-2">
+	<div class="col-md-3 col-md-offset-2 col-xs-3 ">
 		<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 col-xs-4 col-xs-offset-2">
 		<table>
 			<tbody>
 				<tr>
@@ -17,10 +17,10 @@
 			</tbody>
 		</table>
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-5 col-xs-5">
 				<span>Follow: <%= @customer.following_customer.count %></span>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6 col-xs-6">
 				<span>Follower: <%= @customer.follower_customer.count %></span>
 			</div>
 		</div>
