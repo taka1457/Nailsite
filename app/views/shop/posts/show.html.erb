@@ -19,8 +19,11 @@
 						<span style="white-space: pre-wrap;"><%= @post.body %></span><br><br><br>
 						<%= @post.created_at.to_s(:datetime_jp) %><br><br>
 						<% if customer_signed_in? %>
-							<div id="show_like">
-								<%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %>
+							<div>
+								<span id="show_like">
+									<%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %>　　
+								</span>
+								<span class="glyphicon glyphicon-envelope"> <%= @post.post_comments.count %></span>
 							</div>
 						<% else %>
 							<%= link_to new_customer_session_path do %>
