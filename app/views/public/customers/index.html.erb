@@ -28,7 +28,7 @@
 									<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
 								</div>
 								<div class="col-md-5">
-									<%= render partial: 'public/relationships/form', locals: { customer: customer } %>
+									<span id="index_follow"><%= render partial: 'public/relationships/form', locals: { customer: customer } %>
 								</div>
 							<% else %>
 								<div class="col-md-offset-3">
