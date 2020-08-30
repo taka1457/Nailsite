@@ -1,7 +1,9 @@
 <div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-		<h2>予約履歴一覧</h2>
-		<table class="table table-bordered">
+	<div class="col-xs-12">
+		<h2>予約履歴一覧
+		<%= link_to "csvで出力する",shops_histories_path(format: :csv), class: "btn btn-primary" %>
+		</h2>
+		<table class="table table-bordered table-condensed">
 			<thead>
 				<tr>
 					<th>予約日</th>
@@ -30,7 +32,7 @@
 								<% end %>
 							</td>
 							<% else %>
-								<td><%=history.status_i18n %></td>
+								<td><%= history.status_i18n %></td>
 							<% end %>
 							<td>
 								<% history.history_comment.each do |comment| %>
