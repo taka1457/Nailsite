@@ -1,1 +1,2 @@
 $('#comment').html("<%= j(render partial: 'shop/posts/comment',locals: { shop: @shop, post: @post, post_comments: @post.post_comments }) %>");
+$('#comment_count').html(" <%= @post.post_comments.count %>");

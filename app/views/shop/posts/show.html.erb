@@ -23,7 +23,7 @@
 								<span id="show_like">
 									<%= render partial: 'shop/favorites/form', locals: { shop: @shop, post: @post } %>　　
 								</span>
-								<span class="glyphicon glyphicon-envelope"> <%= @post.post_comments.count %></span>
+								<span id="comment_count" class="glyphicon glyphicon-envelope"> <%= @post.post_comments.count %></span>
 							</div>
 						<% else %>
 							<%= link_to new_customer_session_path do %>
