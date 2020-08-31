@@ -4,11 +4,15 @@ class Public::RelationshipsController < ApplicationController
   def create
     current_customer.follow(params[:customer_id])
     @customer = Customer.find(params[:customer_id])
+    customer = current_customer
+    @following_customers = customer.following_customer.reverse_order
   end
 
   def destroy
     current_customer.unfollow(params[:customer_id])
     @customer = Customer.find(params[:customer_id])
+    customer = current_customer
+    @following_customers = customer.following_customer.reverse_order
   end
 
   def follow

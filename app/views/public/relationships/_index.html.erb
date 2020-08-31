@@ -1,0 +1,32 @@
+<% if following_customers.count > 0 %>
+	<h3>Follow　　　<%= following_customers.count %>人</h3>
+<% else %>
+	<h3>Followユーザーはいません</h3>
+<% end %>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ユーザー名</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<span>
+					<% following_customers.each do |following_customer| %>
+						<tr>
+							<td>
+								<%= link_to customer_path(following_customer) do %>
+									<%= following_customer.full_name %>
+								<% end %>　さん
+							</td>
+							<td><%= link_to 'chatを始める', customers_talk_path(following_customer.id, following_customer.id), class: "btn btn-default btn-xs"%></td>
+							<td><%= link_to 'フォロー外す', customer_relationships_path(following_customer.id), method: :delete, remote: true, class: "btn btn-default btn-xs" %></td>
+						</tr>
+					<% end %>
+					</span>
+			</tbody>
+		</table>
+	</div>
+</div>

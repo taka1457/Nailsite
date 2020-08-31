@@ -33,7 +33,9 @@
 	</div>
 	<div class="col-md-3">
 		<% if customer_signed_in? %>
-			<%= render partial: 'public/relationships/form', locals: { customer: @customer } %>
+			<span id="follow">
+				<%= render partial: 'public/relationships/form', locals: { customer: @customer } %>
+			</span>
 		<% end %>
 	</div>
 </div>
