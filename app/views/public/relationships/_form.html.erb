@@ -1,6 +1,0 @@
-<% if current_customer.following?(customer) %>
-	<%= link_to 'UnFollow', customer_relationships_path(customer.id), method: :delete, remote: true, class: "btn btn-default nav-btn" %>
-<% else %>
-	<%= link_to 'Follow', customer_relationships_path(customer.id), method: :POST, remote: true, class: "btn btn-default nav-btn" %>
-<% end %>
-

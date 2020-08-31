@@ -6,6 +6,7 @@ class Public::RelationshipsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     customer = current_customer
     @following_customers = customer.following_customer.reverse_order
+    @customers = Customer.where(is_active: true).page(params[:page]).per(6)
   end
 
   def destroy
@@ -13,6 +14,7 @@ class Public::RelationshipsController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     customer = current_customer
     @following_customers = customer.following_customer.reverse_order
+    @customers = Customer.where(is_active: true).page(params[:page]).per(6)
   end
 
   def follow

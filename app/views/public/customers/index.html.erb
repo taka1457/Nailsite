@@ -1,51 +1,8 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 		<h2>会員一覧<span class="sub_title">　　　<%= paginate @customers %></span></h2>
-		<% @customers.each do |customer| %>
-			<div class="col-md-4 col-xs-4">
-				<%= link_to customer_path(customer) do %>
-				  <%= attachment_image_tag customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>
-				<% end %>
-				<div class="row">
-					<div class="col-md-12 col-xs-12 text-center">
-						<%= link_to customer_path(customer) do %>
-							<%= customer.full_name %>さん
-						<% end %>
-					</div>
-					<div class="row">
-						<div class="col-md-4 col-xs-offset-2 col-xs-4">
-							<span>Follow: <%= customer.following_customer.count %></span>
-						</div>
-						<div class="col-md-6 col-xs-6">
-							<span>Follower: <%= customer.follower_customer.count %></span>
-						</div>
-					</div>
-					<div class="row">
-						<% if shop_signed_in? %>
-						<% elsif customer_signed_in?%>
-							<% if current_customer != customer %>
-								<div class="col-md-4 col-xs-offset-1 col-xs-4">
-									<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
-								</div>
-								<div class="col-md-5 col-xs-5">
-									<span id="index_follow"><%= render partial: 'public/relationships/form', locals: { customer: customer } %>
-								</div>
-							<% else %>
-								<div class="col-md-offset-3 col-xs-offset-3">
-									<%= link_to 'マイページ情報', customer_path(customer), class: "btn btn-default nav-btn" %>
-								</div>
-							<% end %>
-						<% else %>
-							<div class="col-md-4 col-xs-offset-1 col-xs-4">
-								<%= link_to '行ったお店', customer_path(customer), class: "btn btn-default nav-btn" %>
-							</div>
-							<div class="col-md-5 col-xs-5">
-								<%= link_to 'Follow', new_customer_session_path, class: "btn btn-default nav-btn" %>
-							</div>
-						<% end %>
-					</div>
-				</div>
-			</div>
-		<% end %>
+		<div id="customer_index">
+			<%= render partial: 'public/customers/index', locals: { customers: @customers } %>
+		</div>
 	</div>
 </div>
