@@ -41,15 +41,14 @@ Rails.application.routes.draw do
     get 'customers/reserve' => 'reserves#new', as: 'reserve'
 
     resources :customers, only: [:index, :show] do
+      resources :talks, only: [:create]
       resource :relationships, only: [:create, :destroy]
       resources :reservation_menus, only: [:create]
       resources :reservation_histories, only: [:index] do
         resources :history_comments, only: [:create, :destroy]
       end
     end
-
     resources :reservation_menus, only: [:index]
-    resources :talks, only: [:create]
   end
 
   scope module: :shop do
