@@ -6,6 +6,7 @@ class Public::HistoryCommentsController < ApplicationController
     @reservation_history = ReservationHistory.find(params[:reservation_history_id])
     @history_comment = @reservation_history.history_comment.new(history_comment_params)
     @history_comment.customer_id = current_customer.id
+    @history_comment.score = Language.get_data(history_comment_params[:body])
     if @history_comment.save
       redirect_back(fallback_location: customer_reservation_histories_path(current_customer.id))
     else

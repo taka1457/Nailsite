@@ -37,6 +37,7 @@
 							<td>
 								<% history.history_comment.each do |comment| %>
 									<span style="white-space: pre-wrap;"><%= comment.body %></span>
+									<span>本文の感情分析スコア<%= comment.score %></span>
 								<% end %>
 							</td>
 						</tr>
