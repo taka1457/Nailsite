@@ -6,5 +6,6 @@ class Public::ReservationHistoriesController < ApplicationController
     @reservation_histories = ReservationHistory.where(reserve_id: @reserves).includes(:reserve).order("reserves.reservation DESC")
     @history_comment = HistoryComment.new
     @history_comments = HistoryComment.all
+    @total_score = @reservation_histories.sum(:score)
   end
 end

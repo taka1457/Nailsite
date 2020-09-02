@@ -12,6 +12,7 @@
 					<th>メニュー金額</th>
 					<th>ご来店状況</th>
 					<th>レビュー</th>
+					<th>感情分析</th>
 				</tr>
 			</thead>
 			<tbody data-turbolinks="false" id="history_comment">
@@ -34,12 +35,19 @@
 							<% else %>
 								<td><%= history.status_i18n %></td>
 							<% end %>
-							<td>
-								<% history.history_comment.each do |comment| %>
-									<span style="white-space: pre-wrap;"><%= comment.body %></span>
-									<span>本文の感情分析スコア<%= comment.score %></span>
-								<% end %>
-							</td>
+							<% history.history_comment.each do |comment| %>
+								<td><span style="white-space: pre-wrap;"><%= comment.body %></span></td>
+								<td>
+									<span>
+										<% if comment.score > 0.6 %>☆☆☆☆☆
+										<% elsif comment.score >= 0.3 %>☆☆☆☆
+										<% elsif comment.score >= -0.3 %>☆☆☆
+										<% elsif comment.score >= -0.6 %>☆☆
+										<% elsif comment.score < -0.6 %>☆
+										<% end %>
+									</span>
+								</td>
+							<% end %>
 						</tr>
 					<% end %>
 				<% end %>

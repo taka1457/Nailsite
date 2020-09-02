@@ -6,11 +6,14 @@
 		<td><%= history.menu.price.to_s(:delimited) %>円</td>
 		<% if history.status == 'confirm' %>
 			<td>ご予約確認中です。<br>ご予約完了までしばらくお待ち下さい。</td>
+			<td></td>
 		<% elsif (history.status == 'booking')%>
 			<% if history.reserve.reservation >= Date.today %>
 				<td>ご予約完了しました！<br>ご来店お待ちしております！	</td>
+				<td></td>
 			<% else %>
 				<td>施術を受けられた方は<br>しばらくお待ち下さい。</td>
+				<td></td>
 			<% end %>
 		<% elsif (history.status == 'done')%>
 			<% if history.history_comment.present? %>
@@ -19,6 +22,14 @@
 						<span style="white-space: pre-wrap;"><%= comment.body %></span><br>
 						<%= link_to '削除', customer_reservation_history_history_comment_path(current_customer.id, history.id, comment.id), class: 'btn-sm btn-danger', method: :delete %>
 					</td>
+					<td>
+						<% if comment.score > 0.6 %>☆☆☆☆☆
+						<% elsif comment.score >= 0.3 %>☆☆☆☆
+						<% elsif comment.score >= -0.3 %>☆☆☆
+						<% elsif comment.score >= -0.6 %>☆☆
+						<% elsif comment.score < -0.6 %>☆
+						<% end %>
+					</td>
 				<% end %>
 			<% else %>
 				<%= form_with model:[history_comment], url: customer_reservation_history_history_comments_path(current_customer.id, history.id) do |f| %>
@@ -26,12 +37,15 @@
 						<%= f.text_area :body, placeholder: "施術の感想をお書きください" %>
 						<%= f.submit '投稿', class: "btn-sm btn-primary" %>
 					</td>
+					<td></td>
 				<% end %>
 			<% end %>
 		<% elsif (history.status == 'cancel')%>
 			<td>正常にキャンセルされました。<br>次回ご予約お待ちしております。</td>
+			<td></td>
 		<% elsif (history.status == 'unauthorized')%>
 			<td>キャンセルされる際は、<br>サロンへご連絡をお願いします。</td>
+			<td></td>
 		<% end %>
 	</tr>
 <% end %>
