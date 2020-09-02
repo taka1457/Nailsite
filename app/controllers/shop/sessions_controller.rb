@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Shop::SessionsController < Devise::SessionsController
-  # before_action :configure_sign_in_params, only: [:create]
+  before_action :reject_inactive_shop, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -33,7 +33,7 @@ class Shop::SessionsController < Devise::SessionsController
     new_shop_session_path
   end
 
-  def reject_inactive_customer
+  def reject_inactive_shop
     @shop = Shop.find_by(email: params[:shop][:email])
     if @shop
       if @shop.valid_password?(params[:shop][:password]) && !@shop.is_active
