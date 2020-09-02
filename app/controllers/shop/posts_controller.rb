@@ -35,6 +35,10 @@ class Shop::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.shop_id = current_shop.id
     if @post.save
+      tags = Vision.get_image_data(@post.post_image)
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
       redirect_to shop_posts_path
     else
       render :new
