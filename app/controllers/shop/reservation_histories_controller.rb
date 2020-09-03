@@ -11,7 +11,8 @@ class Shop::ReservationHistoriesController < ApplicationController
 
   def index
     @menus = Menu.where(shop_id: current_shop)
-    @reservation_histories = ReservationHistory.where(menu_id: @menus).where(menu_id: @menus).includes(:reserve).order("reserves.reservation DESC")
+    @reservation_histories = ReservationHistory.where(menu_id: @menus).includes(:reserve).order("reserves.reservation DESC")
+    @history_comments = HistoryComment.where(reservation_history_id: @reservation_histories).reverse_order
     respond_to do |format|
       format.html
       format.csv do |csv|

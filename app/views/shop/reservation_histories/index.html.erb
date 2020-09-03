@@ -2,6 +2,18 @@
 	<div class="col-xs-12">
 		<h2>予約履歴一覧
 		<%= link_to "csvで出力する",shops_histories_path(format: :csv), class: "btn btn-primary" %>
+		<span class="sub_title">ポジティブ度：
+			<% @average = 0 %>
+			<% @history_comments.each do |comment| %>
+				<% @average += ((comment.score) / @history_comments.count) %>
+			<% end %>
+			<% if @average > 0.6 %>☆☆☆☆☆
+			<% elsif @average >= 0.3 %>☆☆☆☆
+			<% elsif @average >= -0.3 %>☆☆☆
+			<% elsif @average >= -0.6 %>☆☆
+			<% elsif @average < -0.6 %>☆
+			<% end %>
+		</span>
 		</h2>
 		<table class="table table-bordered table-condensed">
 			<thead>

@@ -1,0 +1,38 @@
+
+<table class="table table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th>会員名</th>
+			<th>folloeing</th>
+			<th>follower</th>
+			<th>ポジティブ</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% customers.each do |customer| %>
+			<tr>
+				<td>
+					<%= link_to customer_path(customer) do %>
+						<%= customer.full_name %>さん
+					<% end %>
+				</td>
+				<td><%= customer.following_customer.count %></td>
+				<td><%= customer.follower_customer.count %></td>
+				<td>
+					<span>
+						<% @average = 0 %>
+						<% customer.history_comment.each do |comment| %>
+							<% @average += (comment.score / customer.history_comment.count) %>
+						<% end %>
+						<% if @average > 0.6 %>☆☆☆☆☆
+						<% elsif @average >= 0.3 %>☆☆☆☆
+						<% elsif @average >= -0.3 %>☆☆☆
+						<% elsif @average >= -0.6 %>☆☆
+						<% elsif @average < -0.6 %>☆
+						<% end %>
+					</span>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

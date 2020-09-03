@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!, except: [:index, :show]
-  before_action :set_current_customer, except: [:index, :show]
+  before_action :authenticate_customer!, except: [:index, :show, :rank]
+  before_action :set_current_customer, except: [:index, :show, :rank]
 
   def index
     @customers = Customer.where(is_active: true).page(params[:page]).per(6)
@@ -8,8 +8,13 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.where(is_active: true).find(params[:id])
-    @reservation_history = ReservationHistory.all.reverse_order
-    @history_comments = HistoryComment.all
+    @reserves = Reserve.where(customer_id: @customer)
+    @reservation_histories = ReservationHistory.where(reserve_id: @reserves).includes(:reserve).order("reserves.reservation DESC")
+    @history_comments = HistoryComment.where(customer_id: @customer).reverse_order
+  end
+
+  def rank
+    @customers = Kaminari.paginate_array(Customer.where(is_active: true).find(HistoryComment.group(:score).order('avg(score) desc').pluck(:customer_id))).page(params[:page]).per(6)
   end
 
   def mypage

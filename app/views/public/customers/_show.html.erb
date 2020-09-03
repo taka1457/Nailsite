@@ -1,5 +1,19 @@
 <div class="col-md-10 col-md-offset-2">
-	<h2>会員詳細</h2>
+	<h2>会員詳細
+		<span class="sub_title">レビューポジティブ度：
+			<% @average = 0 %>
+			<% @history_comments.each do |comment| %>
+				<% @average += ((comment.score) / @history_comments.count) %>
+			<% end %>
+			<%= @average %>
+			<% if @average > 0.6 %>☆☆☆☆☆
+			<% elsif @average >= 0.3 %>☆☆☆☆
+			<% elsif @average >= -0.3 %>☆☆☆
+			<% elsif @average >= -0.6 %>☆☆
+			<% elsif @average < -0.6 %>☆
+			<% end %>
+		</span>
+	</h2>
 </div>
 <div class="col-md-3 col-md-offset-2 col-xs-4">
 	<%= attachment_image_tag customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_image" %>

@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     get 'customers/follows' => 'relationships#follow', as: 'follow'
     get 'customers/bookmarks' => 'bookmarks#index', as: 'bookmarks'
     get 'customers/reserve' => 'reserves#new', as: 'reserve'
+    get 'customers/rank' => 'customers#rank', as: 'customers_rank'
 
     resources :customers, only: [:index, :show] do
       resource :relationships, only: [:create, :destroy]

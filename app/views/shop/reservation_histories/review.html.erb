@@ -5,7 +5,18 @@
 				<%= @shop.name %>
 			<% end %>
 			<span> のレビュー</span>
-			<%= @total_score %>
+			<span class="sub_title">ポジティブ度：
+				<% @average = 0 %>
+				<% @history_comments.each do |comment| %>
+					<% @average += ((comment.score) / @history_comments.count) %>
+				<% end %>
+				<% if @average > 0.6 %>☆☆☆☆☆
+				<% elsif @average >= 0.3 %>☆☆☆☆
+				<% elsif @average >= -0.3 %>☆☆☆
+				<% elsif @average >= -0.6 %>☆☆
+				<% elsif @average < -0.6 %>☆
+				<% end %>
+			</span>
 		</h2>
 		<% if @history_comments.present? %>
 			<table class="table table-condensed" style="table-layout:fixed;">
@@ -15,6 +26,7 @@
 						<th>予約メニュー</th>
 						<th>レビュー</th>
 						<th>レビュー日</th>
+						<th>ポジティブ度</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -29,6 +41,14 @@
 							<td><%= comment.reservation_history.menu.name %></td>
 							<td><span style="white-space: pre-wrap;"><%= comment.body %></span></td>
 							<td><%= comment.created_at.strftime("%Y年%m月%d日").to_s %></td>
+							<td>
+								<% if comment.score >= 0.6 %>☆☆☆☆☆
+								<% elsif comment.score >= 0.3 %>☆☆☆☆
+								<% elsif comment.score >= -0.3 %>☆☆☆
+								<% elsif comment.score >= -0.6 %>☆☆
+								<% elsif comment.score < -0.6 %>☆
+								<% end %>
+							</td>
 						</tr>
 					<% end %>
 				</tbody>

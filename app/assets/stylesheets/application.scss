@@ -226,6 +226,30 @@ textarea {
 }
 
 
+/* --customer_index-- */
+.round_image .captions {
+  font-size: 130%;
+  color: #fff;
+  text-align: center;
+  line-height: 200px;
+}
+.round_image .masks {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0,0,0,0.4);
+  transition: 0.5s;
+  transform: scale(0);
+  // 見えなくする
+}
+.round_image:hover .masks {
+  transform: scale(1);
+  // 1倍で表示
+}
+
+
 /* --shops_show-- */
 
 .genre_box {
