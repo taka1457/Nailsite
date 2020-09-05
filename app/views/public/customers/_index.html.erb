@@ -1,3 +1,4 @@
+
 <% customers.each do |customer| %>
 	<div class="col-md-4 col-xs-4">
 		<div class="round_image">
@@ -7,8 +8,8 @@
 					<div class="captions">
 						<span>
 							<% @average = 0 %>
-							<% customer.history_comment.each do |comment| %>
-								<% @average += (comment.score / customer.history_comment.count) %>
+							<% customer.history_comments.each do |comment| %>
+								<% @average += (comment.score / customer.history_comments.count) %>
 							<% end %>
 							<% if @average > 0.6 %>☆☆☆☆☆
 							<% elsif @average >= 0.3 %>☆☆☆☆

@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<%= form_with model: @img_search, url: img_searchs_path do |f| %>
+			<%= f.attachment_field :search_image %>
+			<%= f.submit 'アップロード' %>
+		<% end %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>検索画像</th>
+					<th>検索カテゴリー</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @img_searchs.each do |img_search| %>
+					<tr>
+						<td><%= attachment_image_tag img_search, :search_image, format: "jpeg", fallback: "no-image.png", class: "shop_menu_image" %></td>
+						<td>
+							<% img_search.search_tags.each do |tag| %>
+								<div><%= tag.name %></div>
+							<% end %>
+						</td>
+						<td>
+							<%= form_for(img_search, url: img_search_path, method: :get) do |f| %>
+
+
+								<% img_search.search_tags.each.with_index(1) do |tag, i| %>
+									<%= f.hidden_field "#{i}content", :value => tag.name %>
+								<% end %>
+
+
+								<%= submit_tag '検索', class: "btn btn-default search_btn" %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

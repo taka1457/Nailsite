@@ -3,7 +3,7 @@
 		<h2>予約履歴一覧
 			<span class="sub_title">平均ポジティブ度：
 				<% @average = 0 %>
-				<% current_customer.history_comment.each do |comment| %>
+				<% current_customer.history_comments.each do |comment| %>
 					<% @average += ((comment.score) / @history_comments.count) %>
 				<% end %>
 				<% if @average > 0.6 %>☆☆☆☆☆

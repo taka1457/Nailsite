@@ -59,9 +59,9 @@
 									<div class="captions">
 										<span>
 											<% @average = 0 %>
-											<% if customer.history_comment.present? %>
-												<% customer.history_comment.each do |comment| %>
-													<% @average += (comment.score / customer.history_comment.count) %>
+											<% if customer.history_comments.present? %>
+												<% customer.history_comments.each do |comment| %>
+													<% @average += (comment.score / customer.history_comments.count) %>
 												<% end %>
 											<% end %>
 											<% if @average > 0.6 %>☆☆☆☆☆

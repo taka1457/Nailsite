@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<h2>検索ジャンル
+			<% @records_name.each do |record| %>
+				<span class="sub_title"><%= record.name %></span>
+			<% end %>
+		</h2>
+		<% @records.each do |record| %>
+			<div class="col-md-4 col-xs-4">
+				<div class="posts">
+						<%= attachment_image_tag record.post, :post_image, format: "jpeg", fallback: "no-image.png", class: "post_default_image" %>
+						<div class="mask">
+							<div class="caption">
+								<% if record.post.favorited_by?(current_customer) %>
+									<span class="glyphicon glyphicon-heart"> <%= record.post.favorites.count%>　</span>
+								<% else %>
+									<span class="glyphicon glyphicon-heart-empty"> <%= record.post.favorites.count %>　</span>
+								<% end %>
+								<span class="glyphicon glyphicon-envelope"> <%= record.post.post_comments.count %></span>
+							</div>
+						</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
+

@@ -16,13 +16,34 @@ class Public::CustomersController < ApplicationController
   end
 
   def rank
-    @first_customer = Customer.where(is_active: true).where(HistoryComment.where(id: nil))
-    @customers = Kaminari.paginate_array(
-                  Customer.where(is_active: true)
-                    .find(HistoryComment.group(:score)
-                      .order('avg(score) desc')
-                      .pluck(:customer_id)))
-                .page(params[:page]).per(6)
+    @customers = Kaminari.paginate_array(Customer
+                                        .left_joins(:history_comments)
+                                        .where(is_active: true)
+                                        .sort_by do |cus|
+                                          comments = cus.history_comments
+                                          if comments.present?
+                                            comments.map(&:score).sum / comments.size
+                                          else
+                                            0
+                                          end
+                                        end
+                                        .reverse)
+                  .page(params[:page]).per(6)
+
+
+
+
+                    # .page(params[:page]).per(6)
+                     # .merge(HistoryComment.where(id: nil))
+                # merge 調べたいことをbunnkai tunageru komenntoganai
+                # merge(追加したい検索条件)
+                #   merge エラ- が出ていたが, find メソッドに配列を渡すと Array が帰ってくることが原因
+                #   なので where を使って上げることで解決できそう
+                # 追加したい検索条件
+                #   history_comments を持たない customers を検索したい
+                #   子供のレコドを持たない親を検索する ← 調べる
+                #joukwnne
+
   end
 
   def mypage
