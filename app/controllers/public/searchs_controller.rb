@@ -15,6 +15,7 @@ class Public::SearchsController < ApplicationController
   private
 
   def search_for(content)
-    Shop.where(is_active: true).where('(name LIKE ?) OR (prefecture_code LIKE ?) OR (city LIKE ?) OR (street LIKE ?) OR (promotion LIKE ?) OR (introduction LIKE ?)', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%')
+    Shop.where(is_active: true)
+      .where('(name LIKE ?) OR (prefecture_code LIKE ?) OR (city LIKE ?) OR (street LIKE ?) OR (promotion LIKE ?) OR (introduction LIKE ?)', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%')
   end
 end

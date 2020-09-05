@@ -9,12 +9,20 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.where(is_active: true).find(params[:id])
     @reserves = Reserve.where(customer_id: @customer)
-    @reservation_histories = ReservationHistory.where(reserve_id: @reserves).includes(:reserve).order("reserves.reservation DESC")
+    @reservation_histories = ReservationHistory.where(reserve_id: @reserves)
+                              .includes(:reserve)
+                              .order("reserves.reservation DESC")
     @history_comments = HistoryComment.where(customer_id: @customer).reverse_order
   end
 
   def rank
-    @customers = Kaminari.paginate_array(Customer.where(is_active: true).find(HistoryComment.group(:score).order('avg(score) desc').pluck(:customer_id))).page(params[:page]).per(6)
+    @first_customer = Customer.where(is_active: true).where(HistoryComment.where(id: nil))
+    @customers = Kaminari.paginate_array(
+                  Customer.where(is_active: true)
+                    .find(HistoryComment.group(:score)
+                      .order('avg(score) desc')
+                      .pluck(:customer_id)))
+                .page(params[:page]).per(6)
   end
 
   def mypage

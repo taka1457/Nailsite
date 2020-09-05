@@ -2,7 +2,9 @@ class Public::HistoryCommentsController < ApplicationController
   before_action :authenticate_customer!
 
   def create
-    @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
+    @reservation_histories = ReservationHistory.all
+                              .includes(:reserve)
+                              .order("reserves.reservation DESC")
     @reservation_history = ReservationHistory.find(params[:reservation_history_id])
     @history_comment = @reservation_history.history_comment.new(history_comment_params)
     @history_comment.customer_id = current_customer.id
@@ -15,7 +17,9 @@ class Public::HistoryCommentsController < ApplicationController
   end
 
   def destroy
-    @reservation_histories = ReservationHistory.all.includes(:reserve).order("reserves.reservation DESC")
+    @reservation_histories = ReservationHistory.all
+                              .includes(:reserve)
+                              .order("reserves.reservation DESC")
     @reservation_history = ReservationHistory.find(params[:reservation_history_id])
     @history_comment = HistoryComment.find(params[:id])
     if @history_comment.destroy

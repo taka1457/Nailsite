@@ -4,10 +4,16 @@ class Shop::PostsController < ApplicationController
 
   def all_index
     @posts = Post.page(params[:page]).reverse_order.per(9)
+    @tags = Tag.select(:name).distinct
   end
 
   def rank
-    @posts = Kaminari.paginate_array(Post.find(Favorite.group(:post_id).order('count(post_id) desc').pluck(:post_id))).page(params[:page]).per(9)
+    @posts = Kaminari.paginate_array(
+              Post.find(
+                Favorite.group(:post_id)
+                        .order('count(post_id) desc')
+                        .pluck(:post_id)))
+            .page(params[:page]).per(9)
   end
 
   def show
@@ -21,7 +27,6 @@ class Shop::PostsController < ApplicationController
     @shop = Shop.find(params[:id])
     @posts = @shop.posts.page(params[:page]).reverse_order.per(9)
   end
-
 
   def index
     @posts = current_shop.posts.page(params[:page]).reverse_order.per(9)
