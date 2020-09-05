@@ -6,12 +6,14 @@ class Customer < ApplicationRecord
 
   attachment :profile_image
 
+  has_many :img_searchs, dependent: :destroy
+
   # 予約機能
   has_many :reservation_menus, dependent: :destroy
   has_many :reserves, dependent: :destroy
   # 投稿に対するコメント機能
   has_many :post_comments, dependent: :destroy
-  has_many :history_comment, dependent: :destroy
+  has_many :history_comments, dependent: :destroy
   # チャット機能
   has_many :customer_rooms
   has_many :talks

@@ -25,7 +25,7 @@
 	</div>
 	<% if customer_signed_in? %>
 		<div class="col-md-2">
-			画像検索
+			<%= link_to '写真検索へ', new_img_search_path, class: "btn btn-default nav-btn" %>
 		</div>
 	<% end %>
 </div>
