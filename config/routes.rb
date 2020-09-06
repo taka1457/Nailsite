@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     get 'customers/rank' => 'customers#rank', as: 'customers_rank'
     get 'imgsearch', to: 'img_searchs#search', as: 'img_search'
 
+
     resources :customers, only: [:index, :show] do
       resources :talks, only: [:create]
       resource :relationships, only: [:create, :destroy]

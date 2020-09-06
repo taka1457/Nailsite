@@ -21,13 +21,13 @@ class Public::ImgSearchsController < ApplicationController
   end
 
   def search
-    if params["img_search"].present?
+    if params[:tag].present?
+      @records = Tag.where(name: params[:tag][:name])
+    elsif params["img_search"].present?
       @content1 = params["img_search"]["1content"]
       @content2 = params["img_search"]["2content"]
       @content3 = params["img_search"]["3content"]
-
       @records = search_for(@content1, @content2, @content3).select(:post_id).distinct
-      @records_name = search_for(@content1, @content2, @content3).select(:name).distinct
     else
       @img_search = ImgSearch.new
       @img_searchs = ImgSearch.where(customer_id: current_customer).reverse_order
@@ -38,6 +38,10 @@ class Public::ImgSearchsController < ApplicationController
   private
   def img_search_params
     params.require(:img_search).permit(:search_image)
+  end
+
+  def search_tag(content)
+    Tag.where(['name LIKE ?', "%#{content1}%"])
   end
 
   def search_for(content1, content2, content3)
