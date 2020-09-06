@@ -1,0 +1,29 @@
+<div class="col-md-9 col-md-offset-1 col-xs-12">
+	<% talks.each do |talk| %>
+		<table class="table" style="table-layout: fixed;">
+			<tr>
+		    <% if talk.contributor == "shop" %>
+		    	<td class="col-md-3 text-center col-xs-3">
+		    		<%= link_to shop_path(shop) do %>
+							<%= attachment_image_tag shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
+						<% end %><br>
+						<span><%= shop.name %></span><br>
+						<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
+						<%= talk.created_at.strftime("%H時%M分").to_s %>
+					</td>
+			    <td class="col-md-8 col-xs-8" style="white-space: pre-wrap;"><%= talk.body %></td>
+			  <% else %>
+			    <td class="col-md-3 col-xs-3 text-center">
+		    		<%= link_to customer_path(current_customer) do %>
+							<%= attachment_image_tag current_customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
+						<% end %><br>
+						<span>You</span><br>
+						<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
+						<%= talk.created_at.strftime("%H時%M分").to_s %>
+		    	</td>
+		    	<td class="col-md-8 col-xs-8" style="white-space: pre-wrap;"><%= talk.body %></td>
+		    <% end %>
+			</tr>
+		</table>
+	<% end %>
+</div>

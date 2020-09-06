@@ -43,13 +43,13 @@ Rails.application.routes.draw do
     get 'imgsearch', to: 'img_searchs#search', as: 'img_search'
 
     resources :customers, only: [:index, :show] do
+      resources :talks, only: [:create]
       resource :relationships, only: [:create, :destroy]
       resources :reservation_menus, only: [:create]
       resources :reservation_histories, only: [:index] do
         resources :history_comments, only: [:create, :destroy]
       end
     end
-
     resources :reservation_menus, only: [:index]
     resources :talks, only: [:create]
     resources :img_searchs, only: [:create, :new]

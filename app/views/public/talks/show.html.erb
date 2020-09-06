@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 col-xs-12">
 		<h3>Contact</h3>
-		<%= form_with model: @talk do |f| %>
+		<%= form_with model: [:customer, @talk], url: customer_talks_path, data: {remote: true}  do |f| %>
 			<div class="row">
 				<div class="col-md-9 col-md-offset-1 col-xs-11 row-5">
 				  <%= f.text_area :body, autofocus: true %>
@@ -22,60 +22,8 @@
 				</div>
 			</div>
 		<% end %>
-		<div class="row">
-			<div class="col-md-9 col-md-offset-1 col-xs-12">
-			  <% @talks.each do |talk| %>
-			  	<table class="table" style="table-layout:fixed;">
-			  		<tr>
-						  <% if customer_signed_in? %>
-						    <% if talk.customer_id == current_customer.id %>
-						    	<td class="col-md-3 col-xs-3 text-center">
-						    		<%= link_to customer_path(current_customer) do %>
-											<%= attachment_image_tag current_customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
-										<% end %><br>
-										<span>You</span><br>
-										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
-										<%= talk.created_at.strftime("%H時%M分").to_s %>
-						    	</td>
-						    	<td class="col-md-8 col-xs-8" style="white-space: pre-wrap;"><%= talk.body %></td>
-							  <% else %>
-								  <td class="col-md-3 col-xs-3 text-center">
-								  	<%= link_to customer_path(@customer) do %>
-											<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
-										<% end %><br>
-										<span><%= @customer.last_name %>さん</span><br>
-										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
-										<%= talk.created_at.strftime("%H時%M分").to_s %>
-								  </td>
-								  <td class="col-md-8 col-xs-8" style="white-space: pre-wrap;"><%= talk.body %></td>
-						    <% end %>
-						  <% elsif shop_signed_in? %>
-						    <% if talk.contributor == "shop" %>
-							    <td class="col-md-3 col-xs-3 text-center">
-						    		<%= link_to customer_path(current_shop) do %>
-											<%= attachment_image_tag current_shop, :shop_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
-										<% end %><br>
-										<span>You</span><br>
-										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
-										<%= talk.created_at.strftime("%H時%M分").to_s %>
-						    	</td>
-						    	<td class="col-md-8 col-xs-8" style="white-space: pre-wrap;"><%= talk.body %></td>
-							  <% else %>
-							    <td class="col-md-3 col-xs-3 text-center">
-								  	<%= link_to customer_path(@customer) do %>
-											<%= attachment_image_tag @customer, :profile_image, format: "jpeg", fallback: "no-image.png", class: "profile_talk_image" %>
-										<% end %><br>
-										<span><%= @customer.last_name %>さん</span><br>
-										<%= talk.created_at.strftime("%Y/%m/%d").to_s %><br>
-										<%= talk.created_at.strftime("%H時%M分").to_s %>
-								  </td>
-								  <td class="col-md-8 col-xs-8" style="white-space: pre-wrap;"><%= talk.body %></td>
-						    <% end %>
-						  <% end %>
-						</tr>
-					</table>
-				<% end %>
-			</div>
+		<div class="row" id="customer_talk">
+			<%= render 'public/talks/show', talks: @talks, customer: @customer %>
 		</div>
 	</div>
 </div>

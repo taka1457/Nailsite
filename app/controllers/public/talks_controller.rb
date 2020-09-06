@@ -38,13 +38,18 @@ class Public::TalksController < ApplicationController
 
   def create
     if customer_signed_in?
+      @customer = Customer.find(params[:customer_id])
+      talk_rooms = current_customer.talk_rooms.pluck(:talk_room_id)
+      customer_rooms = CustomerRoom.find_by(customer_id: @customer.id, talk_room_id: talk_rooms)
+      @talk_room = customer_rooms.talk_room
+      @talks = @talk_room.talks.reverse_order
       @talk = current_customer.talks.new(talk_params)
       @talk.save!
-      redirect_to request.referer
     elsif shop_signed_in?
+      @customer = Customer.find(params[:customer_id])
+      @talks = Talk.where(shop_id: current_shop.id).where(customer_id: @customer.id).reverse_order
       @talk = current_shop.talks.new(talk_params)
       @talk.save!
-      redirect_to request.referer
     else
       redirect_to new_customer_session_path
     end

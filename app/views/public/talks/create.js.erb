@@ -1,2 +1,2 @@
-$("text_area").val("");
-$(".message").append("<p style='text-align: right;'><%= @talk.body %></p>");
+$('#customer_talk').html(" <%= j(render 'public/talks/show', talks: @talks, customer: @customer) %>");
+$("textarea").val("");

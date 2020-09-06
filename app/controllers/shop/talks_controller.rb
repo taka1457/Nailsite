@@ -27,8 +27,9 @@ class Shop::TalksController < ApplicationController
 
   def create
     @talk = current_customer.talks.new(talk_params)
+    @shop = Shop.find(params[:shop_id])
+    @talks = Talk.where(shop_id: @shop.id).where(customer_id: current_customer).reverse_order
     if @talk.save
-      redirect_to request.referer
     else
       redirect_to request.referer
     end
