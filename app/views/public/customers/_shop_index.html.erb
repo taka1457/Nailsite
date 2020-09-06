@@ -21,8 +21,8 @@
 				<td>
 					<span>
 						<% @average = 0 %>
-						<% customer.history_comment.each do |comment| %>
-							<% @average += (comment.score / customer.history_comment.count) %>
+						<% customer.history_comments.each do |comment| %>
+							<% @average += (comment.score / customer.history_comments.count) %>
 						<% end %>
 						<% if @average > 0.6 %>☆☆☆☆☆
 						<% elsif @average >= 0.3 %>☆☆☆☆
