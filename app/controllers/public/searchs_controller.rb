@@ -17,6 +17,6 @@ class Public::SearchsController < ApplicationController
   def search_for(content)
     #　文字列の改行が必要
     Shop.where(is_active: true)
-      .where('(name LIKE ?) OR (prefecture_code LIKE ?) OR (city LIKE ?) OR (street LIKE ?) OR (promotion LIKE ?) OR (introduction LIKE ?)', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%')
+        .where('(name LIKE ?) OR (prefecture_code LIKE ?) OR (city LIKE ?) OR (street LIKE ?) OR (promotion LIKE ?) OR (introduction LIKE ?)', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%', '%' + content + '%')
   end
 end

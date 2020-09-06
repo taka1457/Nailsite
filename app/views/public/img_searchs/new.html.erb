@@ -29,13 +29,9 @@
 							</td>
 							<td>
 								<%= form_for(img_search, url: img_search_path, method: :get) do |f| %>
-
-
 									<% img_search.search_tags.each.with_index(1) do |tag, i| %>
 										<%= f.hidden_field "#{i}content", :value => tag.name %>
 									<% end %>
-
-
 									<%= submit_tag '検索', class: "btn btn-default search_btn" %>
 								<% end %>
 							</td>

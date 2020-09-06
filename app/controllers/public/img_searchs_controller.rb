@@ -21,13 +21,18 @@ class Public::ImgSearchsController < ApplicationController
   end
 
   def search
-    @content1 = params["img_search"]["1content"]
-    @content2 = params["img_search"]["2content"]
-    @content3 = params["img_search"]["3content"]
+    if params["img_search"].present?
+      @content1 = params["img_search"]["1content"]
+      @content2 = params["img_search"]["2content"]
+      @content3 = params["img_search"]["3content"]
 
-    @records = search_for(@content1, @content2, @content3).select(:post_id).distinct
-    @records_name = search_for(@content1, @content2, @content3).select(:name).distinct
-
+      @records = search_for(@content1, @content2, @content3).select(:post_id).distinct
+      @records_name = search_for(@content1, @content2, @content3).select(:name).distinct
+    else
+      @img_search = ImgSearch.new
+      @img_searchs = ImgSearch.where(customer_id: current_customer).reverse_order
+      render :new
+    end
   end
 
   private
@@ -37,13 +42,13 @@ class Public::ImgSearchsController < ApplicationController
 
   def search_for(content1, content2, content3)
     # リファクタメモ
-    # params
-    # { tags => ["tag1", "tag2", "tag3"] }
+    # params{ tags => ["tag1", "tag2", "tag3"] }
     # params["img_search"]["tgs"] => ["tag1", "tag2", "tag3"] この形で params を取得できるのが望ましい
     # search_for(tags) content1,2,3 で渡すのではなく, 検索したい tag を配列で渡したい
 
     Tag.where('(name LIKE ?) OR (name LIKE ?) OR (name LIKE ?)', "%#{content1}%", "%#{content2}%","%#{content3}%")
 
+    # AND検索同じ画像でも引っかからないため使用できず
     # Tag.where(['name LIKE ?', "%#{content1}%"]).where(['name LIKE ?', "%#{content2}%"]).where(['name LIKE ?', "%#{content3}%"])
   end
 end
