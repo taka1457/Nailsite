@@ -1,12 +1,13 @@
 class Public::ImgSearchsController < ApplicationController
-	before_action :authenticate_customer!
+  before_action :authenticate_customer!
 
-	def new
-		@img_search = ImgSearch.new
-		@img_searchs = ImgSearch.where(customer_id: current_customer).reverse_order
-	end
+  def new
+    @img_search = ImgSearch.new
+    @img_searchs = ImgSearch.where(customer_id: current_customer).reverse_order
+    @tag = Tag.new
+  end
 
-	def create
+  def create
     @img_search = ImgSearch.new(img_search_params)
     @img_search.customer_id = current_customer.id
     if @img_search.save
@@ -36,12 +37,9 @@ class Public::ImgSearchsController < ApplicationController
   end
 
   private
+
   def img_search_params
     params.require(:img_search).permit(:search_image)
-  end
-
-  def search_tag(content)
-    Tag.where(['name LIKE ?', "%#{content1}%"])
   end
 
   def search_for(content1, content2, content3)
@@ -50,7 +48,7 @@ class Public::ImgSearchsController < ApplicationController
     # params["img_search"]["tgs"] => ["tag1", "tag2", "tag3"] この形で params を取得できるのが望ましい
     # search_for(tags) content1,2,3 で渡すのではなく, 検索したい tag を配列で渡したい
 
-    Tag.where('(name LIKE ?) OR (name LIKE ?) OR (name LIKE ?)', "%#{content1}%", "%#{content2}%","%#{content3}%")
+    Tag.where('(name LIKE ?) OR (name LIKE ?) OR (name LIKE ?)', "%#{content1}%", "%#{content2}%", "%#{content3}%")
 
     # AND検索同じ画像でも引っかからないため使用できず
     # Tag.where(['name LIKE ?', "%#{content1}%"]).where(['name LIKE ?', "%#{content2}%"]).where(['name LIKE ?', "%#{content3}%"])

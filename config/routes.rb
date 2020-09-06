@@ -42,7 +42,6 @@ Rails.application.routes.draw do
     get 'customers/rank' => 'customers#rank', as: 'customers_rank'
     get 'imgsearch', to: 'img_searchs#search', as: 'img_search'
 
-
     resources :customers, only: [:index, :show] do
       resources :talks, only: [:create]
       resource :relationships, only: [:create, :destroy]
@@ -76,7 +75,6 @@ Rails.application.routes.draw do
     get '/genres/:genre_id' => 'shops#search', as: 'shops_search'
     get '/mapgenres/:genre_id' => 'shops#map_search', as: 'shops_map_search'
     get 'shops/:id/review' => 'reservation_histories#review', as: 'shop_review'
-
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]

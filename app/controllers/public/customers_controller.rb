@@ -9,27 +9,27 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.where(is_active: true).find(params[:id])
     @reserves = Reserve.where(customer_id: @customer)
-    @reservation_histories = ReservationHistory.where(reserve_id: @reserves)
-                              .includes(:reserve)
-                              .order("reserves.reservation DESC")
+    @reservation_histories = ReservationHistory.where(reserve_id: @reserves).
+      includes(:reserve).
+      order("reserves.reservation DESC")
     @history_comments = HistoryComment.where(customer_id: @customer).reverse_order
   end
 
   def rank
-    @customers = Kaminari.paginate_array(Customer
-                                        .left_joins(:history_comments)
-                                        .where(is_active: true)
-                                        .distinct
-                                        .sort_by do |customer|
+    @customers = Kaminari.paginate_array(Customer.
+                                        left_joins(:history_comments).
+                                        where(is_active: true).
+                                        distinct.
+                                        sort_by do |customer|
                                           comments = customer.history_comments
                                           if comments.present?
                                             comments.map(&:score).sum / comments.size
                                           else
                                             0
                                           end
-                                        end
-                                        .reverse)
-                  .page(params[:page]).per(6)
+                                        end.
+                                        reverse).
+      page(params[:page]).per(6)
   end
 
   def mypage

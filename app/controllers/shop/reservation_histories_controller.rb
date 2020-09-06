@@ -6,17 +6,17 @@ class Shop::ReservationHistoriesController < ApplicationController
     @shop = Shop.find(params[:id])
     @menus = @shop.menus.all
     @reservation_histories = ReservationHistory.where(menu_id: @menus)
-    @history_comments = HistoryComment.where(reservation_history_id: @reservation_histories)
-                                      .reverse_order
+    @history_comments = HistoryComment.where(reservation_history_id: @reservation_histories).
+      reverse_order
   end
 
   def index
     @menus = Menu.where(shop_id: current_shop)
-    @reservation_histories = ReservationHistory.where(menu_id: @menus)
-                              .includes(:reserve)
-                              .order("reserves.reservation DESC")
-    @history_comments = HistoryComment.where(reservation_history_id: @reservation_histories)
-                                      .reverse_order
+    @reservation_histories = ReservationHistory.where(menu_id: @menus).
+      includes(:reserve).
+      order("reserves.reservation DESC")
+    @history_comments = HistoryComment.where(reservation_history_id: @reservation_histories).
+      reverse_order
     respond_to do |format|
       format.html
       format.csv do |csv|
@@ -50,15 +50,14 @@ class Shop::ReservationHistoriesController < ApplicationController
 
       reservation_histories.each do |history|
         column_values = [
-          history.reserve.reservation.to_s(:datetime_jp) ,
+          history.reserve.reservation.to_s(:datetime_jp),
           history.reserve.customer.full_name,
           history.menu.name,
           history.menu.price.to_s(:delimited),
-          history.status_i18n
+          history.status_i18n,
         ]
         csv << column_values
       end
-
     end
     send_data(csv_data, filename: "予約状況.csv")
   end

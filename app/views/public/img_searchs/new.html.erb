@@ -9,11 +9,10 @@
 				<%= f.submit 'アップロード' %>
 			</div>
 		<% end %>
-
-			<%= form_for(Tag.new, url: img_search_path, method: :get) do |f| %>
-				<%= f.select :name, Tag.all.map{|t| [t.name, t.name]}.uniq, include_blank: "選択して下さい" %>
-				<%= submit_tag '検索', class: "btn btn-default search_btn" %>
-			<% end %>
+		<%= form_for(@tag, url: img_search_path, method: :get) do |f| %>
+			<%= f.select :name, Tag.all.map{|tag| tag.name }.uniq, include_blank: "選択して下さい" %>
+			<%= submit_tag '検索', class: "btn btn-default search_btn" %>
+		<% end %>
 		<div class="row">
 			<table class="table">
 				<thead>
