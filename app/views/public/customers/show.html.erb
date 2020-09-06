@@ -24,6 +24,7 @@
 							<% end %>
 						</td>
 						<td><%= reservation_history.menu.name %></td>
+						<% if reservation_history.history_comment.present? %>
 							<% reservation_history.history_comment.each do |comment| %>
 								<td><span style="white-space: pre-wrap;"><%= comment.body %></span></td>
 								<td>
@@ -35,6 +36,10 @@
 									<% end %>
 								</td>
 							<% end %>
+						<% else %>
+							<td></td>
+							<td></td>
+						<% end %>
 					</tr>
 				<% end %>
 			</tbody>

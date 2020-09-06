@@ -5,7 +5,6 @@
 			<% @history_comments.each do |comment| %>
 				<% @average += ((comment.score) / @history_comments.count) %>
 			<% end %>
-			<%= @average %>
 			<% if @average > 0.6 %>☆☆☆☆☆
 			<% elsif @average >= 0.3 %>☆☆☆☆
 			<% elsif @average >= -0.3 %>☆☆☆

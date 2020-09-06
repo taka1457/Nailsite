@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
   before_action :set_current_customer, except: [:index, :show, :rank]
 
   def index
-    @customers = Customer.where(is_active: true).page(params[:page]).per(6)
+    @customers = Customer.where(is_active: true).page(params[:page])
   end
 
   def show
