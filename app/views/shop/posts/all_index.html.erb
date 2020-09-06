@@ -2,6 +2,9 @@
 	<div class="col-md-8 col-md-offset-2">
 		<h2>最近の投稿一覧<span class="sub_title">　　　　<%= paginate @posts %></span>
 			<%= link_to 'いいね順', posts_rank_path, class: "btn btn-default nav-btn" %>
+			<% if customer_signed_in? %>
+				<%= link_to '写真検索へ', new_img_search_path, class: "btn btn-default nav-btn" %>
+			<% end %>
 		</h2>
 		<% @posts.each do |post| %>
 			<div class="col-md-4 col-xs-4">
@@ -23,11 +26,6 @@
 			</div>
 		<% end %>
 	</div>
-	<% if customer_signed_in? %>
-		<div class="col-md-2">
-			<%= link_to '写真検索へ', new_img_search_path, class: "btn btn-default nav-btn" %>
-		</div>
-	<% end %>
 </div>
 
 
