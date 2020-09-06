@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_090857) do
+ActiveRecord::Schema.define(version: 2020_09_05_040951) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -85,8 +85,17 @@ ActiveRecord::Schema.define(version: 2020_08_23_090857) do
     t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "score", precision: 5, scale: 3, default: "0.0"
     t.index ["customer_id"], name: "index_history_comments_on_customer_id"
     t.index ["reservation_history_id"], name: "index_history_comments_on_reservation_history_id"
+  end
+
+  create_table "img_searches", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "search_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_img_searches_on_customer_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -155,6 +164,13 @@ ActiveRecord::Schema.define(version: 2020_08_23_090857) do
     t.index ["customer_id"], name: "index_reserves_on_customer_id"
   end
 
+  create_table "search_tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "img_search_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "shop_rooms", force: :cascade do |t|
     t.integer "shop_id", null: false
     t.integer "talk_room_id", null: false
@@ -196,6 +212,13 @@ ActiveRecord::Schema.define(version: 2020_08_23_090857) do
     t.index ["email"], name: "index_shops_on_email", unique: true
     t.index ["genre_id"], name: "index_shops_on_genre_id"
     t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "talk_rooms", force: :cascade do |t|

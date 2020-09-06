@@ -1,7 +1,20 @@
 <div class="row">
 	<div class="col-xs-10 col-xs-offset-1">
-		<h2>予約履歴一覧</h2>
-		<table class="table table-bordered">
+		<h2>予約履歴一覧
+			<span class="sub_title">平均ポジティブ度：
+				<% @average = 0 %>
+				<% current_customer.history_comments.each do |comment| %>
+					<% @average += ((comment.score) / @history_comments.count) %>
+				<% end %>
+				<% if @average > 0.6 %>☆☆☆☆☆
+				<% elsif @average >= 0.3 %>☆☆☆☆
+				<% elsif @average >= -0.3 %>☆☆☆
+				<% elsif @average >= -0.6 %>☆☆
+				<% elsif @average < -0.6 %>☆
+				<% end %>
+			</span>
+		</h2>
+		<table class="table table-bordered table-condensed">
 			<thead>
 				<tr>
 					<th>予約日</th>
@@ -9,6 +22,7 @@
 					<th>メニュー名</th>
 					<th>メニュー金額</th>
 					<th>コメント</th>
+					<th>ポジティブ度</th>
 				</tr>
 			</thead>
 			<tbody>

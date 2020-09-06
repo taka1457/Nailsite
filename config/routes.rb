@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     get 'customers/follows' => 'relationships#follow', as: 'follow'
     get 'customers/bookmarks' => 'bookmarks#index', as: 'bookmarks'
     get 'customers/reserve' => 'reserves#new', as: 'reserve'
+    get 'customers/rank' => 'customers#rank', as: 'customers_rank'
+    get 'imgsearch', to: 'img_searchs#search', as: 'img_search'
 
     resources :customers, only: [:index, :show] do
       resources :talks, only: [:create]
@@ -49,6 +51,8 @@ Rails.application.routes.draw do
       end
     end
     resources :reservation_menus, only: [:index]
+    resources :talks, only: [:create]
+    resources :img_searchs, only: [:create, :new]
   end
 
   scope module: :shop do
@@ -71,6 +75,7 @@ Rails.application.routes.draw do
     get '/genres/:genre_id' => 'shops#search', as: 'shops_search'
     get '/mapgenres/:genre_id' => 'shops#map_search', as: 'shops_map_search'
     get 'shops/:id/review' => 'reservation_histories#review', as: 'shop_review'
+
 
     resources :shops, only: [:index, :show] do
       resources :menus, except: [:show]

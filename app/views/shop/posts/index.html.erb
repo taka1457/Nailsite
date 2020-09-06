@@ -20,7 +20,10 @@
 							<div class="row-2" style="white-space: pre-wrap;"><%= post.body %></div><br>
 							<span><%= post.created_at.to_s(:datetime_jp) %>　　</span>
 							<span class="glyphicon glyphicon-heart-empty"> <%= post.favorites.count %>　</span>
-							<span class="glyphicon glyphicon-envelope"> <%= post.post_comments.count %></span>
+							<span class="glyphicon glyphicon-envelope"> <%= post.post_comments.count %></span><br>
+							<% post.tags.each do |tag| %>
+							  <span><%= tag.name %></span>
+							<% end %>
 						</td>
 						<td><%= link_to "編集", edit_shop_post_path(current_shop, post), class: "btn btn-success ml2" %></td>
 						<td><%= link_to "削除", shop_post_path(current_shop, post), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger"  %></td>

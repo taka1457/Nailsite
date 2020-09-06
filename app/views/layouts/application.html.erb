@@ -29,6 +29,7 @@
                     <li role="presentation"><%= link_to '連絡一覧', shops_talks_path %></li>
                     <li role="presentation"><%= link_to 'メニュー', shop_menus_path(current_shop) %></li>
                     <li role="presentation"><%= link_to '投稿一覧', shop_posts_path(current_shop) %></li>
+                    <li role="presentation"><%= link_to '会員一覧', customers_rank_path %></li>
                     <li role="presentation"><%= link_to 'ログアウト', destroy_shop_session_path, method: :delete %></li>
                   </ul>
                 </li>
@@ -39,7 +40,7 @@
                 <li><%= link_to '連絡一覧', shops_talks_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'メニュー', shop_menus_path(current_shop), class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to '投稿一覧', shop_posts_path(current_shop), class: "btn btn-default nav-btn" %></li>
-                <li><%= link_to '会員一覧', customers_path, class: "btn btn-default nav-btn" %></li>
+                <li><%= link_to '会員一覧', customers_rank_path, class: "btn btn-default nav-btn" %></li>
                 <li><%= link_to 'ログアウト', destroy_shop_session_path, method: :delete, class: "btn btn-default nav-btn" %></li>
               </ul>
             </nav>

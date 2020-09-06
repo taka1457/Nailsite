@@ -5,6 +5,9 @@
 				<%= @shop.name %>
 			<% end %>
 			<span class="sub_title">　の投稿一覧　　　<%= paginate @posts %></span>
+			<% if customer_signed_in? %>
+				<%= link_to '写真検索へ', new_img_search_path, class: "btn btn-default nav-btn" %>
+			<% end %>
 		</h2>
 		<% @posts.each do |post| %>
 			<div class="col-md-4 col-xs-4">

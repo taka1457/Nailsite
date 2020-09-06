@@ -12,21 +12,30 @@
 					<th>店舗名</th>
 					<th>メニュー名</th>
 					<th>コメント</th>
+					<th>ポジティブ度</th>
 				</tr>
 			</thead>
 			<tbody>
-				<% @reservation_history.each do |reservation_history| %>
-				<% if reservation_history.reserve.customer == @customer %>
+				<% @reservation_histories.each do |reservation_history| %>
 					<tr>
-						<td><%= reservation_history.menu.shop.name %></td>
-						<td><%= reservation_history.menu.name %></td>
 						<td>
-							<% reservation_history.history_comment.each do |history_comment| %>
-								<span style="white-space: pre-wrap;"><%= history_comment.body %></span>
+							<%= link_to shop_path(reservation_history.menu.shop) do %>
+								<%= reservation_history.menu.shop.name %>
 							<% end %>
 						</td>
+						<td><%= reservation_history.menu.name %></td>
+							<% reservation_history.history_comment.each do |comment| %>
+								<td><span style="white-space: pre-wrap;"><%= comment.body %></span></td>
+								<td>
+									<% if comment.score > 0.6 %>☆☆☆☆☆
+									<% elsif comment.score >= 0.3 %>☆☆☆☆
+									<% elsif comment.score >= -0.3 %>☆☆☆
+									<% elsif comment.score >= -0.6 %>☆☆
+									<% elsif comment.score < -0.6 %>☆
+									<% end %>
+								</td>
+							<% end %>
 					</tr>
-				<% end %>
 				<% end %>
 			</tbody>
 		</table>
