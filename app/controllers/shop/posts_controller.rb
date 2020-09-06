@@ -62,6 +62,11 @@ class Shop::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      @post.tags.destroy_all
+      tags = Vision.get_image_data(@post.post_image)
+      tags.each do |tag|
+        @post.tags.create(name: tag)
+      end
       redirect_to shop_posts_path
     else
       render :edit
