@@ -29,7 +29,7 @@ class Public::CustomersController < ApplicationController
                                           end
                                         end.
                                         reverse).
-      page(params[:page]).per(6)
+      page(params[:page])
   end
 
   def mypage
