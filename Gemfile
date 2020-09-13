@@ -45,6 +45,7 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
   gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.4.1'
 end
 
 group :development do
@@ -59,7 +60,6 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
-  gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'faker'
 end
