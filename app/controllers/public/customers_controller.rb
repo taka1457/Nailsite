@@ -28,8 +28,7 @@ class Public::CustomersController < ApplicationController
                                             0
                                           end
                                         end.
-                                        reverse).
-      page(params[:page])
+                                        reverse).page(params[:page])
   end
 
   def mypage
