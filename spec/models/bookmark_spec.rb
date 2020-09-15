@@ -1,6 +1,6 @@
 require 'rails_helper'
-RSpec.describe 'Bookmarkモデルのテスト', type: :model do
 
+RSpec.describe 'Bookmarkモデルのテスト', type: :model do
   describe 'アソシエーションのテスト' do
     context 'Shopモデルとの関係' do
       it 'N:1となっている' do

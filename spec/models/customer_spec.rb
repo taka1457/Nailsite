@@ -1,11 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Customerモデルのテスト', type: :model do
-  # 名前が空欄で登録できない→名前を空欄で登録したらfalse
-  # バリデーションしていない状態で失敗→設定したら成功
-  # 登録できるかできないか 登録できたら失敗
-  # エラーメッセージがなければ失敗
-
   describe 'バリデーションのテスト' do
     let(:customer) { build(:customer) }
     subject { test_customer.valid? }
@@ -72,7 +67,6 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
         is_expected.to eq false;
       end
     end
-    
   end
   describe 'アソシエーションのテスト' do
     context 'ImgSearchモデルとの関係' do
@@ -125,6 +119,5 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
         expect(Customer.reflect_on_association(:bookmarks).macro).to eq :has_many
       end
     end
-
   end
 end

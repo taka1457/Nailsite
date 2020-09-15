@@ -169,7 +169,7 @@ RSpec.describe 'Shopモデルのテスト', type: :model do
     let(:genre) { FactoryBot.create(:genre) }
     context 'Genreモデルとの関係' do
 			it '1:Nとなっている' do
-				expect(Genre.reflect_on_association(:shops).macro).to eq :has_many
+				expect(Shop.reflect_on_association(:genre).macro).to eq :belongs_to
 			end
     end
     context 'Postモデルとの関係' do
