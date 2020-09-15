@@ -9,22 +9,20 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     let(:customer) { build(:customer) }
     subject { test_customer.valid? }
+    let(:test_customer) { customer }
     context 'first_nameカラム' do
-      let(:test_customer) { customer }
       it '空欄でないこと' do
         test_customer.first_name = ''
         is_expected.to eq false;
       end
     end
     context 'last_nameカラム' do
-      let(:test_customer) { customer }
       it '空欄でないこと' do
         test_customer.last_name = ''
         is_expected.to eq false;
       end
     end
     context 'first_name_kanaカラム' do
-      let(:test_customer) { customer }
       it '空欄でないこと' do
         test_customer.first_name_kana = ''
         is_expected.to eq false;
@@ -36,7 +34,6 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
       end
     end
     context 'last_name_kanaカラム' do
-      let(:test_customer) { customer }
       it '空欄でないこと' do
         test_customer.last_name_kana = ''
         is_expected.to eq false;
@@ -48,7 +45,6 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
       end
     end
     context 'emailカラム' do
-      let(:test_customer) { customer }
       it '空欄でないこと' do
         test_customer.email = ''
         is_expected.to eq false;
@@ -60,7 +56,6 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
       end
     end
     context 'phone_numberカラム' do
-      let(:test_customer) { customer }
       it '空欄でないこと' do
         test_customer.phone_number = ''
         is_expected.to eq false;
@@ -72,7 +67,6 @@ RSpec.describe 'Customerモデルのテスト', type: :model do
       end
     end
     context 'introductionカラム' do
-      let(:test_customer) { customer }
       it '150文字以下であること' do
         test_customer.introduction = Faker::Lorem.characters(number:151)
         is_expected.to eq false;
