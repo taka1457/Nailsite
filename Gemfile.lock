@@ -122,11 +122,6 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
-    factory_girl (4.4.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.4.1)
-      factory_girl (~> 4.4.0)
-      railties (>= 3.0.0)
     faker (2.13.0)
       i18n (>= 1.6, < 2)
     ffi (1.13.1)
@@ -366,7 +361,6 @@ DEPENDENCIES
   dotenv-rails
   enum_help
   factory_bot_rails
-  factory_girl_rails (~> 4.4.1)
   faker
   fullcalendar-rails
   gon

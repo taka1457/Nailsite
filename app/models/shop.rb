@@ -40,6 +40,10 @@ class Shop < ApplicationRecord
   end
 
   def full_address
-    prefecture_code + city + street + other_address
+    if other_address.present?
+      prefecture_code + city + street + other_address
+    else
+      prefecture_code + city + street
+    end
   end
 end
