@@ -2,10 +2,6 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
-  namespace :shop do
-    get 'bookmarks/create'
-    get 'bookmarks/destroy'
-  end
   devise_for :shops, controllers: {
     sessions: 'shop/sessions',
     registrations: 'shop/registrations',

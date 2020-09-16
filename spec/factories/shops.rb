@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :shop do
-      name { Faker::Lorem.characters(number:10) }
+      name { 'nailsalon' }
       email { Faker::Internet.email }
       phone_number { 12345678909 }
       postal_code { 1000006 }
@@ -16,7 +16,7 @@ FactoryBot.define do
       parking { Faker::Lorem.characters(number:10) }
       promotion { Faker::Lorem.characters(number:10) }
       introduction { Faker::Lorem.characters(number:20) }
-      genre 
+      genre
       password { 'password' }
       password_confirmation { 'password' }
     end
