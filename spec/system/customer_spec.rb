@@ -66,7 +66,7 @@ describe 'Customerマイページのテスト' do
     end
     it '写真検索画面に遷移する' do
       click_link "写真検索", match: :first
-      expect(page).to have_content("写真をアップロード")
+      expect(page).to have_content("類似画像")
     end
   end
 end

@@ -32,6 +32,7 @@ class Public::ImgSearchsController < ApplicationController
     else
       @img_search = ImgSearch.new
       @img_searchs = ImgSearch.where(customer_id: current_customer).reverse_order
+      @tag = Tag.new
       render :new
     end
   end

@@ -1,18 +1,24 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<h3>写真をアップロードして、似ているネイルを検索</h3>
-		<%= form_with model: @img_search, url: img_searchs_path do |f| %>
-			<div class="col-md-4">
-				<%= f.attachment_field :search_image %>
-			</div>
-			<div class="col-md-2">
-				<%= f.submit 'アップロード' %>
-			</div>
-		<% end %>
-		<%= form_for(@tag, url: img_search_path, method: :get) do |f| %>
-			<%= f.select :name, Tag.all.map{|tag| tag.name }.uniq, include_blank: "選択して下さい" %>
-			<%= submit_tag '検索', class: "btn btn-default search_btn" %>
-		<% end %>
+		<h3>類似写真検索</h3>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>アップロードしてから検索：</td>
+						<%= form_with model: @img_search, url: img_searchs_path do |f| %>
+							<td><%= f.attachment_field :search_image %></td>
+							<td><%= f.submit 'アップロード' %></td>
+						<% end %>
+					</tr>
+					<tr>
+						<td>既存のカテゴリーから検索：</td>
+						<%= form_for(@tag, url: img_search_path, method: :get) do |f| %>
+							<td><%= f.select :name, Tag.all.map{|tag| tag.name }.uniq, include_blank: "選択して下さい" %></td>
+							<td><%= submit_tag 'カテゴリ検索' %></td>
+						<% end %>
+					</tr>
+				</tbody>
+			</table>
 		<div class="row">
 			<table class="table">
 				<thead>
@@ -32,11 +38,13 @@
 								<% end %>
 							</td>
 							<td>
-								<%= form_for(img_search, url: img_search_path, method: :get) do |f| %>
-									<% img_search.search_tags.each.with_index(1) do |tag, i| %>
-										<%= f.hidden_field "#{i}content", :value => tag.name %>
+								<% if img_search.search_tags.present? %>
+									<%= form_for(img_search, url: img_search_path, method: :get) do |f| %>
+										<% img_search.search_tags.each.with_index(1) do |tag, i| %>
+											<%= f.hidden_field "#{i}content", :value => tag.name %>
+										<% end %>
+										<%= submit_tag '検索', class: "btn btn-default search_btn" %>
 									<% end %>
-									<%= submit_tag '検索', class: "btn btn-default search_btn" %>
 								<% end %>
 							</td>
 						</tr>
