@@ -6,7 +6,7 @@ class Public::HistoryCommentsController < ApplicationController
       includes(:reserve).
       order("reserves.reservation DESC")
     @reservation_history = ReservationHistory.find(params[:reservation_history_id])
-    @history_comment = @reservation_history.history_comment.new(history_comment_params)
+    @history_comment = @reservation_history.history_comments.new(history_comment_params)
     @history_comment.customer_id = current_customer.id
     @history_comment.score = Language.get_data(history_comment_params[:body])
     if @history_comment.save

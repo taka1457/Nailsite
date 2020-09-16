@@ -54,12 +54,6 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
-  def follows
-  end
-
-  def followers
-  end
-
   private
 
   def set_current_customer

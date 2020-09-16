@@ -2,7 +2,7 @@
 	<h2>会員詳細
 		<span class="sub_title">レビューポジティブ度：
 			<% @average = 0 %>
-			<% @history_comments.each do |comment| %>
+			<% history_comments.each do |comment| %>
 				<% @average += ((comment.score) / @history_comments.count) %>
 			<% end %>
 			<% if @average > 0.6 %>☆☆☆☆☆
