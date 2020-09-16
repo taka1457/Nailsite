@@ -52,6 +52,7 @@ ja:
         promotion: '店舗アピールポイント'
         introduction: '店舗紹介'
         genre_id: 'おすすめジャンル'
+        current_password: '現在のパスワード'
       customer:
         first_name: '名前（姓）'
         last_name: '名前（名）'
@@ -62,6 +63,10 @@ ja:
         introduction: '自己紹介'
         password: 'パスワード'
         password_confirmation: 'パスワード(確認用）'
+        current_password: '現在のパスワード'
+      admin:
+        email: 'メールアドレス'
+        password: 'パスワード'
       menu:
         name: 'メニュー名'
         detail: 'メニュー説明'
