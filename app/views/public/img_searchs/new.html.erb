@@ -5,7 +5,7 @@
 				<tbody>
 					<tr>
 						<td>アップロードしてから検索：</td>
-						<%= form_with model: @img_search, url: img_searchs_path do |f| %>
+						<%= form_for(@img_search, url: img_searchs_path) do |f| %>
 							<td><%= f.attachment_field :search_image %></td>
 							<td><%= f.submit 'アップロード' %></td>
 						<% end %>
