@@ -28,8 +28,7 @@ class Public::CustomersController < ApplicationController
                                             0
                                           end
                                         end.
-                                        reverse).
-      page(params[:page])
+                                        reverse).page(params[:page])
   end
 
   def mypage
@@ -53,12 +52,6 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_active: false)
     reset_session
     redirect_to root_path
-  end
-
-  def follows
-  end
-
-  def followers
   end
 
   private

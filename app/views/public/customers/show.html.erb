@@ -1,5 +1,5 @@
 <div class="row" id="customer_show">
-	<%= render partial: 'public/customers/show', locals: { customer: @customer } %>
+	<%= render partial: 'public/customers/show', locals: { customer: @customer, history_comments: @history_comments } %>
 </div>
 <div class="row">
 	<div class="col-md-9 col-md-offset-2">
@@ -24,8 +24,8 @@
 							<% end %>
 						</td>
 						<td><%= reservation_history.menu.name %></td>
-						<% if reservation_history.history_comment.present? %>
-							<% reservation_history.history_comment.each do |comment| %>
+						<% if reservation_history.history_comments.present? %>
+							<% reservation_history.history_comments.each do |comment| %>
 								<td><span style="white-space: pre-wrap;"><%= comment.body %></span></td>
 								<td>
 									<% if comment.score > 0.6 %>☆☆☆☆☆

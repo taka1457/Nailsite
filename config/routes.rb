@@ -2,17 +2,15 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
   }
-  namespace :shop do
-    get 'bookmarks/create'
-    get 'bookmarks/destroy'
-  end
   devise_for :shops, controllers: {
     sessions: 'shop/sessions',
     registrations: 'shop/registrations',
+    passwords: 'shop/passwords',
   }
   devise_for :customers, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations',
+    passwords: 'public/passwords',
   }
   scope module: :admin do
     resources :genres, only: [:index, :create, :edit, :update]

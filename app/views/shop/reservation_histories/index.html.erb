@@ -48,8 +48,8 @@
 							<% else %>
 								<td><%= history.status_i18n %></td>
 							<% end %>
-							<% if history.history_comment.present? %>
-								<% history.history_comment.each do |comment| %>
+							<% if history.history_comments.present? %>
+								<% history.history_comments.each do |comment| %>
 									<td><span style="white-space: pre-wrap;"><%= comment.body %></span></td>
 									<td>
 										<span>

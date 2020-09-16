@@ -7,6 +7,7 @@ class Public::RelationshipsController < ApplicationController
     customer = current_customer
     @following_customers = customer.following_customer.reverse_order
     @customers = Customer.where(is_active: true).page(params[:page]).per(6)
+    @history_comments = HistoryComment.where(customer_id: @customer).reverse_order
   end
 
   def destroy
@@ -15,6 +16,7 @@ class Public::RelationshipsController < ApplicationController
     customer = current_customer
     @following_customers = customer.following_customer.reverse_order
     @customers = Customer.where(is_active: true).page(params[:page]).per(6)
+    @history_comments = HistoryComment.where(customer_id: @customer).reverse_order
   end
 
   def follow
