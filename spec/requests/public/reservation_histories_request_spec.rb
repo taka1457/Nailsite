@@ -1,7 +1,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "ReservationHistories", type: :request do
+RSpec.describe "Public_ReservationHistories", type: :request do
   let(:customer) { create(:customer) }
   describe '会員ログイン済み' do
     before do

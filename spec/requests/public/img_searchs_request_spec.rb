@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "ImgSearchs", type: :request do
+RSpec.describe "Public_ImgSearchs", type: :request do
   let(:customer) { create(:customer) }
   describe '会員ログイン済み' do
     before do

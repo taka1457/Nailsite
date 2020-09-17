@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Customers", type: :request do
+RSpec.describe "Public_Customers", type: :request do
   let(:customer) { create(:customer) }
   describe '会員ページ（非ログイン）' do
     context "会員一覧ページが正しく表示される" do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
+RSpec.describe "Public_Relationships", type: :request do
   let(:customer) { create(:customer) }
   describe '会員ログイン済み' do
     before do
