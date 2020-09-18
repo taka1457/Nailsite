@@ -39,7 +39,7 @@ RSpec.describe "Shop_menus", type: :request do
         expect(response.status).to eq 302
       end
     end
-    context "メニュ一登録ページが正しく表示される" do
+    context "メニュ一登録ページへ遷移されない" do
       before do
         get new_shop_menu_path(shop)
       end
