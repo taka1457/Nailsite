@@ -76,3 +76,77 @@ describe 'Shop検索のテスト' do
     end
   end
 end
+
+describe 'Shop新規登録画面のテスト' do
+  before do
+    visit new_shop_registration_path
+  end
+  context '新規登録画面' do
+    it 'nameフォームが表示される' do
+      expect(page).to have_field 'shop[name]'
+    end
+    it 'phone_numberフォームが表示される' do
+      expect(page).to have_field 'shop[phone_number]'
+    end
+    it 'emailフォームが表示される' do
+      expect(page).to have_field 'shop[email]'
+    end
+    it 'passwordフォームが表示される' do
+      expect(page).to have_field 'shop[password]'
+    end
+    it 'password_confirmationフォームが表示される' do
+      expect(page).to have_field 'shop[password_confirmation]'
+    end
+    it 'postal_codeフォームが表示される' do
+      expect(page).to have_field 'shop[postal_code]'
+    end
+    it 'prefecture_codeフォームが表示される' do
+      expect(page).to have_field 'shop[prefecture_code]'
+    end
+    it 'cityフォームが表示される' do
+      expect(page).to have_field 'shop[city]'
+    end
+    it 'streetフォームが表示される' do
+      expect(page).to have_field 'shop[street]'
+    end
+    it 'other_addressフォームが表示される' do
+      expect(page).to have_field 'shop[other_address]'
+    end
+    it 'traffic_methodフォームが表示される' do
+      expect(page).to have_field 'shop[traffic_method]'
+    end
+    it 'business_hoursフォームが表示される' do
+      expect(page).to have_field 'shop[business_hours]'
+    end
+    it 'budgetフォームが表示される' do
+      expect(page).to have_field 'shop[budget]'
+    end
+    it 'payment_methodフォームが表示される' do
+      expect(page).to have_field 'shop[payment_method]'
+    end
+    it 'seatフォームが表示される' do
+      expect(page).to have_field 'shop[seat]'
+    end
+    it 'staffフォームが表示される' do
+      expect(page).to have_field 'shop[staff]'
+    end
+    it 'parkingフォームが表示される' do
+      expect(page).to have_field 'shop[parking]'
+    end
+    it 'promotionフォームが表示される' do
+      expect(page).to have_field 'shop[promotion]'
+    end
+    it 'introductionフォームが表示される' do
+      expect(page).to have_field 'shop[introduction]'
+    end
+    it 'shop_imageフォームが表示される' do
+      expect(page).to have_field 'shop[shop_image]'
+    end
+    it 'genreフォームが表示される' do
+      expect(page).to have_field 'shop[genre_id]'
+    end
+    it '新規登録ボタンが表示される' do
+      expect(page).to have_button '新規登録'
+    end
+  end
+end
