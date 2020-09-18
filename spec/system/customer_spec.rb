@@ -66,8 +66,42 @@ describe 'Customerマイページのテスト' do
     end
     it '写真検索画面に遷移する' do
       click_link "写真検索", match: :first
-      expect(page).to have_content("類似画像")
+      expect(page).to have_content("類似写真")
     end
   end
 end
 
+describe 'Customer新規登録画面のテスト' do
+  before do
+    visit new_customer_registration_path
+  end
+  context '新規登録画面' do
+    it 'first_nameフォームが表示される' do
+      expect(page).to have_field 'customer[first_name]'
+    end
+    it 'last_nameフォームが表示される' do
+      expect(page).to have_field 'customer[last_name]'
+    end
+    it 'first_name_kanaフォームが表示される' do
+      expect(page).to have_field 'customer[first_name_kana]'
+    end
+    it 'last_name_kanaフォームが表示される' do
+      expect(page).to have_field 'customer[last_name_kana]'
+    end
+    it 'phone_numberフォームが表示される' do
+      expect(page).to have_field 'customer[phone_number]'
+    end
+    it 'emailフォームが表示される' do
+      expect(page).to have_field 'customer[email]'
+    end
+    it 'passwordフォームが表示される' do
+      expect(page).to have_field 'customer[password]'
+    end
+    it 'password_confirmationフォームが表示される' do
+      expect(page).to have_field 'customer[password_confirmation]'
+    end
+    it '新規登録ボタンが表示される' do
+      expect(page).to have_button '新規登録'
+    end
+  end
+end

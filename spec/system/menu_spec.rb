@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe '投稿のテスト' do
+describe '店舗メニューのテスト' do
   let(:shop) { create(:shop) }
   let(:shop2) { create(:shop) }
   let(:menu) { create(:menu, shop: shop) }
