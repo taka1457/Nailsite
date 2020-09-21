@@ -145,10 +145,13 @@
       </div>
     <% else %>
       <%= render 'layouts/header' %>
-        <div class="container main_body">
-          <main data-turbolinks="false"><%= yield %></main>
-        </div>
-      <% end %>
+      <div class="container main_body">
+        <main data-turbolinks="false"><%= yield %></main>
+      </div>
+    <% end %>
+    <span id="back">
+    <a href="#"><%= image_tag asset_path('arrow.jpg'), data: {"turbolinks"=>false}, class: "arrow" %></a>
+    </span>
     <div class="container">
       <footer>Copyright © Nailsite. All Rights Reserved.</footer>
     </div>
