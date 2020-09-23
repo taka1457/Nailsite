@@ -55,8 +55,11 @@ class Shop::PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    redirect_to request.referer
+    if @post.destroy
+      redirect_to request.referer
+    else
+      render :new
+    end
   end
 
   def edit

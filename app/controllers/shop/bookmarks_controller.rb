@@ -6,7 +6,10 @@ class Shop::BookmarksController < ApplicationController
     @shops = Shop.page(params[:page]).per(20)
     @genres = Genre.page(params[:page]).per(20)
     bookmark = @shop.bookmarks.new(customer_id: current_customer.id)
-    bookmark.save
+    if bookmark.save
+    else
+      redirect_to request.referer
+    end
   end
 
   def destroy
@@ -14,6 +17,9 @@ class Shop::BookmarksController < ApplicationController
     @shops = Shop.page(params[:page]).per(20)
     @genres = Genre.page(params[:page]).per(20)
     bookmark = @shop.bookmarks.find_by(customer_id: current_customer.id)
-    bookmark.destroy
+    if bookmark.destroy
+    else
+      redirect_to request.referer
+    end
   end
 end

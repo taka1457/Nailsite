@@ -10,6 +10,7 @@ class Shop::PostCommentsController < ApplicationController
     else
       @post_comment = Post.new
       @post_comments = @post.post_comments
+      redirect_to request.referer
     end
   end
 
@@ -18,7 +19,12 @@ class Shop::PostCommentsController < ApplicationController
     @shop = Shop.find(params[:shop_id])
     @post_comment = PostComment.find(params[:id])
     if @post_comment.customer == current_customer
-      @post_comment.destroy
+      if @post_comment.destroy
+      else
+        @post_comment = Post.new
+        @post_comments = @post.post_comments
+        redirect_to request.referer
+      end
     end
   end
 
