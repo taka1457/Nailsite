@@ -21,6 +21,19 @@ class Public::ImgSearchsController < ApplicationController
     end
   end
 
+  def destroy
+    @img_searchs = current_customer.img_searchs
+    @img_search = @img_searchs.find_by(id: params[:id])
+    unless @img_search
+      redirect_to new_img_search_path
+    end
+    if @img_search.destroy
+      redirect_to request.referer
+    else
+      render :new
+    end
+  end
+
   def search
     if params[:tag].present?
       @records = Tag.where(name: params[:tag][:name])
