@@ -26,6 +26,7 @@
 						<th>検索画像</th>
 						<th>検索カテゴリー</th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,10 +44,11 @@
 										<% img_search.search_tags.each.with_index(1) do |tag, i| %>
 											<%= f.hidden_field "#{i}content", :value => tag.name %>
 										<% end %>
-										<%= submit_tag '検索', class: "btn btn-default search_btn" %>
+										<%= submit_tag '検索', class: "btn btn-default" %>
 									<% end %>
 								<% end %>
 							</td>
+							<td><%= link_to "削除", img_search_destroy_path(img_search), method: :delete, "data-confirm" => "削除してもよろしいでしょうか？", class: "btn btn-danger" %></td>
 						</tr>
 					<% end %>
 				</tbody>

@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :reservation_menus, only: [:index]
     resources :talks, only: [:create]
     resources :img_searchs, only: [:create, :new]
+    delete 'img_searchs/:id' => 'img_searchs#destroy', as: 'img_search_destroy'
   end
 
   scope module: :shop do
