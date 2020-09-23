@@ -6,7 +6,7 @@
 		<% if customer_signed_in? %>
 			<td>
 				<% if current_customer == post_comment.customer %>
-				  <%= link_to 'Destroy', shop_post_post_comment_path(shop.id, post.id, post_comment), class: 'btn-sm btn-danger', method: :delete, remote: true %>
+				  <%= link_to '削除', shop_post_post_comment_path(shop.id, post.id, post_comment), class: 'btn-sm btn-danger', method: :delete, remote: true %>
 				<% end %>
 			</td>
 		<% end %>

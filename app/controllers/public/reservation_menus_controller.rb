@@ -9,8 +9,11 @@ class Public::ReservationMenusController < ApplicationController
     current_customer.reservation_menus.destroy_all
     reservation_menu = ReservationMenu.new(reservation_menu_params)
     reservation_menu.customer_id = current_customer.id
-    reservation_menu.save
-    redirect_to reservation_menus_path
+    if reservation_menu.save
+      redirect_to reservation_menus_path
+    else
+      redirect_to request.referer
+    end
   end
 
   private

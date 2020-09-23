@@ -32,8 +32,11 @@ class Shop::MenusController < ApplicationController
   end
 
   def destroy
-    @menu.destroy
-    redirect_to request.referer
+    if @menu.destroy
+      redirect_to request.referer
+    else
+      render :edit
+    end
   end
 
   private

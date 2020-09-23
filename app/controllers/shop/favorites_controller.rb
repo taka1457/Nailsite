@@ -5,13 +5,19 @@ class Shop::FavoritesController < ApplicationController
     @post = Post.find(params[:post_id])
     @shop = @post.shop.id
     favorite = @post.favorites.new(customer_id: current_customer.id)
-    favorite.save
+    if favorite.save
+    else
+      redirect_to request.referer
+    end
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     @shop = @post.shop.id
     favorite = @post.favorites.find_by(customer_id: current_customer.id)
-    favorite.destroy
+    if favorite.destroy
+    else
+      redirect_to request.referer
+    end
   end
 end
