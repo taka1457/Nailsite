@@ -78,15 +78,18 @@ $(function() {
 $(function(){
   $(".indication").show();
   if($.cookie('Flg') == 'on'){
+    $(".cookie-box").hide();
+    $(".box").hide();
     $(".indication-right").hide();
     $(".indication-left").hide();
-    $(".box").hide();
   }else{  
+    $(".cookie-box").show();
+    $(".box").show();
     $(".indication-right").show();
     $(".indication-left").show();
-    $(".box").show();
   }
   $(".box button").click(function(){
+    $(".cookie-box").hide();
     $(".indication-right").addClass("rightslide");
     $(".indication-left").addClass("leftslide");
     $(".box").fadeOut();
