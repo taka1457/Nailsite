@@ -7,12 +7,23 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-
   </head>
   <body>
+
+  <div class="indication-left"></div>
+  <div class="indication-right"></div>
+  <div class="box">
+    <p>
+      Nailsiteは「納得感のあるお店選び」をコンセプトにした、今までにないネイルサイトです。<br>
+      ネットでお店探しをする際に起こりがちな「探し疲れ」というような経験をなくすため<br>
+      ユーザーの体験談をもとにサロンからもアプローチができます。
+    </p>
+    <button>ネイルサロンを探す</button>
+  </div>
+
     <% if shop_signed_in? %>
+
       <header class="shop-header navbar-fixed-top" data-turbolinks="false">
         <div class="container navbar-fixed-top nav-head">
           <div class="row">
@@ -53,6 +64,7 @@
       <div class="container main_body">
         <main data-turbolinks="false"><%= yield %></main>
       </div>
+    
     <% elsif customer_signed_in? %>
       <header class="customer-header navbar-fixed-top" data-turbolinks="false">
         <div class="container navbar-fixed-top nav-head">
@@ -153,10 +165,13 @@
       </div>
     <% end %>
     <span id="back">
-    <a href=""><%= image_tag asset_path('arrow.jpg'), data: {"turbolinks"=>false}, class: "arrow" %></a>
+      <a href=""><%= image_tag asset_path('arrow.jpg'), data: {"turbolinks"=>false}, class: "arrow" %></a>
     </span>
     <div class="container">
       <footer>Copyright © Nailsite. All Rights Reserved.</footer>
     </div>
+
+   
+
   </body>
 </html>

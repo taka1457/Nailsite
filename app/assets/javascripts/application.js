@@ -73,3 +73,23 @@ $(function() {
     event.preventDefault();
   });
 });
+
+
+$(function(){
+  $(".indication").show();
+  if($.cookie('Flg') == 'on'){
+    $(".indication-right").hide();
+    $(".indication-left").hide();
+    $(".box").hide();
+  }else{  
+    $(".indication-right").show();
+    $(".indication-left").show();
+    $(".box").show();
+  }
+  $(".box button").click(function(){
+    $(".indication-right").addClass("rightslide");
+    $(".indication-left").addClass("leftslide");
+    $(".box").fadeOut();
+    $.cookie('Flg', 'on', { expires: 1, path: '/' });
+  });
+});

@@ -429,14 +429,31 @@ textarea {
 }
 
 
-.indication{
+.indication-left{
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 50%;
   height: 100vh;
   background: rgba(0,0,0,0.5);  
-  z-index: 1;
+  z-index: 1040;
+  transition: 1s;
+}
+.indication-right{
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);  
+  z-index: 1040;
+  transition: 1s;
+}
+.leftslide{
+  transform: translateX(-100%);
+}
+.rightslide{
+  transform: translateX(100%);
 }
 .box{
   position:absolute;
@@ -445,7 +462,7 @@ textarea {
   width:400px;
   height:150px; 
   background-color: #ffffff;
-  z-index:2;
+  z-index: 1050;
 }
 .box p{
     padding:15px;

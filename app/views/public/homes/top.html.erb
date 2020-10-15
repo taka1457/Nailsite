@@ -97,28 +97,3 @@
 	</div>
 </div>
 
-<div class="indication">
-  <div class="box">
-    <p>
-			Nailsiteは「納得感のあるお店選び」をコンセプトにした、今までにないネイルサイトです。<br>
-			ネットでお店探しをする際に起こりがちな「探し疲れ」というような経験をなくすため<br>
-			ユーザーの体験談をもとにサロンからもアプローチができます。
-    </p>
-    <button>ネイルサロンを探す</button>
-  </div>
-</div>
-
-<script>
-  $(function(){
-    $(".indication").show();
-    if($.cookie('Flg') == 'on'){
-      $(".indication").hide();
-    }else{  
-      $(".indication").show();
-    }
-    $(".box button").click(function(){
-      $(".indication").fadeOut();
-      $.cookie('Flg', 'on', { expires: 1,path: '/' });
-    });
-  });
-</script>
