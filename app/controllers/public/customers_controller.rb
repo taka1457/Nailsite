@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
   before_action :set_current_customer, except: [:index, :show, :rank]
 
   def index
-    @customers = Customer.where(is_active: true).page(params[:page])
+    @customers = Customer.where(is_active: true).page(params[:page]).per(21)
   end
 
   def show
@@ -28,7 +28,7 @@ class Public::CustomersController < ApplicationController
                                             0
                                           end
                                         end.
-                                        reverse).page(params[:page])
+                                        reverse).page(params[:page]).per(21)
   end
 
   def mypage
