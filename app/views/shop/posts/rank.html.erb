@@ -3,11 +3,10 @@ nav.pagination {
   display: none;
 }
 </style>
-
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<h2>最近の投稿一覧<span class="sub_title"></span>
-			<%= link_to 'いいね順', posts_rank_path, class: "btn btn-default nav-btn" %>
+		<h2>いいねランキング<span class="sub_title"></span>
+			<%= link_to '投稿順', posts_all_path, class: "btn btn-default nav-btn" %>
 			<% if customer_signed_in? %>
 				<%= link_to '写真検索へ', new_img_search_path, class: "btn btn-default nav-btn" %>
 			<% end %>

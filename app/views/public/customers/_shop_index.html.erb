@@ -9,30 +9,33 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% customers.each do |customer| %>
-			<tr>
-				<td>
-					<%= link_to customer_path(customer) do %>
-						<%= customer.full_name %>さん
-					<% end %>
-				</td>
-				<td><%= customer.following_customer.count %></td>
-				<td><%= customer.follower_customer.count %></td>
-				<td>
-					<span>
-						<% @average = 0 %>
-						<% customer.history_comments.each do |comment| %>
-							<% @average += (comment.score / customer.history_comments.count) %>
+		<div class="scroll-list jscroll">
+			<% customers.each do |customer| %>
+				<tr>
+					<td>
+						<%= link_to customer_path(customer) do %>
+							<%= customer.full_name %>さん
 						<% end %>
-						<% if @average > 0.6 %>☆☆☆☆☆
-						<% elsif @average >= 0.3 %>☆☆☆☆
-						<% elsif @average >= -0.3 %>☆☆☆
-						<% elsif @average >= -0.6 %>☆☆
-						<% elsif @average < -0.6 %>☆
-						<% end %>
-					</span>
-				</td>
-			</tr>
-		<% end %>
+					</td>
+					<td><%= customer.following_customer.count %></td>
+					<td><%= customer.follower_customer.count %></td>
+					<td>
+						<span>
+							<% @average = 0 %>
+							<% customer.history_comments.each do |comment| %>
+								<% @average += (comment.score / customer.history_comments.count) %>
+							<% end %>
+							<% if @average > 0.6 %>☆☆☆☆☆
+							<% elsif @average >= 0.3 %>☆☆☆☆
+							<% elsif @average >= -0.3 %>☆☆☆
+							<% elsif @average >= -0.6 %>☆☆
+							<% elsif @average < -0.6 %>☆
+							<% end %>
+						</span>
+					</td>
+				</tr>
+			<% end %>
+			<%= paginate customers %>
+		</div>
 	</tbody>
 </table>

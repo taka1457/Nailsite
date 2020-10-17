@@ -3,7 +3,7 @@ class Shop::PostsController < ApplicationController
   before_action :ensure_post, only: [:edit, :update, :destroy]
 
   def all_index
-    @posts = Post.page(params[:page]).reverse_order.per(9)
+    @posts = Post.page(params[:page]).reverse_order.per(30)
     @tags = Tag.select(:name).distinct
   end
 
@@ -15,7 +15,7 @@ class Shop::PostsController < ApplicationController
                 pluck(:post_id)
       )
     ).
-      page(params[:page]).per(9)
+      page(params[:page]).per(30)
   end
 
   def show

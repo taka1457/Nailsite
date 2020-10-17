@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery3
 //= require bootstrap-sprockets
 //= require jquery.jpostal
+//= require jquery.jscroll.min.js 
 //= require moment
 //= require fullcalendar
 //= require_tree .
@@ -95,4 +97,16 @@ $(function(){
     $(".box").fadeOut();
     $.cookie('Flg', 'on', { expires: 1, path: '/' });
   });
+});
+
+	
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            contentSelector: '.scroll-list',
+            nextSelector: 'span.next:last a'
+          });
+    }
 });
